@@ -44,7 +44,7 @@ Bei Querformat bleibt dieselbe aufrechte Portrait-UI; links/rechts erscheint sch
 
 ## Technik
 
-Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v26`, Offline), eigene einfache SVG-Motive.
+Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v27`, Offline), eigene einfache SVG-Motive.
 
 ## Dateien
 
