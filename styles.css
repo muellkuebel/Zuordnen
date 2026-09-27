@@ -28,10 +28,10 @@ body {
 
 :root {
   --stage-margin: 0.18cm;
-  --radius: 1.0cm;
-  --accent: #4361EE;
-  --ok: #22C55E;
-  --card: #FFFFFF;
+  --radius: 0.55cm;
+  --accent: #FF6B35;
+  --ok: #4CAF50;
+  --card: #FFFBF0;
 }
 
 #app {
@@ -468,3 +468,194 @@ body {
 }
 
 /* Portrait-only UI: no landscape redesign */
+
+/* Theme C — Papier-Sticker (integrated) */
+#app, #bezel, #portrait-shell {
+  background:
+    radial-gradient(circle at 12% 18%, #FFE8A3 0 0.9cm, transparent 1cm),
+    radial-gradient(circle at 88% 12%, #FFB4C8 0 0.7cm, transparent 0.75cm),
+    radial-gradient(circle at 80% 78%, #A8E6CF 0 0.85cm, transparent 0.9cm),
+    radial-gradient(circle at 15% 85%, #B4D4FF 0 0.65cm, transparent 0.7cm),
+    #F5EFE0 !important;
+}
+
+#screen-home { background: transparent; }
+
+.home-card {
+  background: #FFFBF0;
+  border-radius: 0.45cm;
+  box-shadow:
+    0.12cm 0.16cm 0 rgba(0, 0, 0, 0.08),
+    0 0.25cm 0.55cm rgba(0, 0, 0, 0.12);
+  border: 0.06cm solid #F0E6D2;
+  padding: 0.7cm 0.6cm 0.8cm;
+  gap: 0.28cm;
+  position: relative;
+  transform: rotate(-0.4deg);
+}
+
+.app-title {
+  color: #2D3436;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  position: relative;
+}
+
+.app-title::after {
+  content: " ✨";
+  font-size: 0.75em;
+}
+
+.app-sub {
+  color: #6D5D4B;
+  background: #FFEAA7;
+  border: 0.05cm dashed #E17055;
+  padding: 0.15cm 0.5cm;
+  border-radius: 0.25cm;
+  font-weight: 700;
+  transform: rotate(1deg);
+  box-shadow: 0.06cm 0.08cm 0 rgba(225, 112, 85, 0.25);
+}
+
+.home-btns { gap: 0.36cm; }
+
+.home-btns .big-btn {
+  border: 0.07cm solid #2D3436;
+  border-radius: 0.5cm;
+  background: #FFF;
+  box-shadow:
+    0.1cm 0.12cm 0 #2D3436,
+    0 0.2cm 0.35cm rgba(0, 0, 0, 0.1);
+  min-height: 1.8cm;
+  color: #2D3436;
+  transform: rotate(0deg);
+}
+
+.home-btns .big-btn:nth-child(odd) {
+  transform: rotate(-0.6deg);
+  background: #FFF9F0;
+}
+.home-btns .big-btn:nth-child(even) {
+  transform: rotate(0.55deg);
+  background: #F8FFFE;
+}
+.home-btns .big-btn:nth-child(1) { background: #FFF0F5; border-color: #E84393; box-shadow: 0.1cm 0.12cm 0 #E84393, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
+.home-btns .big-btn:nth-child(2) { background: #F0F7FF; border-color: #0984E3; box-shadow: 0.1cm 0.12cm 0 #0984E3, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
+.home-btns .big-btn:nth-child(3) { background: #F0FFF4; border-color: #00B894; box-shadow: 0.1cm 0.12cm 0 #00B894, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
+.home-btns .big-btn:nth-child(4) { background: #FFFBEB; border-color: #FDCB6E; box-shadow: 0.1cm 0.12cm 0 #E17055, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
+.home-btns .big-btn:nth-child(5) { background: #F5F0FF; border-color: #6C5CE7; box-shadow: 0.1cm 0.12cm 0 #6C5CE7, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
+.home-btns .big-btn:nth-child(6) { background: #FFF5EB; border-color: #E17055; box-shadow: 0.1cm 0.12cm 0 #E17055, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
+.home-btns .big-btn:nth-child(7) { background: #EBFBFF; border-color: #00CEC9; box-shadow: 0.1cm 0.12cm 0 #00CEC9, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
+
+.home-btns .big-btn:active {
+  transform: translate(0.08cm, 0.08cm) rotate(0deg) !important;
+  box-shadow: 0.02cm 0.04cm 0 #2D3436, 0 0.08cm 0.15cm rgba(0,0,0,.08) !important;
+  background: #FFF !important;
+  border-color: #2D3436;
+}
+
+.home-btns .big-btn-label {
+  font-weight: 900;
+  color: #2D3436;
+}
+
+.done-badge {
+  background: #00B894;
+  color: #fff;
+  border: 0.05cm solid #2D3436;
+  box-shadow: 0.05cm 0.06cm 0 #2D3436;
+  font-size: 0.4cm;
+}
+
+/* Play */
+#screen-play {
+  background: transparent;
+  padding: 0.25cm;
+}
+
+.play-bar {
+  background: #FFFBF0;
+  border: 0.06cm solid #2D3436;
+  border-radius: 0.45cm;
+  padding: 0.15cm 0.2cm;
+  box-shadow: 0.08cm 0.1cm 0 #2D3436;
+}
+
+.bar-btn {
+  border: 0.06cm solid #2D3436;
+  border-radius: 0.4cm;
+  background: #FFEAA7;
+  color: #2D3436;
+  box-shadow: 0.07cm 0.08cm 0 #2D3436;
+  font-weight: 800;
+}
+
+.bar-btn:active {
+  background: #FDCB6E;
+  transform: translate(0.05cm, 0.05cm);
+  box-shadow: 0.02cm 0.03cm 0 #2D3436;
+}
+
+.play-title {
+  color: #2D3436;
+  font-weight: 900;
+}
+
+#stage {
+  background: #FFF;
+  border-radius: 0.5cm;
+  border: 0.08cm solid #2D3436;
+  box-shadow:
+    0.14cm 0.16cm 0 #2D3436,
+    0 0.2cm 0.4cm rgba(0, 0, 0, 0.1);
+}
+
+.hint {
+  background: #FFF;
+  color: #2D3436;
+  font-weight: 800;
+  border: 0.07cm solid #2D3436;
+  border-radius: 0.4cm;
+  padding: 0.25cm 0.6cm;
+  margin: 0.08cm 0.15cm 0.12cm;
+  box-shadow: 0.1cm 0.12cm 0 #E84393;
+  width: auto;
+  max-width: 95%;
+  position: relative;
+}
+
+.hint::before {
+  content: "👉 ";
+}
+
+.live-line { stroke: #E84393; stroke-width: 7; }
+.conn-line { stroke: #00B894; stroke-width: 7; }
+.item.drawing { filter: drop-shadow(0 0 0.12cm rgba(232, 67, 147, 0.7)); }
+.item.matched { filter: drop-shadow(0 0 0.12cm rgba(0, 184, 148, 0.65)); }
+.check-badge {
+  background: #00B894;
+  border: 0.05cm solid #2D3436;
+  box-shadow: 0.05cm 0.05cm 0 #2D3436;
+  color: #fff;
+}
+
+/* Celebrate — sticker card */
+.celebrate-card {
+  background: #FFFBF0;
+  border: 0.08cm solid #2D3436;
+  box-shadow: 0.14cm 0.16cm 0 #2D3436, 0 0.25cm 0.5cm rgba(0,0,0,0.12);
+  border-radius: 0.5cm;
+}
+.celebrate-actions .big-btn.primary {
+  background: #FF6B35;
+  border: 0.07cm solid #2D3436;
+  box-shadow: 0.1cm 0.12cm 0 #2D3436;
+  color: #fff;
+}
+.celebrate-actions .big-btn.secondary,
+.celebrate-actions .big-btn.small:not(.primary) {
+  background: #FFEAA7;
+  border: 0.07cm solid #2D3436;
+  box-shadow: 0.1cm 0.12cm 0 #2D3436;
+  color: #2D3436;
+}

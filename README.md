@@ -28,11 +28,11 @@ Bei Querformat bleibt dieselbe aufrechte Portrait-UI; links/rechts erscheint sch
 
 ## Technik
 
-Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v10`, Offline), eigene einfache SVG-Motive.
+Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v11`, Offline), eigene einfache SVG-Motive.
 
 ## Dateien
 
 - `index.html` — Start + Übungs-Shell
-- `styles.css` — schwarzes Bezel, große Touch-Targets, Portrait-Shell
+- `styles.css` — Papier-Sticker Theme, große Touch-Targets, Portrait-Shell
 - `app.js` — Finger-Zeichnen, Matching-Logik, Celebration
 - `manifest.webmanifest` / `sw.js` / `icons/`
