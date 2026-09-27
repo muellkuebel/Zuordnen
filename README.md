@@ -23,6 +23,7 @@ Auf dem iPad: Safari → Teilen → Zum Home-Bildschirm.
 11. **Bunte Windräder** — Bunte Windräder mit dem farblich passenden Faltpapier verbinden (1:1)
 12. **Doggys Entchen** — Bade-Entchen oben und unten nach Farbe verbinden (rosa/orange/gelb/hellblau, 1:1)
 13. **Wo sind die Karotten?** — Suchbild: mit dem Finger die 5 Karotten im orangen Durcheinander einkreisen
+14. **Versteckte Tiere** — Volle Tiere (Wurm, Igel, Maus, Schnecke) mit Blättern verbinden, hinter denen sie hervorlugen (1:1)
 
 **Interaktion (Verbinden):** Finger vom Objekt zum Ziel ziehen; die Linie wird live mitgezeichnet.  
 Während des Zeichnens ist die Linie schwarz; richtig = Linie wird grün und bleibt + kurzes weiches Bing. Falsch = Linie verschwindet, leichtes Wackeln. (Kein Haken mehr auf den Objekten — nur die Abschluss-Feier „Super gemacht!“.)
@@ -40,7 +41,7 @@ Bei Querformat bleibt dieselbe aufrechte Portrait-UI; links/rechts erscheint sch
 
 ## Technik
 
-Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v23`, Offline), eigene einfache SVG-Motive.
+Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v24`, Offline), eigene einfache SVG-Motive.
 
 ## Dateien
 

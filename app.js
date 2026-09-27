@@ -902,6 +902,168 @@
       </svg>`;
   }
 
+
+  function wormSvg() {
+    return `
+      <svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 40 C18 18 32 14 42 28 C50 40 58 52 70 44 C82 36 88 22 94 28"
+              fill="none" stroke="#FF8FAB" stroke-width="14" stroke-linecap="round"/>
+        <path d="M12 40 C18 18 32 14 42 28 C50 40 58 52 70 44 C82 36 88 22 94 28"
+              fill="none" stroke="#FFB4C4" stroke-width="10" stroke-linecap="round"/>
+        <path d="M22 28 Q26 34 24 40 M34 22 Q38 30 36 38 M48 32 Q50 40 48 46
+                 M60 46 Q62 40 64 36 M76 42 Q80 36 84 32 M88 26 Q90 30 92 32"
+              fill="none" stroke="#E8899A" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+        <circle cx="16" cy="36" r="2.2" fill="#5C4033"/>
+        <circle cx="20" cy="34" r="2.2" fill="#5C4033"/>
+        <circle cx="16.6" cy="35.4" r="0.7" fill="#fff"/>
+        <circle cx="20.6" cy="33.4" r="0.7" fill="#fff"/>
+        <path d="M10 32 Q8 26 12 24" fill="none" stroke="#FF8FAB" stroke-width="2" stroke-linecap="round"/>
+        <path d="M14 30 Q16 24 20 24" fill="none" stroke="#FF8FAB" stroke-width="2" stroke-linecap="round"/>
+      </svg>`;
+  }
+
+  function hedgehogSvg() {
+    return `
+      <svg viewBox="0 0 110 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g stroke="#5C4033" stroke-width="2.2" stroke-linecap="round">
+          <line x1="48" y1="38" x2="42" y2="12"/><line x1="56" y1="36" x2="56" y2="8"/>
+          <line x1="64" y1="36" x2="70" y2="10"/><line x1="72" y1="40" x2="88" y2="18"/>
+          <line x1="40" y1="42" x2="28" y2="22"/><line x1="78" y1="44" x2="96" y2="30"/>
+          <line x1="36" y1="50" x2="18" y2="40"/><line x1="82" y1="52" x2="100" y2="48"/>
+          <line x1="52" y1="32" x2="48" y2="6"/><line x1="68" y1="32" x2="76" y2="6"/>
+        </g>
+        <ellipse cx="58" cy="50" rx="30" ry="20" fill="#C4A574" stroke="#8B5E3C" stroke-width="2"/>
+        <ellipse cx="30" cy="52" rx="14" ry="12" fill="#E8D5B5" stroke="#8B5E3C" stroke-width="1.8"/>
+        <ellipse cx="18" cy="54" rx="7" ry="5" fill="#D4B896"/>
+        <circle cx="24" cy="48" r="2.2" fill="#222"/>
+        <circle cx="24.7" cy="47.3" r="0.7" fill="#fff"/>
+        <circle cx="14" cy="54" r="1.4" fill="#5C4033"/>
+        <path d="M26 58 Q30 62 34 58" fill="none" stroke="#8B5E3C" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="46" cy="66" rx="4" ry="3" fill="#8B5E3C"/>
+        <ellipse cx="66" cy="66" rx="4" ry="3" fill="#8B5E3C"/>
+      </svg>`;
+  }
+
+  function mouseFullSvg() {
+    return `
+      <svg viewBox="0 0 110 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M78 48 Q98 28 104 48 Q96 62 78 54" fill="none" stroke="#FF8FAB" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="52" cy="48" rx="26" ry="18" fill="#B0B8C4" stroke="#7A8494" stroke-width="2"/>
+        <circle cx="28" cy="42" r="14" fill="#C5CCD6" stroke="#7A8494" stroke-width="2"/>
+        <circle cx="18" cy="28" r="9" fill="#C5CCD6" stroke="#7A8494" stroke-width="1.8"/>
+        <circle cx="34" cy="26" r="9" fill="#C5CCD6" stroke="#7A8494" stroke-width="1.8"/>
+        <circle cx="18" cy="28" r="5" fill="#FFB4C4"/>
+        <circle cx="34" cy="26" r="5" fill="#FFB4C4"/>
+        <ellipse cx="16" cy="46" rx="6" ry="4" fill="#9AA3B0"/>
+        <circle cx="24" cy="40" r="2.2" fill="#222"/>
+        <circle cx="24.7" cy="39.3" r="0.7" fill="#fff"/>
+        <path d="M12 40 L4 36 M12 44 L4 46" stroke="#7A8494" stroke-width="1.4" stroke-linecap="round"/>
+        <ellipse cx="42" cy="62" rx="4" ry="3" fill="#7A8494"/>
+        <ellipse cx="60" cy="62" rx="4" ry="3" fill="#7A8494"/>
+      </svg>`;
+  }
+
+  function snailSvg() {
+    return `
+      <svg viewBox="0 0 110 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M18 58 C28 52 48 50 62 56 C72 60 78 64 82 62" fill="none" stroke="#C4A574" stroke-width="12" stroke-linecap="round"/>
+        <path d="M18 58 C28 52 48 50 62 56 C72 60 78 64 82 62" fill="none" stroke="#E8D5B5" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="72" cy="40" r="22" fill="#FFD60A" stroke="#E0B000" stroke-width="2"/>
+        <path d="M72 40 Q84 40 84 28 Q84 18 72 18 Q60 18 60 30 Q60 40 72 40 Q78 40 78 34"
+              fill="none" stroke="#E0B000" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="72" cy="40" r="4" fill="#F4A261"/>
+        <circle cx="22" cy="54" r="7" fill="#E8D5B5" stroke="#C4A574" stroke-width="1.5"/>
+        <circle cx="20" cy="52" r="1.8" fill="#222"/>
+        <path d="M18 48 L14 36 M24 48 L28 36" stroke="#C4A574" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="14" cy="34" r="2.5" fill="#FF8FAB"/>
+        <circle cx="28" cy="34" r="2.5" fill="#FF8FAB"/>
+      </svg>`;
+  }
+
+  function leafHedgehogSvg() {
+    /* Maple leaf — hedgehog spines peek top-right */
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M50 88 L48 58
+                 M48 58 C40 62 28 70 22 78 C18 70 22 54 30 48
+                 C18 48 8 42 6 32 C16 34 28 38 36 44
+                 C28 32 24 18 28 8 C38 16 46 28 50 40
+                 C54 28 62 16 72 8 C76 18 72 32 64 44
+                 C72 38 84 34 94 32 C92 42 82 48 70 48
+                 C78 54 82 70 78 78 C72 70 60 62 52 58 Z"
+              fill="#E76F3C" stroke="#C45C2A" stroke-width="2"/>
+        <path d="M50 88 L50 42" fill="none" stroke="#C45C2A" stroke-width="1.6"/>
+        <g stroke="#5C4033" stroke-width="2" stroke-linecap="round">
+          <line x1="78" y1="28" x2="90" y2="14"/>
+          <line x1="74" y1="22" x2="82" y2="8"/>
+          <line x1="70" y1="26" x2="78" y2="10"/>
+          <line x1="82" y1="34" x2="96" y2="24"/>
+        </g>
+        <ellipse cx="76" cy="30" rx="8" ry="6" fill="#C4A574" stroke="#8B5E3C" stroke-width="1.2"/>
+      </svg>`;
+  }
+
+  function leafSnailSvg() {
+    /* Oak leaf — snail antennae peek right */
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M50 90 L48 58
+                 C36 62 24 58 20 48 C28 48 36 46 42 42
+                 C30 40 20 32 18 22 C28 26 38 30 46 36
+                 C40 24 42 12 50 8 C58 12 60 24 54 36
+                 C62 30 72 26 82 22 C80 32 70 40 58 42
+                 C64 46 72 48 80 48 C76 58 64 62 52 58 Z"
+              fill="#E63946" stroke="#C1121F" stroke-width="2"/>
+        <path d="M50 90 L50 30" fill="none" stroke="#C1121F" stroke-width="1.5"/>
+        <ellipse cx="84" cy="48" rx="7" ry="5" fill="#E8D5B5" stroke="#C4A574" stroke-width="1.2"/>
+        <path d="M86 44 L90 34 M90 46 L96 38" stroke="#C4A574" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="90" cy="32" r="2.2" fill="#FF8FAB"/>
+        <circle cx="96" cy="36" r="2.2" fill="#FF8FAB"/>
+      </svg>`;
+  }
+
+  function leafWormSvg() {
+    /* Serrated birch-style leaf — pink worm segment bottom-right */
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M50 92 L48 55
+                 C34 58 24 48 22 36 C28 40 36 42 42 40
+                 C30 34 24 22 28 12 C36 18 44 28 48 40
+                 C52 28 60 18 68 12 C72 22 66 34 56 40
+                 C64 42 72 40 78 36 C76 48 66 58 52 55 Z"
+              fill="#E09F3E" stroke="#C47E1A" stroke-width="2"/>
+        <path d="M50 92 L50 28" fill="none" stroke="#C47E1A" stroke-width="1.5"/>
+        <path d="M30 24 L36 28 M34 40 L40 42 M62 24 L58 30 M66 40 L60 42"
+              stroke="#C47E1A" stroke-width="1.2" opacity=".5"/>
+        <path d="M72 70 C78 64 86 66 90 74 C86 80 78 78 72 70 Z" fill="#FF8FAB" stroke="#E8899A" stroke-width="1.3"/>
+        <path d="M76 68 Q80 72 78 76" fill="none" stroke="#E8899A" stroke-width="1.1" opacity=".6"/>
+      </svg>`;
+  }
+
+  function leafMouseSvg() {
+    /* Chestnut compound leaf — mouse head + pink tail */
+    return `
+      <svg viewBox="0 0 110 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="#D4A373" stroke="#B08968" stroke-width="1.6">
+          <path d="M55 88 L55 48"/>
+          <ellipse cx="55" cy="28" rx="10" ry="22"/>
+          <ellipse cx="34" cy="40" rx="9" ry="20" transform="rotate(-28 34 40)"/>
+          <ellipse cx="76" cy="40" rx="9" ry="20" transform="rotate(28 76 40)"/>
+          <ellipse cx="24" cy="56" rx="8" ry="18" transform="rotate(-48 24 56)"/>
+          <ellipse cx="86" cy="56" rx="8" ry="18" transform="rotate(48 86 56)"/>
+        </g>
+        <circle cx="78" cy="72" r="10" fill="#B0B8C4" stroke="#7A8494" stroke-width="1.5"/>
+        <circle cx="72" cy="64" r="5.5" fill="#C5CCD6" stroke="#7A8494" stroke-width="1.2"/>
+        <circle cx="84" cy="64" r="5.5" fill="#C5CCD6" stroke="#7A8494" stroke-width="1.2"/>
+        <circle cx="72" cy="64" r="2.8" fill="#FFB4C4"/>
+        <circle cx="84" cy="64" r="2.8" fill="#FFB4C4"/>
+        <circle cx="76" cy="72" r="1.6" fill="#222"/>
+        <circle cx="82" cy="72" r="1.6" fill="#222"/>
+        <path d="M88 78 Q102 70 106 82" fill="none" stroke="#FF8FAB" stroke-width="3" stroke-linecap="round"/>
+      </svg>`;
+  }
+
+
   const EXERCISES = {
     bonbons: {
       title: 'Bunte Bonbons',
@@ -1161,6 +1323,26 @@
       mascot: { x: 0.14, y: 0.88, w: 0.18, aspect: 1.1, svg: rabbitMascotSvg },
     },
 
+
+    versteckteTiere: {
+      title: 'Versteckte Tiere',
+      hint: 'Welches Tier versteckt sich hinter welchem Blatt? Verbinde!',
+      mode: 'one-to-one',
+      sources: [
+        { id: 'worm', match: 'worm', svg: wormSvg, x: 0.20, y: 0.16, w: 0.22, aspect: 0.7 },
+        { id: 'hedgehog', match: 'hedgehog', svg: hedgehogSvg, x: 0.20, y: 0.39, w: 0.22, aspect: 0.75 },
+        { id: 'mouse', match: 'mouse', svg: mouseFullSvg, x: 0.20, y: 0.62, w: 0.22, aspect: 0.75 },
+        { id: 'snail', match: 'snail', svg: snailSvg, x: 0.20, y: 0.85, w: 0.22, aspect: 0.75 },
+      ],
+      targets: [
+        /* Worksheet order (shuffled each start): maple/hedgehog, oak/snail, birch/worm, chestnut/mouse */
+        { id: 'leaf_hedgehog', match: 'hedgehog', svg: leafHedgehogSvg, x: 0.78, y: 0.16, w: 0.22, aspect: 1.0 },
+        { id: 'leaf_snail', match: 'snail', svg: leafSnailSvg, x: 0.78, y: 0.39, w: 0.22, aspect: 1.0 },
+        { id: 'leaf_worm', match: 'worm', svg: leafWormSvg, x: 0.78, y: 0.62, w: 0.22, aspect: 1.0 },
+        { id: 'leaf_mouse', match: 'mouse', svg: leafMouseSvg, x: 0.78, y: 0.85, w: 0.22, aspect: 1.0 },
+      ],
+    },
+
   };
 
   /* —— DOM —— */
@@ -1195,6 +1377,7 @@
     'windraeder',
     'doggysEntchen',
     'karotten',
+    'versteckteTiere',
   ];
 
   /* Session-only completion (in-memory; clears when app fully reopened) */
@@ -2174,7 +2357,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=23').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=24').catch(() => {});
     });
   }
 
