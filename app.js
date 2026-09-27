@@ -374,18 +374,62 @@
   }
 
   function handSvg(fingers) {
-    /* Cartoon peach hand; thumb always up; optional index/middle */
+    /* Cute kid-hand: warm skin, soft outline, rounded fingers.
+       Worksheet style: 1=thumb, 2=thumb+index, 3=thumb+index+middle.
+       Ring+pinky stay tucked as a soft fist knuckle so counts read clearly. */
+    const skin = '#FFBE98';
+    const outline = '#D4896A';
+    const blush = '#F4A88A';
+    const sw = 2.2;
+    /* shared fist/palm — chubby rounded mitt */
+    const palm = `
+      <ellipse cx="54" cy="78" rx="28" ry="24" fill="${skin}" stroke="${outline}" stroke-width="${sw}"/>
+      <ellipse cx="42" cy="70" rx="7" ry="4.5" fill="#fff" opacity=".28"/>
+      <ellipse cx="62" cy="86" rx="10" ry="6" fill="${blush}" opacity=".35"/>`;
+    /* tucked ring + pinky knuckles (always visible, never count) */
+    const tucked = `
+      <path d="M68 62 Q74 58 76 64 Q74 72 68 70 Z" fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>
+      <path d="M76 66 Q82 62 84 68 Q82 76 76 74 Z" fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>`;
+    /* thumb always up — short chubby capsule, angled left */
     const thumb = `
-      <path d="M38 48 Q28 28 34 18 Q40 12 46 22 Q48 32 44 46" fill="#FFCCAA" stroke="#E8897A" stroke-width="1.5"/>`;
+      <path d="M36 62
+               C28 54 24 40 28 28
+               C30 20 38 16 44 22
+               C50 28 50 44 46 58
+               C44 62 40 64 36 62 Z"
+            fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>
+      <ellipse cx="34" cy="34" rx="3.5" ry="5" fill="#fff" opacity=".22"/>`;
+    /* index — tall rounded finger */
     const index = fingers >= 2 ? `
-      <path d="M48 46 Q50 18 54 12 Q60 10 60 20 Q58 36 54 48" fill="#FFCCAA" stroke="#E8897A" stroke-width="1.5"/>` : '';
+      <path d="M48 58
+               C46 40 46 22 50 12
+               C52 6 60 6 62 14
+               C64 26 62 44 58 58
+               C56 62 50 62 48 58 Z"
+            fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>
+      <ellipse cx="54" cy="18" rx="3" ry="4.5" fill="#fff" opacity=".22"/>` : '';
+    /* middle — slightly taller, to the right of index */
     const middle = fingers >= 3 ? `
-      <path d="M56 48 Q62 22 66 16 Q72 14 72 24 Q70 40 64 50" fill="#FFCCAA" stroke="#E8897A" stroke-width="1.5"/>` : '';
+      <path d="M60 60
+               C60 42 62 24 66 14
+               C68 8 76 8 78 16
+               C80 28 78 46 74 60
+               C72 64 62 64 60 60 Z"
+            fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>
+      <ellipse cx="70" cy="20" rx="3" ry="4.5" fill="#fff" opacity=".22"/>` : '';
+    /* when only thumb: show two soft curled fingertips so it still looks like a hand */
+    const curledRest = fingers === 1 ? `
+      <path d="M50 58 Q52 48 58 50 Q60 58 54 62 Q50 62 50 58 Z" fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>
+      <path d="M58 60 Q62 50 68 52 Q70 60 64 64 Q58 64 58 60 Z" fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>` : (
+      fingers === 2 ? `
+      <path d="M60 60 Q64 50 70 52 Q72 60 66 64 Q60 64 60 60 Z" fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>` : ''
+    );
     return `
       <svg viewBox="0 0 100 110" aria-hidden="true">
-        <ellipse cx="52" cy="78" rx="26" ry="22" fill="#FFCCAA" stroke="#E8897A" stroke-width="2"/>
-        ${thumb}${index}${middle}
-        <ellipse cx="44" cy="72" rx="5" ry="3" fill="#fff" opacity=".25"/>
+        ${palm}
+        ${tucked}
+        ${curledRest}
+        ${middle}${index}${thumb}
       </svg>`;
   }
 
@@ -1425,7 +1469,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=17').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=18').catch(() => {});
     });
   }
 
