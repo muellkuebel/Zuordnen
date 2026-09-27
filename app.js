@@ -664,6 +664,71 @@
       </svg>`;
   }
 
+  function bathDuckSvg(body, beak, faceRight) {
+    /* Classic rubber duck; default faces left, flip for right-facing row */
+    const b = body || COLORS.yellow;
+    const k = beak || COLORS.orange;
+    const flip = faceRight ? 'transform="scale(-1,1) translate(-80,0)"' : '';
+    return `
+      <svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g ${flip}>
+          <ellipse cx="36" cy="44" rx="26" ry="17" fill="${b}"/>
+          <ellipse cx="24" cy="42" rx="7" ry="5" fill="#fff" opacity=".28"/>
+          <path d="M22 40 Q18 32 26 34 Q30 38 28 44Z" fill="${b}" opacity=".92"/>
+          <circle cx="56" cy="30" r="15" fill="${b}"/>
+          <circle cx="60" cy="27" r="2.4" fill="#222"/>
+          <circle cx="61" cy="26" r="0.8" fill="#fff" opacity=".7"/>
+          <path d="M68 30 Q82 26 78 36 Q72 38 68 34Z" fill="${k}"/>
+          <ellipse cx="72" cy="31" rx="2.2" ry="1.4" fill="#fff" opacity=".35"/>
+          <ellipse cx="30" cy="46" rx="9" ry="6" fill="${b}" stroke="rgba(0,0,0,.12)" stroke-width="1.2"/>
+        </g>
+      </svg>`;
+  }
+
+  function doggyInTubSvg() {
+    /* Optional cute mascot: orange Doggy in a bubbly clawfoot tub */
+    return `
+      <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="60" cy="84" rx="40" ry="5" fill="rgba(0,0,0,.08)"/>
+        <!-- tub -->
+        <path d="M18 48 Q18 78 60 80 Q102 78 102 48 Z" fill="#89C2D9" stroke="#5B9BB5" stroke-width="2"/>
+        <ellipse cx="60" cy="48" rx="44" ry="12" fill="#B8DCE8"/>
+        <ellipse cx="22" cy="72" rx="5" ry="7" fill="#5B9BB5"/>
+        <ellipse cx="98" cy="72" rx="5" ry="7" fill="#5B9BB5"/>
+        <!-- suds -->
+        <circle cx="36" cy="46" r="7" fill="#fff" opacity=".95"/>
+        <circle cx="48" cy="42" r="9" fill="#fff"/>
+        <circle cx="62" cy="44" r="8" fill="#fff" opacity=".92"/>
+        <circle cx="76" cy="42" r="9" fill="#fff"/>
+        <circle cx="88" cy="48" r="6" fill="#fff" opacity=".9"/>
+        <!-- doggy head -->
+        <circle cx="60" cy="28" r="16" fill="#FF8C42"/>
+        <ellipse cx="46" cy="18" rx="6" ry="8" fill="#8B5E3C"/>
+        <ellipse cx="74" cy="18" rx="6" ry="8" fill="#8B5E3C"/>
+        <circle cx="54" cy="26" r="4.5" fill="#fff"/>
+        <circle cx="66" cy="26" r="4.5" fill="#fff"/>
+        <circle cx="55" cy="27" r="2" fill="#222"/>
+        <circle cx="67" cy="27" r="2" fill="#222"/>
+        <ellipse cx="60" cy="33" rx="3.5" ry="2.6" fill="#5C4033"/>
+        <path d="M55 38 Q60 42 65 38" fill="none" stroke="#222" stroke-width="1.6" stroke-linecap="round"/>
+        <!-- brush -->
+        <g transform="translate(78,34) rotate(25)">
+          <rect x="0" y="0" width="4" height="18" rx="1.5" fill="#C4A574"/>
+          <rect x="-4" y="16" width="12" height="7" rx="2" fill="#8B5E3C"/>
+        </g>
+        <!-- tiny boat -->
+        <g transform="translate(28,50)">
+          <path d="M0 8 L18 8 L14 14 L4 14 Z" fill="#FFD60A"/>
+          <rect x="7" y="1" width="7" height="7" rx="1" fill="#E63946"/>
+          <rect x="9" y="-4" width="2.5" height="6" fill="#E63946"/>
+        </g>
+        <!-- bubbles -->
+        <circle cx="24" cy="30" r="3" fill="#B8DCE8" opacity=".7"/>
+        <circle cx="18" cy="20" r="2" fill="#B8DCE8" opacity=".55"/>
+        <circle cx="98" cy="28" r="2.5" fill="#B8DCE8" opacity=".65"/>
+      </svg>`;
+  }
+
   function doggyMascotSvg() {
     return `
       <svg viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -884,6 +949,27 @@
         { id: 'pp_green',  match: 'green',  svg: () => paperSquareSvg(COLORS.green),  x: 0.86, y: 0.22, w: 0.18, aspect: 1.0 },
       ],
     },
+
+    doggysEntchen: {
+      title: 'Doggys Entchen',
+      hint: 'Doggy hat von jedem Bade-Entchen genau zwei. Vergleiche und verbinde die Paare!',
+      mode: 'one-to-one',
+      sources: [
+        /* Top row faces left (worksheet order; positions shuffle each start) */
+        { id: 'dk_pink',  match: 'pink',  svg: () => bathDuckSvg(COLORS.pink, COLORS.yellow, false), x: 0.14, y: 0.30, w: 0.18, aspect: 0.9 },
+        { id: 'dk_orange', match: 'orange', svg: () => bathDuckSvg(COLORS.orange, COLORS.pink, false), x: 0.38, y: 0.30, w: 0.18, aspect: 0.9 },
+        { id: 'dk_yellow', match: 'yellow', svg: () => bathDuckSvg(COLORS.yellow, COLORS.orange, false), x: 0.62, y: 0.30, w: 0.18, aspect: 0.9 },
+        { id: 'dk_sky', match: 'sky', svg: () => bathDuckSvg(COLORS.sky, COLORS.red, false), x: 0.86, y: 0.30, w: 0.18, aspect: 0.9 },
+      ],
+      targets: [
+        /* Bottom row faces right */
+        { id: 'tk_yellow', match: 'yellow', svg: () => bathDuckSvg(COLORS.yellow, COLORS.orange, true), x: 0.14, y: 0.78, w: 0.18, aspect: 0.9 },
+        { id: 'tk_pink', match: 'pink', svg: () => bathDuckSvg(COLORS.pink, COLORS.yellow, true), x: 0.38, y: 0.78, w: 0.18, aspect: 0.9 },
+        { id: 'tk_sky', match: 'sky', svg: () => bathDuckSvg(COLORS.sky, COLORS.red, true), x: 0.62, y: 0.78, w: 0.18, aspect: 0.9 },
+        { id: 'tk_orange', match: 'orange', svg: () => bathDuckSvg(COLORS.orange, COLORS.pink, true), x: 0.86, y: 0.78, w: 0.18, aspect: 0.9 },
+      ],
+      mascot: { x: 0.50, y: 0.10, w: 0.28, aspect: 0.75, svg: doggyInTubSvg },
+    },
   };
 
   /* —— DOM —— */
@@ -916,6 +1002,7 @@
     'zaehlenBis3',
     'blumenwiese',
     'windraeder',
+    'doggysEntchen',
   ];
 
   /* Session-only completion (in-memory; clears when app fully reopened) */
@@ -1157,6 +1244,28 @@
     }));
   }
 
+
+  function placeMascot(ex) {
+    if (!ex || !ex.mascot) return;
+    const m = document.createElement('div');
+    m.className = 'item mascot';
+    m.setAttribute('aria-hidden', 'true');
+    const svgFn = typeof ex.mascot.svg === 'function' ? ex.mascot.svg : doggyMascotSvg;
+    m.innerHTML = svgFn();
+    board.appendChild(m);
+    const mid = '__mascot__';
+    itemEls.set(mid, m);
+    itemMeta.set(mid, {
+      kind: 'mascot',
+      match: null,
+      x: ex.mascot.x,
+      y: ex.mascot.y,
+      w: ex.mascot.w,
+      aspect: ex.mascot.aspect != null ? ex.mascot.aspect : 1,
+      role: 'mascot',
+    });
+  }
+
   function startExercise(id) {
     currentId = id;
     const base = EXERCISES[id];
@@ -1210,9 +1319,11 @@
       mode: base.mode,
       sources: withShuffledSlots(base.sources),
       targets: withShuffledSlots(base.targets),
+      mascot: base.mascot ? Object.assign({}, base.mascot) : null,
     };
     exercise.sources.forEach((s) => makeItem(s, 'source'));
     exercise.targets.forEach((t) => makeItem(t, 'target'));
+    placeMascot(exercise);
     showScreen('play');
     requestAnimationFrame(() => {
       sizeStage();
@@ -1280,24 +1391,7 @@
       el.setAttribute('aria-label', 'Blume');
       el.dataset.color = s.match;
     });
-    if (ex.mascot) {
-      const m = document.createElement('div');
-      m.className = 'item mascot';
-      m.setAttribute('aria-hidden', 'true');
-      m.innerHTML = doggyMascotSvg();
-      board.appendChild(m);
-      const mid = '__mascot__';
-      itemEls.set(mid, m);
-      itemMeta.set(mid, {
-        kind: 'mascot',
-        match: null,
-        x: ex.mascot.x,
-        y: ex.mascot.y,
-        w: ex.mascot.w,
-        aspect: ex.mascot.aspect != null ? ex.mascot.aspect : 1,
-        role: 'mascot',
-      });
-    }
+    placeMascot(ex);
   }
 
   function pathLength(pts) {
@@ -1881,7 +1975,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=20').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=21').catch(() => {});
     });
   }
 
