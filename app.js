@@ -186,43 +186,43 @@
   }
 
   function barnAnimalIcon(kind) {
-    /* Clear circular badge with animal so kids can match */
-    const badge = `<circle cx="45" cy="66" r="14" fill="#fff" stroke="#8B5E3C" stroke-width="2"/>`;
+    /* Larger animal figure visible in the doorway */
+    const wrap = (inner) => `<g transform="translate(45,66) scale(0.72)">${inner}</g>`;
     if (kind === 'cow') {
-      return badge + `<g transform="translate(45,66) scale(0.42)">
+      return wrap(`
         <ellipse cx="2" cy="4" rx="16" ry="11" fill="#F5F5F5" stroke="#94A3B8" stroke-width="1"/>
         <circle cx="-12" cy="-2" r="8" fill="#F5F5F5" stroke="#94A3B8" stroke-width="1"/>
         <ellipse cx="-18" cy="-1" rx="3.5" ry="2.5" fill="#FFB4A2"/>
         <ellipse cx="-4" cy="0" rx="4" ry="3" fill="#334155"/>
         <circle cx="-14" cy="-4" r="1.2" fill="#222"/>
-      </g>`;
+      `);
     }
     if (kind === 'pig') {
-      return badge + `<g transform="translate(45,66) scale(0.42)">
+      return wrap(`
         <ellipse cx="2" cy="4" rx="15" ry="10" fill="#FFB4A2"/>
         <circle cx="-12" cy="0" r="8" fill="#FFB4A2"/>
         <ellipse cx="-18" cy="1" rx="4" ry="3" fill="#E8897A"/>
         <circle cx="-20" cy="0" r="1" fill="#944"/>
         <circle cx="-16" cy="0" r="1" fill="#944"/>
         <circle cx="-14" cy="-3" r="1.2" fill="#222"/>
-      </g>`;
+      `);
     }
     if (kind === 'chicken') {
-      return badge + `<g transform="translate(45,66) scale(0.42)">
+      return wrap(`
         <ellipse cx="2" cy="4" rx="13" ry="10" fill="#FFF8E7" stroke="#E2C97E" stroke-width="1"/>
         <circle cx="-8" cy="-2" r="7" fill="#FFF8E7" stroke="#E2C97E" stroke-width="1"/>
         <polygon points="-14,-2 -22,-4 -14,2" fill="#FF8C42"/>
         <path d="M-8,-10 Q-4,-16 0,-8" fill="#E63946"/>
         <circle cx="-10" cy="-3" r="1.2" fill="#222"/>
-      </g>`;
+      `);
     }
-    return badge + `<g transform="translate(45,66) scale(0.42)">
+    return wrap(`
       <ellipse cx="4" cy="4" rx="14" ry="9" fill="#C4A574"/>
       <path d="M-8,0 L-18,-12 L-16,-16 Q-12,-18 -10,-14 L0,0" fill="#C4A574"/>
       <ellipse cx="-18" cy="-14" rx="5" ry="3.5" fill="#A67C52"/>
       <path d="M-12,-18 Q-6,-26 0,-14" fill="#5C4033"/>
       <circle cx="-20" cy="-15" r="1.1" fill="#222"/>
-    </g>`;
+    `);
   }
 
   function barnSvg(accent, animal) {
@@ -231,8 +231,6 @@
         <polygon points="8,40 45,8 82,40" fill="${accent}"/>
         <rect x="14" y="40" width="62" height="42" fill="#F5E6D3" stroke="#8B5E3C" stroke-width="2"/>
         <rect x="30" y="50" width="30" height="32" rx="2" fill="#FFF8F0" stroke="#8B5E3C" stroke-width="2"/>
-        <rect x="18" y="46" width="10" height="10" fill="#89C2D9" stroke="#4361EE" stroke-width="1.5"/>
-        <rect x="62" y="46" width="10" height="10" fill="#89C2D9" stroke="#4361EE" stroke-width="1.5"/>
         ${barnAnimalIcon(animal)}
       </svg>`;
   }
@@ -500,9 +498,9 @@
         { id: 'horse', match: 'horse', svg: horseSvg, x: 0.20, y: 0.85, w: 0.20, aspect: 0.9 },
       ],
       targets: [
-        { id: 'b_chicken', match: 'chicken', svg: () => barnSvg('#E63946', 'chicken'), x: 0.78, y: 0.16, w: 0.20, aspect: 1.0 },
-        { id: 'b_horse', match: 'horse', svg: () => barnSvg('#8B5E3C', 'horse'), x: 0.78, y: 0.39, w: 0.20, aspect: 1.0 },
-        { id: 'b_cow', match: 'cow', svg: () => barnSvg('#52B788', 'cow'), x: 0.78, y: 0.62, w: 0.20, aspect: 1.0 },
+        { id: 'b_chicken', match: 'chicken', svg: () => barnSvg('#FFD60A', 'chicken'), x: 0.78, y: 0.16, w: 0.20, aspect: 1.0 },
+        { id: 'b_horse', match: 'horse', svg: () => barnSvg('#C4A574', 'horse'), x: 0.78, y: 0.39, w: 0.20, aspect: 1.0 },
+        { id: 'b_cow', match: 'cow', svg: () => barnSvg('#8B5E3C', 'cow'), x: 0.78, y: 0.62, w: 0.20, aspect: 1.0 },
         { id: 'b_pig', match: 'pig', svg: () => barnSvg('#FF6B9D', 'pig'), x: 0.78, y: 0.85, w: 0.20, aspect: 1.0 },
       ],
     },
