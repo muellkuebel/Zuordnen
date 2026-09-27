@@ -369,38 +369,11 @@ body {
   80% { transform: translate(calc(-50% + 0.12cm), -50%) rotate(2deg); }
 }
 
-/* Green check badge on matched items */
-.check-badge {
-  position: absolute;
-  right: -0.08cm;
-  top: -0.08cm;
-  width: 0.72cm;
-  height: 0.72cm;
-  border-radius: 50%;
-  background: var(--ok);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-size: 0.45cm;
-  font-weight: 900;
-  box-shadow: 0 0.06cm 0.12cm rgba(0, 0, 0, 0.2);
-  z-index: 5;
-  pointer-events: none;
-  opacity: 0;
-  transform: scale(0.4);
-  transition: opacity 0.18s, transform 0.18s;
-}
-
-.item.matched .check-badge {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Connected line style */
+/* Connected line style — green only when correct; live/pending black; ~half prior thickness */
 .conn-line {
   fill: none;
   stroke: #22C55E;
-  stroke-width: 6;
+  stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: 0.9;
@@ -408,11 +381,11 @@ body {
 
 .live-line {
   fill: none;
-  stroke: #4361EE;
-  stroke-width: 6;
+  stroke: #111111;
+  stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 /* —— Celebrate —— */
@@ -643,16 +616,10 @@ body {
   content: "👉 ";
 }
 
-.live-line { stroke: #E84393; stroke-width: 7; }
-.conn-line { stroke: #00B894; stroke-width: 7; }
-.item.drawing { filter: drop-shadow(0 0 0.12cm rgba(232, 67, 147, 0.7)); }
+.live-line { stroke: #111111; stroke-width: 3.5; }
+.conn-line { stroke: #00B894; stroke-width: 3.5; }
+.item.drawing { filter: drop-shadow(0 0 0.12cm rgba(45, 52, 54, 0.45)); }
 .item.matched { filter: drop-shadow(0 0 0.12cm rgba(0, 184, 148, 0.65)); }
-.check-badge {
-  background: #00B894;
-  border: 0.05cm solid #2D3436;
-  box-shadow: 0.05cm 0.05cm 0 #2D3436;
-  color: #fff;
-}
 
 /* Celebrate — sticker card */
 .celebrate-card {

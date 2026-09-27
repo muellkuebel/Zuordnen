@@ -1,7 +1,7 @@
 /**
  * Zuordnen — finger-draw matching for iPad (kids)
  * Primary interaction: paint a visible line from source → target.
- * Correct = green line + Haken; wrong = shake + line vanishes.
+ * Correct = green line; drawing/wrong = black line vanishes + shake.
  */
 (function () {
   'use strict';
@@ -21,6 +21,44 @@
     navy: '#1B3A4B',
   };
 
+  /* —— Soft "Bing" on correct match (Web Audio, no asset file) —— */
+  let audioCtx = null;
+
+  function ensureAudio() {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    if (!audioCtx) audioCtx = new AC();
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume().catch(() => {});
+    }
+    return audioCtx;
+  }
+
+  function playCorrectBing() {
+    const ctx = ensureAudio();
+    if (!ctx) return;
+    const t0 = ctx.currentTime;
+    /* Two soft sine partials — short pleasant chime */
+    const notes = [
+      { f: 880, g: 0.12, d: 0.18 },
+      { f: 1320, g: 0.07, d: 0.22 },
+    ];
+    notes.forEach(({ f, g, d }, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(f, t0);
+      const start = t0 + i * 0.02;
+      gain.gain.setValueAtTime(0.0001, start);
+      gain.gain.exponentialRampToValueAtTime(g, start + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + d);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(start);
+      osc.stop(start + d + 0.02);
+    });
+  }
+
   /* —— SVG motifs (original, simple) —— */
   function candySvg(color) {
     return `
@@ -34,15 +72,18 @@
   }
 
   function basketSvg(labelColor) {
+    /* Basket body painted in the matching candy hue so kids can match by color */
     return `
       <svg viewBox="0 0 100 90" aria-hidden="true">
-        <path d="M28 28 Q50 8 72 28" fill="none" stroke="${COLORS.brown}" stroke-width="5" stroke-linecap="round"/>
-        <path d="M12 38 Q14 78 50 82 Q86 78 88 38 Z" fill="#C4A574" stroke="${COLORS.brown}" stroke-width="3"/>
-        <path d="M20 48 H80 M22 58 H78 M26 68 H74" stroke="${COLORS.brown}" stroke-width="2" opacity=".45"/>
-        <g transform="translate(50,52) scale(0.55)">
-          <polygon points="-28,0 -18,-10 -18,10" fill="${labelColor}"/>
-          <ellipse cx="0" cy="0" rx="18" ry="12" fill="${labelColor}"/>
-          <polygon points="28,0 18,-10 18,10" fill="${labelColor}"/>
+        <path d="M28 28 Q50 8 72 28" fill="none" stroke="${labelColor}" stroke-width="6" stroke-linecap="round"/>
+        <path d="M12 38 Q14 78 50 82 Q86 78 88 38 Z" fill="${labelColor}" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
+        <path d="M20 48 H80 M22 58 H78 M26 68 H74" stroke="rgba(0,0,0,.22)" stroke-width="2"/>
+        <ellipse cx="50" cy="40" rx="30" ry="7" fill="rgba(255,255,255,.28)"/>
+        <g transform="translate(50,54) scale(0.5)">
+          <polygon points="-28,0 -18,-10 -18,10" fill="#fff" opacity=".85"/>
+          <ellipse cx="0" cy="0" rx="18" ry="12" fill="#fff" opacity=".85"/>
+          <polygon points="28,0 18,-10 18,10" fill="#fff" opacity=".85"/>
+          <ellipse cx="-4" cy="-4" rx="6" ry="4" fill="${labelColor}" opacity=".55"/>
         </g>
       </svg>`;
   }
@@ -756,7 +797,7 @@
     el.dataset.match = def.match;
     el.setAttribute('role', 'button');
     el.setAttribute('aria-label', kind === 'source' ? 'Objekt' : 'Ziel');
-    el.innerHTML = def.svg() + '<span class="check-badge" aria-hidden="true">✓</span>';
+    el.innerHTML = def.svg();
     board.appendChild(el);
     itemEls.set(def.id, el);
     itemMeta.set(def.id, {
@@ -893,6 +934,7 @@
     activePointerId = pointerId;
     drawFromId = hit.id;
     hit.el.classList.add('drawing');
+    ensureAudio(); /* unlock AudioContext on gesture (iOS) */
 
     const start = centerOf(hit.el);
     const cur = stagePoint(clientX, clientY);
@@ -1005,6 +1047,7 @@
     connections.push({ fromId, toId, pathEl: path, pts: finalPts, normPts });
     fromEl.classList.add('matched');
     toEl.classList.add('matched');
+    playCorrectBing();
 
     if (allDone()) {
       markExerciseComplete(currentId);

@@ -10,7 +10,7 @@ Auf dem iPad: Safari → Teilen → Zum Home-Bildschirm.
 
 ## Übungen
 
-1. **Bunte Bonbons** — Bonbons mit dem Finger zum farblich passenden Korb verbinden (mehrere Bonbons pro Korb)
+1. **Bunte Bonbons** — Bonbons mit dem Finger zum farblich passenden (gleichfarbigen) Korb verbinden (mehrere Bonbons pro Korb)
 2. **Schneemänner** — Mützen mit dem Schneemann verbinden, dessen Schal dieselben Farben hat (1:1)
 3. **Tiere zum Stall** — Kuh, Schwein, Huhn und Pferd zum Stall mit dem passenden Tierbild verbinden
 4. **Formen zuordnen** — Kreis, Dreieck, Stern und Quadrat in den passenden Schatten legen
@@ -19,7 +19,7 @@ Auf dem iPad: Safari → Teilen → Zum Home-Bildschirm.
 7. **Kleidung zum Wetter** — Regenmantel, Sonnenhut, Schal und Badehose zum passenden Wetter verbinden
 
 **Interaktion:** Finger vom Objekt zum Ziel ziehen; die Linie wird live mitgezeichnet.  
-Richtig = grüne Linie bleibt + grüner Haken. Falsch = Linie verschwindet, leichtes Wackeln.
+Während des Zeichnens ist die Linie schwarz; richtig = Linie wird grün und bleibt + kurzes weiches Bing. Falsch = Linie verschwindet, leichtes Wackeln. (Kein Haken mehr auf den Objekten — nur die Abschluss-Feier „Super gemacht!“.)
 
 ## Portrait only
 
@@ -28,7 +28,7 @@ Bei Querformat bleibt dieselbe aufrechte Portrait-UI; links/rechts erscheint sch
 
 ## Technik
 
-Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v11`, Offline), eigene einfache SVG-Motive.
+Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v15`, Offline), eigene einfache SVG-Motive.
 
 ## Dateien
 
