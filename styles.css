@@ -641,3 +641,109 @@ body {
   box-shadow: 0.1cm 0.12cm 0 #2D3436;
   color: #2D3436;
 }
+
+
+/* —— Count-fill mode (Zählen bis 3) —— */
+.count-fill-board {
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  padding: 0.25cm 0.35cm;
+  touch-action: manipulation;
+  pointer-events: auto;
+}
+
+.count-fill-rows {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 0.2cm;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.count-fill-row {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35cm;
+  min-height: 0;
+  padding: 0.12cm 0.2cm;
+  background: #FFFBF0;
+  border: 0.08cm solid #E2E8F0;
+  border-radius: 0.4cm;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.count-fill-row.row-correct {
+  border-color: #22C55E;
+  box-shadow: 0 0 0.12cm rgba(34, 197, 94, 0.35);
+}
+
+.count-fill-left {
+  flex: 1 1 48%;
+  min-width: 0;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.count-objs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.12cm;
+  width: 100%;
+  height: 100%;
+}
+
+.count-objs svg {
+  width: auto;
+  height: 85%;
+  max-width: 42%;
+  display: block;
+  overflow: visible;
+}
+
+.count-objs-1 svg {
+  max-width: 55%;
+  height: 90%;
+}
+
+.count-objs-3 svg {
+  max-width: 32%;
+}
+
+.count-fill-circles {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.22cm;
+  padding-right: 0.1cm;
+}
+
+.count-circle {
+  width: clamp(0.85cm, 7.5vw, 1.15cm);
+  height: clamp(0.85cm, 7.5vw, 1.15cm);
+  border-radius: 50%;
+  border: 0.1cm solid #94A3B8;
+  background: #fff;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0;
+  touch-action: manipulation;
+  transition: background 0.15s, transform 0.1s, border-color 0.15s;
+}
+
+.count-circle:active {
+  transform: scale(0.92);
+}
+
+.count-circle.filled {
+  background: #E63946;
+  border-color: #C1121F;
+  box-shadow: inset 0 0 0.08cm rgba(0, 0, 0, 0.12);
+}

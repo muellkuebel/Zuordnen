@@ -339,6 +339,120 @@
       </svg>`;
   }
 
+
+  /* Sailboats + hands (Eins, zwei oder drei) */
+  function sailboatOne(sail) {
+    return `
+      <g>
+        <ellipse cx="40" cy="62" rx="28" ry="8" fill="#89C2D9" opacity=".35"/>
+        <path d="M14 58 Q40 72 66 58 L60 52 Q40 58 20 52 Z" fill="#8B5E3C"/>
+        <rect x="38" y="22" width="3.5" height="34" fill="#5C4033"/>
+        <polygon points="42,24 62,40 42,44" fill="${sail}"/>
+        <ellipse cx="48" cy="32" rx="4" ry="3" fill="#fff" opacity=".28"/>
+      </g>`;
+  }
+
+  function sailboatsCardSvg(count, sail) {
+    let boats = '';
+    if (count === 1) {
+      boats = `<g transform="translate(10,8) scale(0.95)">${sailboatOne(sail)}</g>`;
+    } else if (count === 2) {
+      boats = `
+        <g transform="translate(-6,18) scale(0.62)">${sailboatOne(sail)}</g>
+        <g transform="translate(36,18) scale(0.62)">${sailboatOne(sail)}</g>`;
+    } else {
+      boats = `
+        <g transform="translate(8,2) scale(0.5)">${sailboatOne(sail)}</g>
+        <g transform="translate(40,2) scale(0.5)">${sailboatOne(sail)}</g>
+        <g transform="translate(24,34) scale(0.5)">${sailboatOne(sail)}</g>`;
+    }
+    return `
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <rect x="4" y="4" width="92" height="92" rx="16" fill="#FFF8F0" stroke="#E2E8F0" stroke-width="3"/>
+        ${boats}
+      </svg>`;
+  }
+
+  function handSvg(fingers) {
+    /* Cartoon peach hand; thumb always up; optional index/middle */
+    const thumb = `
+      <path d="M38 48 Q28 28 34 18 Q40 12 46 22 Q48 32 44 46" fill="#FFCCAA" stroke="#E8897A" stroke-width="1.5"/>`;
+    const index = fingers >= 2 ? `
+      <path d="M48 46 Q50 18 54 12 Q60 10 60 20 Q58 36 54 48" fill="#FFCCAA" stroke="#E8897A" stroke-width="1.5"/>` : '';
+    const middle = fingers >= 3 ? `
+      <path d="M56 48 Q62 22 66 16 Q72 14 72 24 Q70 40 64 50" fill="#FFCCAA" stroke="#E8897A" stroke-width="1.5"/>` : '';
+    return `
+      <svg viewBox="0 0 100 110" aria-hidden="true">
+        <ellipse cx="52" cy="78" rx="26" ry="22" fill="#FFCCAA" stroke="#E8897A" stroke-width="2"/>
+        ${thumb}${index}${middle}
+        <ellipse cx="44" cy="72" rx="5" ry="3" fill="#fff" opacity=".25"/>
+      </svg>`;
+  }
+
+  /* Count-fill motifs (Zählen bis 3) */
+  function bookSvg() {
+    return `
+      <svg viewBox="0 0 80 90" aria-hidden="true">
+        <rect x="18" y="12" width="48" height="64" rx="3" fill="#E63946"/>
+        <rect x="14" y="12" width="10" height="64" rx="2" fill="#FFD60A"/>
+        <rect x="28" y="28" width="28" height="18" rx="3" fill="#52B788"/>
+        <rect x="32" y="32" width="20" height="3" fill="#fff" opacity=".7"/>
+        <rect x="32" y="38" width="14" height="3" fill="#fff" opacity=".55"/>
+        <path d="M18 12 L22 8 H66 L62 12" fill="#C1121F"/>
+      </svg>`;
+  }
+
+  function toyBoatSvg() {
+    return `
+      <svg viewBox="0 0 90 70" aria-hidden="true">
+        <ellipse cx="45" cy="58" rx="32" ry="7" fill="#89C2D9" opacity=".4"/>
+        <path d="M12 48 Q45 62 78 48 L70 38 H20 Z" fill="#FFD60A"/>
+        <rect x="34" y="22" width="22" height="18" rx="3" fill="#E63946"/>
+        <circle cx="45" cy="32" r="4" fill="#4361EE"/>
+        <rect x="42" y="10" width="6" height="14" rx="2" fill="#52B788"/>
+        <ellipse cx="45" cy="10" rx="5" ry="3" fill="#2EC4B6"/>
+      </svg>`;
+  }
+
+  function marbleSvg() {
+    return `
+      <svg viewBox="0 0 60 60" aria-hidden="true">
+        <circle cx="30" cy="30" r="22" fill="#4361EE"/>
+        <path d="M14 28 Q30 10 46 26 Q40 40 28 44 Q16 40 14 28Z" fill="#52B788" opacity=".85"/>
+        <path d="M18 36 Q34 22 44 38" fill="none" stroke="#FFD60A" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="22" cy="20" rx="7" ry="4" fill="#fff" opacity=".35"/>
+      </svg>`;
+  }
+
+  function duckSvg() {
+    return `
+      <svg viewBox="0 0 80 70" aria-hidden="true">
+        <ellipse cx="40" cy="42" rx="24" ry="16" fill="#FFD60A"/>
+        <circle cx="58" cy="28" r="14" fill="#FFD60A"/>
+        <circle cx="62" cy="26" r="2.2" fill="#222"/>
+        <path d="M70 28 Q84 26 78 34 Q72 36 70 32Z" fill="#FF8C42"/>
+        <ellipse cx="28" cy="40" rx="6" ry="4" fill="#FFE66D"/>
+        <path d="M30 56 Q34 64 38 56 M42 56 Q46 64 50 56" fill="none" stroke="#FF8C42" stroke-width="3" stroke-linecap="round"/>
+      </svg>`;
+  }
+
+  function countObjectsSvg(kind, count) {
+    const one = {
+      book: bookSvg,
+      boat: toyBoatSvg,
+      marble: marbleSvg,
+      duck: duckSvg,
+    }[kind];
+    if (!one) return '';
+    if (count === 1) {
+      return `<div class="count-objs count-objs-1">${one()}</div>`;
+    }
+    if (count === 2) {
+      return `<div class="count-objs count-objs-2">${one()}${one()}</div>`;
+    }
+    return `<div class="count-objs count-objs-3">${one()}${one()}${one()}</div>`;
+  }
+
   /* Weather / clothing */
   function raincoatSvg() {
     return `
@@ -572,6 +686,32 @@
         { id: 'w_sun', match: 'sun', svg: sunSvg, x: 0.78, y: 0.85, w: 0.18, aspect: 1.0 },
       ],
     },
+    einsZweiDrei: {
+      title: 'Eins, zwei oder drei',
+      hint: 'Wie viele Schiffe? Verbinde mit den passenden Fingern!',
+      mode: 'one-to-one',
+      sources: [
+        { id: 'b3', match: 'n3', svg: () => sailboatsCardSvg(3, COLORS.green), x: 0.20, y: 0.22, w: 0.24, aspect: 1.0 },
+        { id: 'b2', match: 'n2', svg: () => sailboatsCardSvg(2, COLORS.red),   x: 0.50, y: 0.22, w: 0.24, aspect: 1.0 },
+        { id: 'b1', match: 'n1', svg: () => sailboatsCardSvg(1, COLORS.blue),  x: 0.80, y: 0.22, w: 0.24, aspect: 1.0 },
+      ],
+      targets: [
+        { id: 'h1', match: 'n1', svg: () => handSvg(1), x: 0.20, y: 0.78, w: 0.22, aspect: 1.1 },
+        { id: 'h2', match: 'n2', svg: () => handSvg(2), x: 0.50, y: 0.78, w: 0.22, aspect: 1.1 },
+        { id: 'h3', match: 'n3', svg: () => handSvg(3), x: 0.80, y: 0.78, w: 0.22, aspect: 1.1 },
+      ],
+    },
+    zaehlenBis3: {
+      title: 'Zählen bis 3',
+      hint: 'Zähle und tippe die richtige Anzahl Kreise an!',
+      mode: 'count-fill',
+      rows: [
+        { id: 'row-book', count: 1, kind: 'book' },
+        { id: 'row-boats', count: 2, kind: 'boat' },
+        { id: 'row-marbles', count: 3, kind: 'marble' },
+        { id: 'row-ducks', count: 2, kind: 'duck' },
+      ],
+    },
   };
 
   /* —— DOM —— */
@@ -600,6 +740,8 @@
     'socken',
     'zahlen',
     'kleidung',
+    'einsZweiDrei',
+    'zaehlenBis3',
   ];
 
   /* Session-only completion (in-memory; clears when app fully reopened) */
@@ -617,6 +759,7 @@
   let livePath = null;
   let points = [];
   let activePointerId = null;
+  let countFillState = null; /* { rows: [{id, count, filled, wasCorrect}] } */
 
   function showScreen(which) {
     const home = which === 'home';
@@ -774,8 +917,11 @@
 
   function clearBoard() {
     board.innerHTML = '';
+    board.className = '';
     linesSvg.innerHTML = '';
     drawSvg.innerHTML = '';
+    linesSvg.style.display = '';
+    drawSvg.style.display = '';
     matched.clear();
     connections = [];
     itemEls.clear();
@@ -785,6 +931,7 @@
     livePath = null;
     points = [];
     activePointerId = null;
+    countFillState = null;
   }
 
   function makeItem(def, kind) {
@@ -836,6 +983,29 @@
     currentId = id;
     const base = EXERCISES[id];
     if (!base) return;
+    clearBoard();
+    hideCelebrate();
+    playTitle.textContent = base.title;
+    hintEl.textContent = base.hint;
+
+    if (base.mode === 'count-fill') {
+      exercise = {
+        title: base.title,
+        hint: base.hint,
+        mode: 'count-fill',
+        rows: base.rows.map((r) => Object.assign({}, r)),
+        sources: [],
+        targets: [],
+      };
+      startCountFillBoard(exercise);
+      showScreen('play');
+      requestAnimationFrame(() => {
+        sizeStage();
+        requestAnimationFrame(sizeStage);
+      });
+      return;
+    }
+
     /* Fresh shuffled layout every open / Nochmal — match ids stay correct */
     exercise = {
       title: base.title,
@@ -844,10 +1014,6 @@
       sources: withShuffledSlots(base.sources),
       targets: withShuffledSlots(base.targets),
     };
-    clearBoard();
-    hideCelebrate();
-    playTitle.textContent = exercise.title;
-    hintEl.textContent = exercise.hint;
     exercise.sources.forEach((s) => makeItem(s, 'source'));
     exercise.targets.forEach((t) => makeItem(t, 'target'));
     showScreen('play');
@@ -855,6 +1021,91 @@
       sizeStage();
       requestAnimationFrame(sizeStage);
     });
+  }
+
+  function startCountFillBoard(ex) {
+    board.className = 'count-fill-board';
+    linesSvg.style.display = 'none';
+    drawSvg.style.display = 'none';
+    countFillState = {
+      rows: ex.rows.map((r) => ({
+        id: r.id,
+        count: r.count,
+        kind: r.kind,
+        filled: 0,
+        wasCorrect: false,
+      })),
+    };
+    const wrap = document.createElement('div');
+    wrap.className = 'count-fill-rows';
+    countFillState.rows.forEach((row, idx) => {
+      const rowEl = document.createElement('div');
+      rowEl.className = 'count-fill-row';
+      rowEl.dataset.rowId = row.id;
+      const left = document.createElement('div');
+      left.className = 'count-fill-left';
+      left.innerHTML = countObjectsSvg(row.kind, row.count);
+      const right = document.createElement('div');
+      right.className = 'count-fill-circles';
+      right.setAttribute('role', 'group');
+      right.setAttribute('aria-label', 'Kreise ausmalen');
+      for (let i = 0; i < 3; i++) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'count-circle';
+        btn.dataset.index = String(i);
+        btn.setAttribute('aria-label', 'Kreis ' + (i + 1));
+        btn.setAttribute('aria-pressed', 'false');
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleCountCircle(idx, i, btn, rowEl);
+        });
+        right.appendChild(btn);
+      }
+      rowEl.appendChild(left);
+      rowEl.appendChild(right);
+      wrap.appendChild(rowEl);
+    });
+    board.appendChild(wrap);
+  }
+
+  function toggleCountCircle(rowIndex, circleIndex, btn, rowEl) {
+    if (!countFillState || !exercise || exercise.mode !== 'count-fill') return;
+    ensureAudio();
+    const row = countFillState.rows[rowIndex];
+    const filledNow = btn.classList.contains('filled');
+    if (filledNow) {
+      btn.classList.remove('filled');
+      btn.setAttribute('aria-pressed', 'false');
+      row.filled = Math.max(0, row.filled - 1);
+    } else {
+      btn.classList.add('filled');
+      btn.setAttribute('aria-pressed', 'true');
+      row.filled += 1;
+    }
+    const correct = row.filled === row.count;
+    rowEl.classList.toggle('row-correct', correct);
+    if (correct && !row.wasCorrect) {
+      row.wasCorrect = true;
+      playCorrectBing();
+    }
+    if (!correct) {
+      row.wasCorrect = false;
+    }
+    if (countFillState.rows.every((r) => r.filled === r.count)) {
+      markExerciseComplete(currentId);
+      setTimeout(() => {
+        if (
+          exercise &&
+          exercise.mode === 'count-fill' &&
+          countFillState &&
+          countFillState.rows.every((r) => r.filled === r.count)
+        ) {
+          showCelebrate();
+        }
+      }, 350);
+    }
   }
 
   function allDone() {
@@ -1084,6 +1335,7 @@
   stage.addEventListener('pointerdown', (e) => {
     if (e.button != null && e.button !== 0) return;
     if (drawing) return;
+    if (exercise && exercise.mode === 'count-fill') return;
     if (beginDraw(e.pointerId, e.clientX, e.clientY)) {
       try { stage.setPointerCapture(e.pointerId); } catch (_) {}
       e.preventDefault();
@@ -1173,7 +1425,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=10').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=17').catch(() => {});
     });
   }
 

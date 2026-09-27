@@ -17,9 +17,13 @@ Auf dem iPad: Safari → Teilen → Zum Home-Bildschirm.
 5. **Socken-Paare** — Socken mit gleichem Muster und Farbe zum Paar verbinden
 6. **Zahlen und Mengen** — Punktmengen (2–5) mit der richtigen Zahl verbinden
 7. **Kleidung zum Wetter** — Regenmantel, Sonnenhut, Schal und Badehose zum passenden Wetter verbinden
+8. **Eins, zwei oder drei** — Segelschiffe (1/2/3) mit den passenden Fingern verbinden
+9. **Zählen bis 3** — Gegenstände zählen und die passende Anzahl Kreise antippen (Ausfüllen)
 
-**Interaktion:** Finger vom Objekt zum Ziel ziehen; die Linie wird live mitgezeichnet.  
+**Interaktion (Verbinden):** Finger vom Objekt zum Ziel ziehen; die Linie wird live mitgezeichnet.  
 Während des Zeichnens ist die Linie schwarz; richtig = Linie wird grün und bleibt + kurzes weiches Bing. Falsch = Linie verschwindet, leichtes Wackeln. (Kein Haken mehr auf den Objekten — nur die Abschluss-Feier „Super gemacht!“.)
+
+**Interaktion (Zählen bis 3):** Kreise antippen zum Ausfüllen/Toggle. Eine Reihe ist richtig, wenn die Anzahl gefüllter Kreise der Objektanzahl entspricht — Bing beim ersten Treffer einer Reihe. Alle Reihen richtig → „Super gemacht!“.
 
 ## Portrait only
 
@@ -28,7 +32,7 @@ Bei Querformat bleibt dieselbe aufrechte Portrait-UI; links/rechts erscheint sch
 
 ## Technik
 
-Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v16`, Offline), eigene einfache SVG-Motive.
+Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v17`, Offline), eigene einfache SVG-Motive.
 
 ## Dateien
 
