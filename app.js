@@ -607,6 +607,55 @@
   }
 
   /* —— Exercise definitions —— */
+
+  function flowerSvg(petal) {
+    const p = petal || COLORS.blue;
+    /* 6 petals + yellow center + stem/leaves */
+    const petals = [];
+    for (let i = 0; i < 6; i++) {
+      const a = (i * Math.PI) / 3;
+      const x = 40 + Math.cos(a) * 16;
+      const y = 34 + Math.sin(a) * 16;
+      petals.push(`<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="12" ry="8" fill="${p}" transform="rotate(${((a * 180) / Math.PI).toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`);
+    }
+    return `
+      <svg viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line x1="40" y1="48" x2="40" y2="92" stroke="#3A9B6A" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="28" cy="74" rx="11" ry="5.5" fill="#52B788" transform="rotate(-40 28 74)"/>
+        <ellipse cx="52" cy="74" rx="11" ry="5.5" fill="#52B788" transform="rotate(40 52 74)"/>
+        ${petals.join('\n        ')}
+        <circle cx="40" cy="34" r="11" fill="#FFD60A"/>
+        <circle cx="36" cy="30" r="3" fill="#fff" opacity=".45"/>
+      </svg>`;
+  }
+
+  function doggyMascotSvg() {
+    return `
+      <svg viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="45" cy="88" rx="22" ry="6" fill="rgba(0,0,0,.08)"/>
+        <ellipse cx="45" cy="62" rx="20" ry="22" fill="#FF8C42"/>
+        <rect x="30" y="52" width="30" height="28" rx="6" fill="#FFD60A"/>
+        <text x="45" y="72" text-anchor="middle" font-size="16" font-weight="800" fill="#8B5E3C" font-family="system-ui,sans-serif">h</text>
+        <circle cx="45" cy="32" r="18" fill="#FF8C42"/>
+        <ellipse cx="28" cy="22" rx="7" ry="9" fill="#FF8C42"/>
+        <ellipse cx="62" cy="22" rx="7" ry="9" fill="#FF8C42"/>
+        <circle cx="38" cy="30" r="5" fill="#fff"/>
+        <circle cx="52" cy="30" r="5" fill="#fff"/>
+        <circle cx="39" cy="31" r="2.2" fill="#222"/>
+        <circle cx="53" cy="31" r="2.2" fill="#222"/>
+        <ellipse cx="45" cy="38" rx="4" ry="3" fill="#5C4033"/>
+        <path d="M40 44 Q45 48 50 44" fill="none" stroke="#222" stroke-width="1.8" stroke-linecap="round"/>
+        <g transform="translate(62,58)">
+          <line x1="0" y1="0" x2="8" y2="14" stroke="#3A9B6A" stroke-width="2"/>
+          <circle cx="4" cy="-2" r="4" fill="#4361EE"/>
+          <circle cx="10" cy="2" r="3.5" fill="#4361EE"/>
+          <circle cx="2" cy="4" r="3" fill="#4361EE"/>
+          <circle cx="6" cy="2" r="2.5" fill="#FFD60A"/>
+        </g>
+        <path d="M22 58 Q12 70 18 78 Q26 72 28 64" fill="#8B5E3C"/>
+      </svg>`;
+  }
+
   const EXERCISES = {
     bonbons: {
       title: 'Bunte Bonbons',
@@ -756,6 +805,32 @@
         { id: 'row-ducks', count: 2, kind: 'duck' },
       ],
     },
+
+    blumenwiese: {
+      title: 'Blumenwiese',
+      hint: 'Kreise die 5 blauen Blumen ein!',
+      mode: 'circle-draw',
+      targetMatch: 'blue',
+      sources: [
+        /* ~worksheet layout: 5 blue, 3 red, 3 yellow, 3 green */
+        { id: 'f_b1', match: 'blue',   svg: () => flowerSvg(COLORS.blue),   x: 0.16, y: 0.16, w: 0.13, aspect: 1.25 },
+        { id: 'f_r1', match: 'red',    svg: () => flowerSvg(COLORS.red),    x: 0.40, y: 0.14, w: 0.13, aspect: 1.25 },
+        { id: 'f_b2', match: 'blue',   svg: () => flowerSvg(COLORS.blue),   x: 0.64, y: 0.16, w: 0.13, aspect: 1.25 },
+        { id: 'f_g1', match: 'green',  svg: () => flowerSvg(COLORS.green),  x: 0.86, y: 0.18, w: 0.13, aspect: 1.25 },
+        { id: 'f_r2', match: 'red',    svg: () => flowerSvg(COLORS.red),    x: 0.26, y: 0.36, w: 0.13, aspect: 1.25 },
+        { id: 'f_y1', match: 'yellow', svg: () => flowerSvg(COLORS.yellow), x: 0.50, y: 0.38, w: 0.13, aspect: 1.25 },
+        { id: 'f_g2', match: 'green',  svg: () => flowerSvg(COLORS.green),  x: 0.74, y: 0.36, w: 0.13, aspect: 1.25 },
+        { id: 'f_b3', match: 'blue',   svg: () => flowerSvg(COLORS.blue),   x: 0.14, y: 0.56, w: 0.13, aspect: 1.25 },
+        { id: 'f_r3', match: 'red',    svg: () => flowerSvg(COLORS.red),    x: 0.40, y: 0.54, w: 0.13, aspect: 1.25 },
+        { id: 'f_b4', match: 'blue',   svg: () => flowerSvg(COLORS.blue),   x: 0.60, y: 0.56, w: 0.13, aspect: 1.25 },
+        { id: 'f_y2', match: 'yellow', svg: () => flowerSvg(COLORS.yellow), x: 0.84, y: 0.54, w: 0.13, aspect: 1.25 },
+        { id: 'f_b5', match: 'blue',   svg: () => flowerSvg(COLORS.blue),   x: 0.38, y: 0.76, w: 0.13, aspect: 1.25 },
+        { id: 'f_g3', match: 'green',  svg: () => flowerSvg(COLORS.green),  x: 0.60, y: 0.78, w: 0.13, aspect: 1.25 },
+        { id: 'f_y3', match: 'yellow', svg: () => flowerSvg(COLORS.yellow), x: 0.84, y: 0.76, w: 0.13, aspect: 1.25 },
+      ],
+      targets: [],
+      mascot: { x: 0.14, y: 0.86, w: 0.16, aspect: 1.15 },
+    },
   };
 
   /* —— DOM —— */
@@ -786,6 +861,7 @@
     'kleidung',
     'einsZweiDrei',
     'zaehlenBis3',
+    'blumenwiese',
   ];
 
   /* Session-only completion (in-memory; clears when app fully reopened) */
@@ -804,6 +880,8 @@
   let points = [];
   let activePointerId = null;
   let countFillState = null; /* { rows: [{id, count, filled, wasCorrect}] } */
+  let circleMarks = new Map(); /* id -> { el, normR } for circle-draw */
+  let circleDrawMode = false;
 
   function showScreen(which) {
     const home = which === 'home';
@@ -976,6 +1054,8 @@
     points = [];
     activePointerId = null;
     countFillState = null;
+    circleMarks.clear();
+    circleDrawMode = false;
   }
 
   function makeItem(def, kind) {
@@ -1050,6 +1130,25 @@
       return;
     }
 
+    if (base.mode === 'circle-draw') {
+      exercise = {
+        title: base.title,
+        hint: base.hint,
+        mode: 'circle-draw',
+        targetMatch: base.targetMatch || 'blue',
+        sources: withShuffledSlots(base.sources),
+        targets: [],
+        mascot: base.mascot ? Object.assign({}, base.mascot) : null,
+      };
+      startCircleDrawBoard(exercise);
+      showScreen('play');
+      requestAnimationFrame(() => {
+        sizeStage();
+        requestAnimationFrame(sizeStage);
+      });
+      return;
+    }
+
     /* Fresh shuffled layout every open / Nochmal — match ids stay correct */
     exercise = {
       title: base.title,
@@ -1112,6 +1211,251 @@
       wrap.appendChild(rowEl);
     });
     board.appendChild(wrap);
+  }
+
+
+  function startCircleDrawBoard(ex) {
+    board.className = 'meadow-board';
+    circleDrawMode = true;
+    circleMarks.clear();
+    linesSvg.style.display = '';
+    drawSvg.style.display = '';
+    ex.sources.forEach((s) => {
+      const el = makeItem(s, 'source');
+      el.classList.add('flower-item');
+      el.setAttribute('aria-label', 'Blume');
+      el.dataset.color = s.match;
+    });
+    if (ex.mascot) {
+      const m = document.createElement('div');
+      m.className = 'item mascot';
+      m.setAttribute('aria-hidden', 'true');
+      m.innerHTML = doggyMascotSvg();
+      board.appendChild(m);
+      const mid = '__mascot__';
+      itemEls.set(mid, m);
+      itemMeta.set(mid, {
+        kind: 'mascot',
+        match: null,
+        x: ex.mascot.x,
+        y: ex.mascot.y,
+        w: ex.mascot.w,
+        aspect: ex.mascot.aspect != null ? ex.mascot.aspect : 1,
+        role: 'mascot',
+      });
+    }
+  }
+
+  function pathLength(pts) {
+    let len = 0;
+    for (let i = 1; i < pts.length; i++) {
+      const dx = pts[i].x - pts[i - 1].x;
+      const dy = pts[i].y - pts[i - 1].y;
+      len += Math.sqrt(dx * dx + dy * dy);
+    }
+    return len;
+  }
+
+  function isRoughlyClosedLoop(pts) {
+    if (!pts || pts.length < 10) return false;
+    const len = pathLength(pts);
+    if (len < 60) return false;
+    const a = pts[0];
+    const b = pts[pts.length - 1];
+    const gap = Math.hypot(a.x - b.x, a.y - b.y);
+    /* Kids: allow a fairly open gap relative to stroke length */
+    return gap <= Math.max(36, len * 0.28);
+  }
+
+  function pointInPolygon(x, y, pts) {
+    let inside = false;
+    for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+      const xi = pts[i].x;
+      const yi = pts[i].y;
+      const xj = pts[j].x;
+      const yj = pts[j].y;
+      const intersect =
+        yi > y !== yj > y &&
+        x < ((xj - xi) * (y - yi)) / ((yj - yi) || 1e-9) + xi;
+      if (intersect) inside = !inside;
+    }
+    return inside;
+  }
+
+  function pathCentroid(pts) {
+    let sx = 0;
+    let sy = 0;
+    for (let i = 0; i < pts.length; i++) {
+      sx += pts[i].x;
+      sy += pts[i].y;
+    }
+    const n = pts.length || 1;
+    return { x: sx / n, y: sy / n };
+  }
+
+  function meanRadius(pts, c) {
+    let s = 0;
+    for (let i = 0; i < pts.length; i++) {
+      s += Math.hypot(pts[i].x - c.x, pts[i].y - c.y);
+    }
+    return s / (pts.length || 1);
+  }
+
+  function radiusVariance(pts, c, meanR) {
+    let s = 0;
+    for (let i = 0; i < pts.length; i++) {
+      const d = Math.hypot(pts[i].x - c.x, pts[i].y - c.y) - meanR;
+      s += d * d;
+    }
+    return s / (pts.length || 1);
+  }
+
+  /** Find one flower enclosed by a rough freehand circle. */
+  function findEnclosedFlower(pts) {
+    if (!exercise || exercise.mode !== 'circle-draw') return null;
+    if (!isRoughlyClosedLoop(pts)) return null;
+    const closed = pts.slice();
+    /* Close polygon for containment */
+    const first = closed[0];
+    const last = closed[closed.length - 1];
+    if (first.x !== last.x || first.y !== last.y) closed.push({ x: first.x, y: first.y });
+
+    const c = pathCentroid(pts);
+    const meanR = meanRadius(pts, c);
+    if (meanR < 18) return null;
+    /* Lenient circularity: stdev / mean not huge (scribbles still OK) */
+    const variance = radiusVariance(pts, c, meanR);
+    const stdev = Math.sqrt(variance);
+    if (stdev > meanR * 0.72) return null;
+
+    let best = null;
+    let bestScore = Infinity;
+    itemEls.forEach((el, id) => {
+      const meta = itemMeta.get(id);
+      if (!meta || meta.role === 'mascot') return;
+      if (meta.role !== 'source') return;
+      const center = centerOf(el);
+      if (!pointInPolygon(center.x, center.y, closed)) return;
+      /* Path should surround the bloom — mean radius larger than ~half flower */
+      const half = Math.min(el.offsetWidth || 40, el.offsetHeight || 40) * 0.35;
+      if (meanR < half * 0.85) return;
+      const dist = Math.hypot(center.x - c.x, center.y - c.y);
+      /* Prefer flower near loop center */
+      if (dist < bestScore) {
+        bestScore = dist;
+        best = { id, el, meta, center, meanR };
+      }
+    });
+    if (!best) return null;
+    /* Reject if loop center is far from flower (lasso of many) */
+    if (bestScore > best.meanR * 0.85) return null;
+    return best;
+  }
+
+  function beginCircleDraw(pointerId, clientX, clientY) {
+    drawing = true;
+    activePointerId = pointerId;
+    drawFromId = null;
+    ensureAudio();
+    const cur = stagePoint(clientX, clientY);
+    points = [cur];
+    drawSvg.innerHTML = '';
+    livePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    livePath.setAttribute('class', 'live-line');
+    livePath.setAttribute('d', pathFromPoints(points));
+    drawSvg.appendChild(livePath);
+    return true;
+  }
+
+  function moveCircleDraw(clientX, clientY) {
+    if (!drawing || !livePath) return;
+    const cur = stagePoint(clientX, clientY);
+    points.push(cur);
+    points = simplify(points, 4);
+    livePath.setAttribute('d', pathFromPoints(points));
+  }
+
+  function placeCircleMark(id, el) {
+    const c = centerOf(el);
+    const size = Math.max(el.offsetWidth || 40, el.offsetHeight || 40);
+    const r = size * 0.52;
+    const { w: sw, h: sh } = stageSize();
+    let circ = circleMarks.get(id);
+    if (!circ) {
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('class', 'circle-mark');
+      linesSvg.appendChild(circle);
+      circ = { el: circle, normR: r / Math.min(sw, sh || 1) };
+      circleMarks.set(id, circ);
+    }
+    circ.el.setAttribute('cx', String(c.x));
+    circ.el.setAttribute('cy', String(c.y));
+    circ.el.setAttribute('r', String(r));
+    circ.normR = r / Math.min(sw || 1, sh || 1);
+  }
+
+  function removeCircleMark(id) {
+    const circ = circleMarks.get(id);
+    if (circ && circ.el && circ.el.parentNode) circ.el.parentNode.removeChild(circ.el);
+    circleMarks.delete(id);
+  }
+
+  function redrawCircleMarks() {
+    if (!circleDrawMode) return;
+    const { w: sw, h: sh } = stageSize();
+    const base = Math.min(sw || 1, sh || 1);
+    circleMarks.forEach((circ, id) => {
+      const el = itemEls.get(id);
+      if (!el || !circ.el) return;
+      const c = centerOf(el);
+      const r = (circ.normR || 0.08) * base;
+      circ.el.setAttribute('cx', String(c.x));
+      circ.el.setAttribute('cy', String(c.y));
+      circ.el.setAttribute('r', String(r));
+    });
+  }
+
+  function endCircleDraw(clientX, clientY) {
+    if (!drawing) return;
+    const pts = points.slice();
+    if (clientX != null && clientY != null) {
+      pts.push(stagePoint(clientX, clientY));
+    }
+    drawing = false;
+    drawFromId = null;
+    livePath = null;
+    points = [];
+    activePointerId = null;
+    drawSvg.innerHTML = '';
+
+    const hit = findEnclosedFlower(simplify(pts, 4));
+    if (!hit) return;
+
+    const isTarget = hit.meta.match === (exercise.targetMatch || 'blue');
+    if (!isTarget) {
+      gentleShake(hit.el);
+      return;
+    }
+
+    if (matched.has(hit.id)) {
+      /* Already circled — leave stuck (kids rarely need uncircle) */
+      return;
+    }
+
+    matched.add(hit.id);
+    hit.el.classList.add('circled');
+    placeCircleMark(hit.id, hit.el);
+    playCorrectBing();
+
+    const need = exercise.sources.filter((s) => s.match === (exercise.targetMatch || 'blue'));
+    const done = need.every((s) => matched.has(s.id));
+    /* No wrong circles stick, so "none wrong" is automatic */
+    if (done) {
+      markExerciseComplete(currentId);
+      setTimeout(() => {
+        if (exercise && exercise.mode === 'circle-draw') showCelebrate();
+      }, 350);
+    }
   }
 
   function toggleCountCircle(rowIndex, circleIndex, btn, rowEl) {
@@ -1380,7 +1724,13 @@
     if (e.button != null && e.button !== 0) return;
     if (drawing) return;
     if (exercise && exercise.mode === 'count-fill') return;
-    if (beginDraw(e.pointerId, e.clientX, e.clientY)) {
+    let started = false;
+    if (exercise && exercise.mode === 'circle-draw') {
+      started = beginCircleDraw(e.pointerId, e.clientX, e.clientY);
+    } else {
+      started = beginDraw(e.pointerId, e.clientX, e.clientY);
+    }
+    if (started) {
       try { stage.setPointerCapture(e.pointerId); } catch (_) {}
       e.preventDefault();
     }
@@ -1388,13 +1738,21 @@
 
   stage.addEventListener('pointermove', (e) => {
     if (!drawing || e.pointerId !== activePointerId) return;
-    moveDraw(e.clientX, e.clientY);
+    if (exercise && exercise.mode === 'circle-draw') {
+      moveCircleDraw(e.clientX, e.clientY);
+    } else {
+      moveDraw(e.clientX, e.clientY);
+    }
     e.preventDefault();
   });
 
   function onPointerUp(e) {
     if (!drawing || e.pointerId !== activePointerId) return;
-    endDraw(e.clientX, e.clientY);
+    if (exercise && exercise.mode === 'circle-draw') {
+      endCircleDraw(e.clientX, e.clientY);
+    } else {
+      endDraw(e.clientX, e.clientY);
+    }
     e.preventDefault();
   }
 
@@ -1469,7 +1827,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=18').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=19').catch(() => {});
     });
   }
 

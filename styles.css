@@ -747,3 +747,39 @@ body {
   border-color: #C1121F;
   box-shadow: inset 0 0 0.08cm rgba(0, 0, 0, 0.12);
 }
+
+
+/* —— Blumenwiese / circle-draw —— */
+#board.meadow-board {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.25) 0 0.35cm, transparent 0.4cm),
+    radial-gradient(circle at 72% 30%, rgba(255, 255, 255, 0.2) 0 0.28cm, transparent 0.32cm),
+    radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.18) 0 0.3cm, transparent 0.35cm),
+    linear-gradient(180deg, #C8E6C9 0%, #A8D5A2 55%, #8FCB8A 100%);
+  border-radius: 0.35cm;
+  box-shadow: inset 0 0 0 0.06cm rgba(255, 255, 255, 0.35);
+}
+
+.item.flower-item {
+  z-index: 4;
+}
+
+.item.mascot {
+  z-index: 3;
+  pointer-events: none;
+  cursor: default;
+  filter: drop-shadow(0 0.08cm 0.1cm rgba(0, 0, 0, 0.12));
+}
+
+.item.circled {
+  filter: drop-shadow(0 0 0.1cm rgba(34, 197, 94, 0.45));
+}
+
+.circle-mark {
+  fill: none;
+  stroke: #166534;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  opacity: 0.95;
+  pointer-events: none;
+}
