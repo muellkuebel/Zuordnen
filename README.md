@@ -33,7 +33,7 @@ Während des Zeichnens ist die Linie schwarz; richtig = Linie wird grün und ble
 
 **Interaktion (Blumenwiese):** Mit dem Finger einen geschlossenen Kreis um eine Blume zeichnen (wie die Verbindungslinie, freihand). Nur wenn die Geste ungefähr eine Blume umschließt, erscheint ein sauberer Kreis. Blau = Kreis bleibt + Bing. Andere Farbe = kurzes Wackeln, kein Kreis. Alle 5 blauen eingekreist → „Super gemacht!“.
 
-**Interaktion (Wo sind die Karotten?):** Wie Blumenwiese (circle-draw). Nur Karotten behalten den Kreis + Bing; Taschen, Flugzeuge, Kürbisse, Orangen, Socken, Würfel, Autos, Knöpfe, Spitzer, Pullover und Blume wackeln ohne Kreis. Alle 5 Karotten → „Super gemacht!“.
+**Interaktion (Wo sind die Karotten?):** Wie Blumenwiese (circle-draw). Nur Karotten behalten den Kreis + Bing; Taschen, Flugzeuge, Kürbisse, Orangen, Socken, Würfel, Autos, Knöpfe, Pullover und Blume wackeln ohne Kreis. Alle 5 Karotten → „Super gemacht!“.
 
 **Interaktion (Doggys Fußbälle):** Wie Blumenwiese (circle-draw). Nur die 6 schwarz-weißen Fußbälle behalten den Kreis + Bing; andere Bälle und Gegenstände wackeln ohne Kreis. Alle 6 → „Super gemacht!“.
 
@@ -44,7 +44,7 @@ Bei Querformat bleibt dieselbe aufrechte Portrait-UI; links/rechts erscheint sch
 
 ## Technik
 
-Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v25`, Offline), eigene einfache SVG-Motive.
+Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v26`, Offline), eigene einfache SVG-Motive.
 
 ## Dateien
 
