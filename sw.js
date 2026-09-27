@@ -1,5 +1,5 @@
 /* Service worker — cache all app assets for offline use */
-const CACHE = 'zuordnen-v22';
+const CACHE = 'zuordnen-v23';
 const ASSETS = [
   './',
   './index.html',

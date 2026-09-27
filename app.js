@@ -613,6 +613,203 @@
       </svg>`;
   }
 
+
+  function carrotSvg(rot) {
+    const r = rot == null ? -25 : rot;
+    return `
+      <svg viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g transform="rotate(${r} 40 52)">
+          <path d="M40 18 C28 38 24 58 28 78 C32 90 48 90 52 78 C56 58 52 38 40 18 Z" fill="#FF8C42" stroke="#E76F3C" stroke-width="1.5"/>
+          <path d="M34 30 Q40 42 36 55 M44 34 Q40 48 46 62 M38 48 Q42 58 40 70" fill="none" stroke="#E76F3C" stroke-width="1.4" opacity=".55"/>
+          <path d="M40 18 Q34 8 30 4 Q36 10 38 16" fill="#3A9B6A" stroke="#2D6A4F" stroke-width="1"/>
+          <path d="M40 18 Q40 6 44 2 Q42 12 42 17" fill="#52B788" stroke="#2D6A4F" stroke-width="1"/>
+          <path d="M40 18 Q48 8 52 5 Q46 12 42 17" fill="#3A9B6A" stroke="#2D6A4F" stroke-width="1"/>
+          <ellipse cx="34" cy="36" rx="4" ry="7" fill="#fff" opacity=".22" transform="rotate(-18 34 36)"/>
+        </g>
+      </svg>`;
+  }
+
+  function orangeFruitSvg() {
+    return `
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="40" cy="42" r="26" fill="#FF8C42" stroke="#E76F3C" stroke-width="2"/>
+        <circle cx="40" cy="42" r="20" fill="none" stroke="#E76F3C" stroke-width="1" opacity=".35"/>
+        <ellipse cx="30" cy="34" rx="8" ry="5" fill="#fff" opacity=".28"/>
+        <path d="M40 16 Q42 10 48 8" fill="none" stroke="#3A9B6A" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="50" cy="10" rx="6" ry="3.5" fill="#52B788" transform="rotate(25 50 10)"/>
+      </svg>`;
+  }
+
+  function pumpkinSvg() {
+    return `
+      <svg viewBox="0 0 90 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="40" cy="48" rx="14" ry="24" fill="#FF8C42"/>
+        <ellipse cx="28" cy="48" rx="12" ry="22" fill="#F4A261"/>
+        <ellipse cx="52" cy="48" rx="12" ry="22" fill="#F4A261"/>
+        <ellipse cx="40" cy="48" rx="10" ry="22" fill="#FF9F5A"/>
+        <path d="M40 24 Q38 12 42 8 Q46 14 44 24" fill="#3A9B6A" stroke="#2D6A4F" stroke-width="1"/>
+        <ellipse cx="30" cy="40" rx="4" ry="8" fill="#fff" opacity=".2"/>
+      </svg>`;
+  }
+
+  function paperPlaneSvg(flip) {
+    const f = flip ? 'transform="scale(-1,1) translate(-80,0)"' : '';
+    return `
+      <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g ${f}>
+          <path d="M8 32 L72 12 L48 48 Z" fill="#FFB347" stroke="#E76F3C" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M8 32 L48 48 L40 36 Z" fill="#FF8C42"/>
+          <path d="M8 32 L72 12 L40 36 Z" fill="#FFCC80" opacity=".95"/>
+          <path d="M40 36 L48 48" stroke="#E76F3C" stroke-width="1.2"/>
+        </g>
+      </svg>`;
+  }
+
+  function handbagSvg() {
+    return `
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M22 28 Q22 12 40 12 Q58 12 58 28" fill="none" stroke="#E76F3C" stroke-width="5" stroke-linecap="round"/>
+        <rect x="12" y="28" width="56" height="42" rx="8" fill="#FF8C42" stroke="#E76F3C" stroke-width="2"/>
+        <rect x="20" y="36" width="40" height="26" rx="4" fill="#FFB347" opacity=".55"/>
+        <circle cx="40" cy="42" r="4" fill="#FFD60A" stroke="#E76F3C" stroke-width="1.5"/>
+        <rect x="38" y="42" width="4" height="8" rx="1" fill="#E76F3C"/>
+      </svg>`;
+  }
+
+  function clutterSockSvg(rot) {
+    const r = rot == null ? 15 : rot;
+    return `
+      <svg viewBox="0 0 70 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g transform="rotate(${r} 35 45)">
+          <path d="M28 12 H48 V48 Q48 58 58 62 Q66 66 64 74 Q62 82 50 80 Q34 76 28 66 Z" fill="#FF8C42" stroke="#E76F3C" stroke-width="1.8"/>
+          <path d="M28 12 H48 V22 H28 Z" fill="#FFB347"/>
+          <path d="M30 30 H46 M30 38 H46" stroke="#E76F3C" stroke-width="1.5" opacity=".4"/>
+          <ellipse cx="34" cy="20" rx="3" ry="4" fill="#fff" opacity=".25"/>
+        </g>
+      </svg>`;
+  }
+
+  function cubeSvg() {
+    return `
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M16 28 L40 14 L64 28 L64 58 L40 72 L16 58 Z" fill="#FF8C42" stroke="#E76F3C" stroke-width="2"/>
+        <path d="M16 28 L40 42 L64 28" fill="none" stroke="#E76F3C" stroke-width="1.8"/>
+        <path d="M40 42 L40 72" stroke="#E76F3C" stroke-width="1.8"/>
+        <path d="M16 28 L40 42 L40 72 L16 58 Z" fill="#E76F3C" opacity=".18"/>
+        <circle cx="30" cy="48" r="3" fill="#FFD60A"/>
+        <circle cx="48" cy="36" r="2.5" fill="#fff" opacity=".45"/>
+      </svg>`;
+  }
+
+  function toyCarSvg(flip) {
+    const f = flip ? 'transform="scale(-1,1) translate(-90,0)"' : '';
+    return `
+      <svg viewBox="0 0 90 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g ${f}>
+          <rect x="10" y="24" width="64" height="20" rx="6" fill="#FF8C42" stroke="#E76F3C" stroke-width="1.8"/>
+          <path d="M24 24 L32 12 H54 L64 24 Z" fill="#FFB347" stroke="#E76F3C" stroke-width="1.5"/>
+          <rect x="34" y="14" width="14" height="8" rx="1.5" fill="#89C2D9" opacity=".85"/>
+          <circle cx="26" cy="46" r="8" fill="#5C4033"/>
+          <circle cx="26" cy="46" r="4" fill="#C4A574"/>
+          <circle cx="58" cy="46" r="8" fill="#5C4033"/>
+          <circle cx="58" cy="46" r="4" fill="#C4A574"/>
+          <circle cx="70" cy="30" r="2.5" fill="#FFD60A"/>
+        </g>
+      </svg>`;
+  }
+
+  function buttonSvg() {
+    return `
+      <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="35" cy="35" r="26" fill="#FF8C42" stroke="#E76F3C" stroke-width="2.5"/>
+        <circle cx="35" cy="35" r="20" fill="none" stroke="#E76F3C" stroke-width="1.5" opacity=".4"/>
+        <circle cx="28" cy="28" r="3.5" fill="#FFF3E0" stroke="#E76F3C" stroke-width="1.2"/>
+        <circle cx="42" cy="28" r="3.5" fill="#FFF3E0" stroke="#E76F3C" stroke-width="1.2"/>
+        <circle cx="28" cy="42" r="3.5" fill="#FFF3E0" stroke="#E76F3C" stroke-width="1.2"/>
+        <circle cx="42" cy="42" r="3.5" fill="#FFF3E0" stroke="#E76F3C" stroke-width="1.2"/>
+        <path d="M28 28 L42 42 M42 28 L28 42" stroke="#E76F3C" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>`;
+  }
+
+  function sharpenerSvg() {
+    return `
+      <svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="12" y="18" width="56" height="38" rx="8" fill="#FF8C42" stroke="#E76F3C" stroke-width="2"/>
+        <rect x="20" y="26" width="28" height="22" rx="4" fill="#FFB347"/>
+        <circle cx="34" cy="37" r="7" fill="#5C4033"/>
+        <circle cx="34" cy="37" r="3.5" fill="#C4A574"/>
+        <rect x="52" y="28" width="10" height="18" rx="2" fill="#E76F3C"/>
+        <path d="M54 30 L60 37 L54 44" fill="#FFD60A"/>
+      </svg>`;
+  }
+
+  function sweaterSvg() {
+    return `
+      <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M28 22 L18 34 L8 48 L20 54 L28 42 L28 78 L72 78 L72 42 L80 54 L92 48 L82 34 L72 22
+                 Q60 14 50 16 Q40 14 28 22 Z" fill="#FF8C42" stroke="#E76F3C" stroke-width="2"/>
+        <path d="M34 22 Q50 30 66 22" fill="none" stroke="#3A9B6A" stroke-width="5" stroke-linecap="round"/>
+        <rect x="28" y="72" width="44" height="8" rx="2" fill="#3A9B6A"/>
+        <rect x="8" y="46" width="12" height="8" rx="2" fill="#3A9B6A"/>
+        <rect x="80" y="46" width="12" height="8" rx="2" fill="#3A9B6A"/>
+        <path d="M36 40 H64 M36 50 H64 M36 60 H64" stroke="#E76F3C" stroke-width="1.2" opacity=".35"/>
+      </svg>`;
+  }
+
+  function daisyClutterSvg() {
+    return `
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g>
+          <ellipse cx="40" cy="18" rx="8" ry="14" fill="#FFE0B2"/>
+          <ellipse cx="40" cy="62" rx="8" ry="14" fill="#FFE0B2"/>
+          <ellipse cx="18" cy="40" rx="14" ry="8" fill="#FFE0B2"/>
+          <ellipse cx="62" cy="40" rx="14" ry="8" fill="#FFE0B2"/>
+          <ellipse cx="24" cy="24" rx="11" ry="7" fill="#FFCC80" transform="rotate(-45 24 24)"/>
+          <ellipse cx="56" cy="24" rx="11" ry="7" fill="#FFCC80" transform="rotate(45 56 24)"/>
+          <ellipse cx="24" cy="56" rx="11" ry="7" fill="#FFCC80" transform="rotate(45 24 56)"/>
+          <ellipse cx="56" cy="56" rx="11" ry="7" fill="#FFCC80" transform="rotate(-45 56 56)"/>
+          <circle cx="40" cy="40" r="11" fill="#FF8C42"/>
+          <circle cx="40" cy="40" r="6" fill="#FFD60A"/>
+        </g>
+      </svg>`;
+  }
+
+  function rabbitMascotSvg() {
+    return `
+      <svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="50" cy="102" rx="24" ry="5" fill="rgba(0,0,0,.08)"/>
+        <!-- ears -->
+        <ellipse cx="32" cy="28" rx="10" ry="26" fill="#C4A574" transform="rotate(-12 32 28)"/>
+        <ellipse cx="32" cy="28" rx="5" ry="16" fill="#E8C4A0" transform="rotate(-12 32 28)"/>
+        <ellipse cx="68" cy="28" rx="10" ry="26" fill="#C4A574" transform="rotate(12 68 28)"/>
+        <ellipse cx="68" cy="28" rx="5" ry="16" fill="#E8C4A0" transform="rotate(12 68 28)"/>
+        <!-- body -->
+        <ellipse cx="50" cy="78" rx="22" ry="20" fill="#C4A574"/>
+        <ellipse cx="50" cy="82" rx="14" ry="12" fill="#E8C4A0"/>
+        <!-- head -->
+        <circle cx="50" cy="52" r="22" fill="#C4A574"/>
+        <!-- glasses -->
+        <circle cx="40" cy="50" r="8" fill="none" stroke="#5C4033" stroke-width="2"/>
+        <circle cx="60" cy="50" r="8" fill="none" stroke="#5C4033" stroke-width="2"/>
+        <line x1="48" y1="50" x2="52" y2="50" stroke="#5C4033" stroke-width="2"/>
+        <circle cx="40" cy="50" r="3" fill="#222"/>
+        <circle cx="60" cy="50" r="3" fill="#222"/>
+        <circle cx="41.5" cy="48.5" r="1" fill="#fff"/>
+        <circle cx="61.5" cy="48.5" r="1" fill="#fff"/>
+        <!-- nose / mouth -->
+        <ellipse cx="50" cy="58" rx="3.5" ry="2.5" fill="#E8897A"/>
+        <path d="M46 62 Q50 66 54 62" fill="none" stroke="#5C4033" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- cheeks -->
+        <circle cx="32" cy="58" r="4" fill="#E8897A" opacity=".35"/>
+        <circle cx="68" cy="58" r="4" fill="#E8897A" opacity=".35"/>
+        <!-- paw wave -->
+        <ellipse cx="78" cy="70" rx="8" ry="6" fill="#C4A574" transform="rotate(-20 78 70)"/>
+        <circle cx="82" cy="66" r="2.2" fill="#E8C4A0"/>
+        <circle cx="86" cy="70" r="2.2" fill="#E8C4A0"/>
+        <circle cx="82" cy="74" r="2.2" fill="#E8C4A0"/>
+      </svg>`;
+  }
+
   function bathDuckSvg(body, beak, faceRight) {
     /* Classic rubber duck; default faces left, flip for right-facing row */
     const b = body || COLORS.yellow;
@@ -921,6 +1118,49 @@
       ],
       mascot: { x: 0.50, y: 0.10, w: 0.28, aspect: 0.75, svg: doggyInTubSvg },
     },
+
+    karotten: {
+      title: 'Wo sind die Karotten?',
+      hint: 'Der Hase isst am liebsten Karotten. Kreise die 5 Karotten ein!',
+      mode: 'circle-draw',
+      targetMatch: 'carrot',
+      boardClass: 'clutter-board',
+      itemClass: 'clutter-item',
+      itemLabel: 'Gegenstand',
+      fixedLayout: true,
+      sources: [
+        /* 5 carrots (targets) — worksheet-inspired clutter */
+        { id: 'k_c1', match: 'carrot', svg: () => carrotSvg(-40), x: 0.16, y: 0.14, w: 0.11, aspect: 1.25 },
+        { id: 'k_c2', match: 'carrot', svg: () => carrotSvg(-32), x: 0.80, y: 0.15, w: 0.11, aspect: 1.25 },
+        { id: 'k_c3', match: 'carrot', svg: () => carrotSvg(28),  x: 0.20, y: 0.40, w: 0.11, aspect: 1.25 },
+        { id: 'k_c4', match: 'carrot', svg: () => carrotSvg(-8),  x: 0.74, y: 0.44, w: 0.11, aspect: 1.25 },
+        { id: 'k_c5', match: 'carrot', svg: () => carrotSvg(35),  x: 0.48, y: 0.60, w: 0.11, aspect: 1.25 },
+        /* distractors */
+        { id: 'k_bag1', match: 'bag', svg: () => handbagSvg(), x: 0.34, y: 0.12, w: 0.11, aspect: 1.0 },
+        { id: 'k_bag2', match: 'bag', svg: () => handbagSvg(), x: 0.90, y: 0.36, w: 0.10, aspect: 1.0 },
+        { id: 'k_pl1', match: 'plane', svg: () => paperPlaneSvg(false), x: 0.50, y: 0.18, w: 0.12, aspect: 0.75 },
+        { id: 'k_pl2', match: 'plane', svg: () => paperPlaneSvg(true),  x: 0.36, y: 0.38, w: 0.12, aspect: 0.75 },
+        { id: 'k_pu1', match: 'pumpkin', svg: () => pumpkinSvg(), x: 0.62, y: 0.14, w: 0.12, aspect: 0.9 },
+        { id: 'k_pu2', match: 'pumpkin', svg: () => pumpkinSvg(), x: 0.86, y: 0.62, w: 0.12, aspect: 0.9 },
+        { id: 'k_or1', match: 'orange', svg: () => orangeFruitSvg(), x: 0.52, y: 0.42, w: 0.10, aspect: 1.0 },
+        { id: 'k_or2', match: 'orange', svg: () => orangeFruitSvg(), x: 0.58, y: 0.68, w: 0.10, aspect: 1.0 },
+        { id: 'k_sk1', match: 'sock', svg: () => clutterSockSvg(20),  x: 0.90, y: 0.16, w: 0.09, aspect: 1.25 },
+        { id: 'k_sk2', match: 'sock', svg: () => clutterSockSvg(-15), x: 0.42, y: 0.52, w: 0.09, aspect: 1.25 },
+        { id: 'k_sk3', match: 'sock', svg: () => clutterSockSvg(40),  x: 0.64, y: 0.52, w: 0.09, aspect: 1.25 },
+        { id: 'k_cu1', match: 'cube', svg: () => cubeSvg(), x: 0.30, y: 0.56, w: 0.10, aspect: 1.0 },
+        { id: 'k_cu2', match: 'cube', svg: () => cubeSvg(), x: 0.86, y: 0.48, w: 0.10, aspect: 1.0 },
+        { id: 'k_car1', match: 'car', svg: () => toyCarSvg(false), x: 0.48, y: 0.30, w: 0.12, aspect: 0.7 },
+        { id: 'k_car2', match: 'car', svg: () => toyCarSvg(true),  x: 0.68, y: 0.34, w: 0.12, aspect: 0.7 },
+        { id: 'k_bt1', match: 'button', svg: () => buttonSvg(), x: 0.12, y: 0.30, w: 0.09, aspect: 1.0 },
+        { id: 'k_bt2', match: 'button', svg: () => buttonSvg(), x: 0.62, y: 0.42, w: 0.09, aspect: 1.0 },
+        { id: 'k_sh', match: 'sharpener', svg: () => sharpenerSvg(), x: 0.28, y: 0.26, w: 0.11, aspect: 0.85 },
+        { id: 'k_sw', match: 'sweater', svg: () => sweaterSvg(), x: 0.34, y: 0.68, w: 0.15, aspect: 0.9 },
+        { id: 'k_fl', match: 'flower', svg: () => daisyClutterSvg(), x: 0.72, y: 0.68, w: 0.10, aspect: 1.0 },
+      ],
+      targets: [],
+      mascot: { x: 0.14, y: 0.88, w: 0.18, aspect: 1.1, svg: rabbitMascotSvg },
+    },
+
   };
 
   /* —— DOM —— */
@@ -954,6 +1194,7 @@
     'blumenwiese',
     'windraeder',
     'doggysEntchen',
+    'karotten',
   ];
 
   /* Session-only completion (in-memory; clears when app fully reopened) */
@@ -1250,7 +1491,12 @@
         hint: base.hint,
         mode: 'circle-draw',
         targetMatch: base.targetMatch || 'blue',
-        sources: withShuffledSlots(base.sources),
+        boardClass: base.boardClass || 'meadow-board',
+        itemClass: base.itemClass || 'flower-item',
+        itemLabel: base.itemLabel || 'Blume',
+        sources: base.fixedLayout
+          ? base.sources.map((s) => Object.assign({}, s))
+          : withShuffledSlots(base.sources),
         targets: [],
         mascot: base.mascot ? Object.assign({}, base.mascot) : null,
       };
@@ -1331,15 +1577,17 @@
 
 
   function startCircleDrawBoard(ex) {
-    board.className = 'meadow-board';
+    board.className = ex.boardClass || 'meadow-board';
     circleDrawMode = true;
     circleMarks.clear();
     linesSvg.style.display = '';
     drawSvg.style.display = '';
+    const itemClass = ex.itemClass || 'flower-item';
+    const itemLabel = ex.itemLabel || 'Blume';
     ex.sources.forEach((s) => {
       const el = makeItem(s, 'source');
-      el.classList.add('flower-item');
-      el.setAttribute('aria-label', 'Blume');
+      el.classList.add(itemClass);
+      el.setAttribute('aria-label', itemLabel);
       el.dataset.color = s.match;
     });
     placeMascot(ex);
@@ -1926,7 +2174,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=22').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=23').catch(() => {});
     });
   }
 

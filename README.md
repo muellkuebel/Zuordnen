@@ -22,6 +22,7 @@ Auf dem iPad: Safari → Teilen → Zum Home-Bildschirm.
 10. **Blumenwiese** — Mit dem Finger einen Kreis um die 5 blauen Blumen zeichnen (Blau erkennen)
 11. **Bunte Windräder** — Bunte Windräder mit dem farblich passenden Faltpapier verbinden (1:1)
 12. **Doggys Entchen** — Bade-Entchen oben und unten nach Farbe verbinden (rosa/orange/gelb/hellblau, 1:1)
+13. **Wo sind die Karotten?** — Suchbild: mit dem Finger die 5 Karotten im orangen Durcheinander einkreisen
 
 **Interaktion (Verbinden):** Finger vom Objekt zum Ziel ziehen; die Linie wird live mitgezeichnet.  
 Während des Zeichnens ist die Linie schwarz; richtig = Linie wird grün und bleibt + kurzes weiches Bing. Falsch = Linie verschwindet, leichtes Wackeln. (Kein Haken mehr auf den Objekten — nur die Abschluss-Feier „Super gemacht!“.)
@@ -30,6 +31,8 @@ Während des Zeichnens ist die Linie schwarz; richtig = Linie wird grün und ble
 
 **Interaktion (Blumenwiese):** Mit dem Finger einen geschlossenen Kreis um eine Blume zeichnen (wie die Verbindungslinie, freihand). Nur wenn die Geste ungefähr eine Blume umschließt, erscheint ein sauberer Kreis. Blau = Kreis bleibt + Bing. Andere Farbe = kurzes Wackeln, kein Kreis. Alle 5 blauen eingekreist → „Super gemacht!“.
 
+**Interaktion (Wo sind die Karotten?):** Wie Blumenwiese (circle-draw). Nur Karotten behalten den Kreis + Bing; Taschen, Flugzeuge, Kürbisse, Orangen, Socken, Würfel, Autos, Knöpfe, Spitzer, Pullover und Blume wackeln ohne Kreis. Alle 5 Karotten → „Super gemacht!“.
+
 ## Portrait only
 
 Die UI ist fest auf **Hochformat (3:4)** ausgelegt (`manifest.orientation: portrait`).  
@@ -37,7 +40,7 @@ Bei Querformat bleibt dieselbe aufrechte Portrait-UI; links/rechts erscheint sch
 
 ## Technik
 
-Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v21`, Offline), eigene einfache SVG-Motive.
+Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v23`, Offline), eigene einfache SVG-Motive.
 
 ## Dateien
 

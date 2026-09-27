@@ -541,6 +541,7 @@ body {
 .home-btns .big-btn:nth-child(10) { background: #F3FFE8; border-color: #A3CB38; box-shadow: 0.1cm 0.12cm 0 #6AB04C, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
 .home-btns .big-btn:nth-child(11) { background: #FFF8E7; border-color: #F9CA24; box-shadow: 0.1cm 0.12cm 0 #F0932B, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
 .home-btns .big-btn:nth-child(12) { background: #F5F0FF; border-color: #A29BFE; box-shadow: 0.1cm 0.12cm 0 #6C5CE7, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
+.home-btns .big-btn:nth-child(13) { background: #FFF4E8; border-color: #FF8C42; box-shadow: 0.1cm 0.12cm 0 #E76F3C, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
 
 .home-btns .big-btn:active {
   transform: translate(0.08cm, 0.08cm) rotate(0deg) !important;
@@ -789,4 +790,19 @@ body {
   stroke-linecap: round;
   opacity: 0.95;
   pointer-events: none;
+}
+
+/* —— Karotten Suchbild / orange clutter —— */
+#board.clutter-board {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.45) 0 0.3cm, transparent 0.35cm),
+    radial-gradient(circle at 78% 28%, rgba(255, 200, 120, 0.35) 0 0.35cm, transparent 0.4cm),
+    radial-gradient(circle at 45% 72%, rgba(255, 255, 255, 0.3) 0 0.28cm, transparent 0.32cm),
+    linear-gradient(180deg, #FFF8F0 0%, #FFE8CC 55%, #FFD9A8 100%);
+  border-radius: 0.35cm;
+  box-shadow: inset 0 0 0 0.06cm rgba(231, 111, 60, 0.2);
+}
+
+.item.clutter-item {
+  z-index: 4;
 }
