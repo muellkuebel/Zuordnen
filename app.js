@@ -608,6 +608,41 @@
 
   /* —— Exercise definitions —— */
 
+  function pinwheelSvg(color) {
+    /* Classic 4-blade pinwheel on a stick — cute, kid-friendly */
+    const c = color || COLORS.red;
+    return `
+      <svg viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line x1="40" y1="52" x2="40" y2="102" stroke="#8B5E3C" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="40" cy="104" rx="7" ry="2.5" fill="rgba(0,0,0,.12)"/>
+        <!-- four curved blades -->
+        <path d="M40 40 Q58 18 70 32 Q62 48 40 40 Z" fill="${c}"/>
+        <path d="M40 40 Q62 58 48 72 Q32 64 40 40 Z" fill="${c}" opacity=".92"/>
+        <path d="M40 40 Q22 62 10 48 Q18 32 40 40 Z" fill="${c}" opacity=".88"/>
+        <path d="M40 40 Q18 22 32 8 Q48 16 40 40 Z" fill="${c}" opacity=".95"/>
+        <!-- blade highlights -->
+        <path d="M44 36 Q56 24 62 32" fill="none" stroke="#fff" stroke-width="2" opacity=".35" stroke-linecap="round"/>
+        <path d="M36 36 Q24 24 20 30" fill="none" stroke="#fff" stroke-width="2" opacity=".28" stroke-linecap="round"/>
+        <!-- center pin -->
+        <circle cx="40" cy="40" r="7" fill="#FF8C42"/>
+        <circle cx="40" cy="40" r="3.5" fill="#FFD60A"/>
+        <circle cx="38" cy="38" r="1.4" fill="#fff" opacity=".55"/>
+      </svg>`;
+  }
+
+  function paperSquareSvg(color) {
+    /* Colored folding paper with dotted diagonal crease lines */
+    const c = color || COLORS.yellow;
+    return `
+      <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="8" y="8" width="74" height="74" rx="7" fill="${c}" stroke="rgba(0,0,0,.2)" stroke-width="2.5"/>
+        <rect x="14" y="14" width="30" height="18" rx="3" fill="#fff" opacity=".28"/>
+        <line x1="16" y1="16" x2="74" y2="74" stroke="rgba(0,0,0,.35)" stroke-width="2" stroke-dasharray="4 5" stroke-linecap="round"/>
+        <line x1="74" y1="16" x2="16" y2="74" stroke="rgba(0,0,0,.35)" stroke-width="2" stroke-dasharray="4 5" stroke-linecap="round"/>
+        <circle cx="45" cy="45" r="3.2" fill="rgba(0,0,0,.22)"/>
+      </svg>`;
+  }
+
   function flowerSvg(petal) {
     const p = petal || COLORS.blue;
     /* 6 petals + yellow center + stem/leaves */
@@ -831,6 +866,24 @@
       targets: [],
       mascot: { x: 0.14, y: 0.86, w: 0.16, aspect: 1.15 },
     },
+
+    windraeder: {
+      title: 'Bunte Windräder',
+      hint: 'Welches Windrad gehört zu welchem Papier? Verbinde die gleichen Farben!',
+      mode: 'one-to-one',
+      sources: [
+        { id: 'pw_red',    match: 'red',    svg: () => pinwheelSvg(COLORS.red),    x: 0.14, y: 0.78, w: 0.18, aspect: 1.35 },
+        { id: 'pw_blue',   match: 'blue',   svg: () => pinwheelSvg(COLORS.blue),   x: 0.38, y: 0.78, w: 0.18, aspect: 1.35 },
+        { id: 'pw_green',  match: 'green',  svg: () => pinwheelSvg(COLORS.green),  x: 0.62, y: 0.78, w: 0.18, aspect: 1.35 },
+        { id: 'pw_yellow', match: 'yellow', svg: () => pinwheelSvg(COLORS.yellow), x: 0.86, y: 0.78, w: 0.18, aspect: 1.35 },
+      ],
+      targets: [
+        { id: 'pp_yellow', match: 'yellow', svg: () => paperSquareSvg(COLORS.yellow), x: 0.14, y: 0.22, w: 0.18, aspect: 1.0 },
+        { id: 'pp_red',    match: 'red',    svg: () => paperSquareSvg(COLORS.red),    x: 0.38, y: 0.22, w: 0.18, aspect: 1.0 },
+        { id: 'pp_blue',   match: 'blue',   svg: () => paperSquareSvg(COLORS.blue),   x: 0.62, y: 0.22, w: 0.18, aspect: 1.0 },
+        { id: 'pp_green',  match: 'green',  svg: () => paperSquareSvg(COLORS.green),  x: 0.86, y: 0.22, w: 0.18, aspect: 1.0 },
+      ],
+    },
   };
 
   /* —— DOM —— */
@@ -862,6 +915,7 @@
     'einsZweiDrei',
     'zaehlenBis3',
     'blumenwiese',
+    'windraeder',
   ];
 
   /* Session-only completion (in-memory; clears when app fully reopened) */
@@ -1827,7 +1881,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=19').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=20').catch(() => {});
     });
   }
 

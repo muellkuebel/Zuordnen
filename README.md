@@ -20,6 +20,7 @@ Auf dem iPad: Safari → Teilen → Zum Home-Bildschirm.
 8. **Eins, zwei oder drei** — Segelschiffe (1/2/3) mit den passenden Fingern verbinden
 9. **Zählen bis 3** — Gegenstände zählen und die passende Anzahl Kreise antippen (Ausfüllen)
 10. **Blumenwiese** — Mit dem Finger einen Kreis um die 5 blauen Blumen zeichnen (Blau erkennen)
+11. **Bunte Windräder** — Bunte Windräder mit dem farblich passenden Faltpapier verbinden (1:1)
 
 **Interaktion (Verbinden):** Finger vom Objekt zum Ziel ziehen; die Linie wird live mitgezeichnet.  
 Während des Zeichnens ist die Linie schwarz; richtig = Linie wird grün und bleibt + kurzes weiches Bing. Falsch = Linie verschwindet, leichtes Wackeln. (Kein Haken mehr auf den Objekten — nur die Abschluss-Feier „Super gemacht!“.)
@@ -35,7 +36,7 @@ Bei Querformat bleibt dieselbe aufrechte Portrait-UI; links/rechts erscheint sch
 
 ## Technik
 
-Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v19`, Offline), eigene einfache SVG-Motive.
+Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v20`, Offline), eigene einfache SVG-Motive.
 
 ## Dateien
 
