@@ -1,5 +1,5 @@
 /* Service worker — cache all app assets for offline use */
-const CACHE = 'zuordnen-v13';
+const CACHE = 'zuordnen-v14';
 const ASSETS = [
   './',
   './index.html',
@@ -8,6 +8,7 @@ const ASSETS = [
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',
+  './icons/celebrate-check.png',
   './icons/apple-touch-icon.png',
 ];
 
