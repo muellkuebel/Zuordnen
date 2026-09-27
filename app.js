@@ -600,6 +600,18 @@
     portraitShell.style.height = Math.floor(h) + 'px';
   }
 
+  function syncLineSvgs(w, h) {
+    /* Keep SVG user space = CSS pixels of the stage (critical after rotate/resize) */
+    [linesSvg, drawSvg].forEach((svg) => {
+      if (!svg) return;
+      svg.setAttribute('width', String(w));
+      svg.setAttribute('height', String(h));
+      svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      svg.style.width = w + 'px';
+      svg.style.height = h + 'px';
+    });
+  }
+
   function sizeStage() {
     sizePortraitShell();
     const rect = stageWrap.getBoundingClientRect();
@@ -613,9 +625,15 @@
     }
     if (w > availW) w = availW;
     if (h > availH) h = availH;
-    stage.style.width = Math.floor(w) + 'px';
-    stage.style.height = Math.floor(h) + 'px';
+    w = Math.floor(w);
+    h = Math.floor(h);
+    stage.style.width = w + 'px';
+    stage.style.height = h + 'px';
+    syncLineSvgs(w, h);
+    /* Mid-draw stroke would be in old coords — drop it */
+    if (drawing) cancelDraw();
     repositionItems();
+    /* After layout, rematch lines to current item centers */
     redrawConnections();
   }
 
@@ -925,13 +943,19 @@
     finalPts[finalPts.length - 1] = b;
     finalPts = simplify(finalPts, 6);
 
+    const { w: sw, h: sh } = stageSize();
+    const normPts = finalPts.map((pt) => ({
+      x: pt.x / (sw || 1),
+      y: pt.y / (sh || 1),
+    }));
+
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('class', 'conn-line');
     path.setAttribute('d', pathFromPoints(finalPts));
     linesSvg.appendChild(path);
 
     matched.add(fromId);
-    connections.push({ fromId, toId, pathEl: path, pts: finalPts });
+    connections.push({ fromId, toId, pathEl: path, pts: finalPts, normPts });
     fromEl.classList.add('matched');
     toEl.classList.add('matched');
 
@@ -941,17 +965,29 @@
   }
 
   function redrawConnections() {
+    const { w: sw, h: sh } = stageSize();
     connections.forEach((c) => {
       const fromEl = itemEls.get(c.fromId);
       const toEl = itemEls.get(c.toId);
       if (!fromEl || !toEl || !c.pathEl) return;
+      /* Always use live element centers (getBoundingClientRect → stage space) */
       const a = centerOf(fromEl);
       const b = centerOf(toEl);
-      let pts = (c.pts || [a, b]).slice();
-      if (pts.length < 2) pts = [a, b];
+      let pts;
+      if (c.normPts && c.normPts.length >= 2) {
+        /* Remap freehand shape proportionally to new stage size */
+        pts = c.normPts.map((pt) => ({ x: pt.x * sw, y: pt.y * sh }));
+      } else {
+        pts = [a, b];
+      }
       pts[0] = a;
       pts[pts.length - 1] = b;
       c.pts = pts;
+      /* Refresh normalized form from remapped pts so successive resizes stay stable */
+      c.normPts = pts.map((pt) => ({
+        x: pt.x / (sw || 1),
+        y: pt.y / (sh || 1),
+      }));
       c.pathEl.setAttribute('d', pathFromPoints(pts));
     });
   }
@@ -1009,20 +1045,40 @@
   let resizeTimer = null;
   function onResize() {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(sizeStage, 50);
+    resizeTimer = setTimeout(() => {
+      sizeStage();
+      /* Second pass after layout/paint — iOS rotate settles late */
+      requestAnimationFrame(() => {
+        sizeStage();
+        requestAnimationFrame(redrawConnections);
+      });
+    }, 50);
+  }
+  function onOrientation() {
+    /* iPad fires orientationchange before final viewport size */
+    sizeStage();
+    setTimeout(sizeStage, 100);
+    setTimeout(() => {
+      sizeStage();
+      redrawConnections();
+    }, 300);
   }
   window.addEventListener('resize', onResize);
-  window.addEventListener('orientationchange', () => setTimeout(sizeStage, 150));
+  window.addEventListener('orientationchange', onOrientation);
+  if (screen.orientation && typeof screen.orientation.addEventListener === 'function') {
+    screen.orientation.addEventListener('change', onOrientation);
+  }
   if (window.visualViewport) {
     window.visualViewport.addEventListener('resize', onResize);
   }
   if (typeof ResizeObserver !== 'undefined') {
     new ResizeObserver(() => onResize()).observe(stageWrap);
+    if (portraitShell) new ResizeObserver(() => onResize()).observe(portraitShell);
   }
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=8').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=9').catch(() => {});
     });
   }
 
