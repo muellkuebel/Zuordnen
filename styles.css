@@ -96,55 +96,65 @@ body {
 /* —— Home —— */
 .home-card {
   width: min(92%, 520px);
-  max-height: 92%;
+  max-height: 96%;
   background: var(--card);
   color: #1a1a1a;
   border-radius: var(--radius);
-  padding: 1.4cm 1cm 1.2cm;
+  padding: 0.7cm 0.7cm 0.8cm;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.55cm;
+  gap: 0.3cm;
   box-shadow: none;
+  overflow: hidden;
 }
 
 .app-title {
-  font-size: clamp(2rem, 7vw, 3.2rem);
+  font-size: clamp(1.6rem, 5.5vw, 2.6rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #1a1a2e;
+  flex: 0 0 auto;
 }
 
 .app-sub {
-  font-size: clamp(1rem, 3vw, 1.35rem);
+  font-size: clamp(0.9rem, 2.6vw, 1.15rem);
   color: #64748b;
   font-weight: 600;
-  margin-bottom: 0.2cm;
+  margin-bottom: 0.1cm;
+  flex: 0 0 auto;
 }
 
 .home-btns {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.55cm;
+  gap: 0.32cm;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding-right: 0.1cm;
+  touch-action: pan-y;
 }
 
 .big-btn {
   width: 100%;
-  min-height: 2.4cm;
-  border: 0.12cm solid #e2e8f0;
-  border-radius: 0.55cm;
+  min-height: 1.7cm;
+  border: 0.1cm solid #e2e8f0;
+  border-radius: 0.45cm;
   background: #f8fafc;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.55cm;
-  padding: 0.35cm 0.55cm;
+  gap: 0.4cm;
+  padding: 0.22cm 0.4cm;
   touch-action: manipulation;
   appearance: none;
   -webkit-appearance: none;
   transition: transform 0.12s ease, background 0.12s, border-color 0.12s;
   color: #1a1a2e;
+  flex: 0 0 auto;
 }
 
 .big-btn:active {
@@ -154,15 +164,15 @@ body {
 }
 
 .big-btn-art {
-  width: 2.4cm;
-  height: 1.6cm;
+  width: 1.9cm;
+  height: 1.25cm;
   flex: 0 0 auto;
   display: grid;
   place-items: center;
 }
 
 .big-btn-label {
-  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-size: clamp(1.05rem, 3.4vw, 1.45rem);
   font-weight: 800;
   text-align: left;
 }
