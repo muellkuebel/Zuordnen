@@ -24,6 +24,7 @@ Auf dem iPad: Safari → Teilen → Zum Home-Bildschirm.
 12. **Doggys Entchen** — Bade-Entchen oben und unten nach Farbe verbinden (rosa/orange/gelb/hellblau, 1:1)
 13. **Wo sind die Karotten?** — Suchbild: mit dem Finger die 5 Karotten im orangen Durcheinander einkreisen
 14. **Versteckte Tiere** — Volle Tiere (Wurm, Igel, Maus, Schnecke) mit Blättern verbinden, hinter denen sie hervorlugen (1:1)
+15. **Doggys Fußbälle** — Suchbild: mit dem Finger die 6 Fußbälle im Durcheinander einkreisen (Beachbälle, Orangenbälle, Schaf, Enten, Werkzeug, Mützen, Sonnenbrillen, Steine, Stöcke, Bausteine sind Ablenkung)
 
 **Interaktion (Verbinden):** Finger vom Objekt zum Ziel ziehen; die Linie wird live mitgezeichnet.  
 Während des Zeichnens ist die Linie schwarz; richtig = Linie wird grün und bleibt + kurzes weiches Bing. Falsch = Linie verschwindet, leichtes Wackeln. (Kein Haken mehr auf den Objekten — nur die Abschluss-Feier „Super gemacht!“.)
@@ -34,6 +35,8 @@ Während des Zeichnens ist die Linie schwarz; richtig = Linie wird grün und ble
 
 **Interaktion (Wo sind die Karotten?):** Wie Blumenwiese (circle-draw). Nur Karotten behalten den Kreis + Bing; Taschen, Flugzeuge, Kürbisse, Orangen, Socken, Würfel, Autos, Knöpfe, Spitzer, Pullover und Blume wackeln ohne Kreis. Alle 5 Karotten → „Super gemacht!“.
 
+**Interaktion (Doggys Fußbälle):** Wie Blumenwiese (circle-draw). Nur die 6 schwarz-weißen Fußbälle behalten den Kreis + Bing; andere Bälle und Gegenstände wackeln ohne Kreis. Alle 6 → „Super gemacht!“.
+
 ## Portrait only
 
 Die UI ist fest auf **Hochformat (3:4)** ausgelegt (`manifest.orientation: portrait`).  
@@ -41,7 +44,7 @@ Bei Querformat bleibt dieselbe aufrechte Portrait-UI; links/rechts erscheint sch
 
 ## Technik
 
-Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v24`, Offline), eigene einfache SVG-Motive.
+Statisches HTML/CSS/JS, PWA-Manifest, Service Worker (`zuordnen-v25`, Offline), eigene einfache SVG-Motive.
 
 ## Dateien
 

@@ -980,19 +980,20 @@
       </svg>`;
   }
 
+
   function leafHedgehogSvg() {
     /* Maple leaf — hedgehog spines peek top-right */
     return `
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M50 88 L48 58
-                 M48 58 C40 62 28 70 22 78 C18 70 22 54 30 48
-                 C18 48 8 42 6 32 C16 34 28 38 36 44
-                 C28 32 24 18 28 8 C38 16 46 28 50 40
-                 C54 28 62 16 72 8 C76 18 72 32 64 44
-                 C72 38 84 34 94 32 C92 42 82 48 70 48
-                 C78 54 82 70 78 78 C72 70 60 62 52 58 Z"
+        <path d="M50 92 L47 60
+                 C36 66 26 74 20 82 C16 70 22 54 32 48
+                 C20 46 10 40 8 28 C20 32 32 38 40 44
+                 C32 30 30 16 36 6 C44 16 48 30 50 42
+                 C52 30 56 16 64 6 C70 16 68 30 60 44
+                 C68 38 80 32 92 28 C90 40 80 46 68 48
+                 C78 54 84 70 80 82 C74 74 64 66 53 60 Z"
               fill="#E76F3C" stroke="#C45C2A" stroke-width="2"/>
-        <path d="M50 88 L50 42" fill="none" stroke="#C45C2A" stroke-width="1.6"/>
+        <path d="M50 92 L50 44" fill="none" stroke="#C45C2A" stroke-width="1.6"/>
         <g stroke="#5C4033" stroke-width="2" stroke-linecap="round">
           <line x1="78" y1="28" x2="90" y2="14"/>
           <line x1="74" y1="22" x2="82" y2="8"/>
@@ -1007,14 +1008,14 @@
     /* Oak leaf — snail antennae peek right */
     return `
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M50 90 L48 58
-                 C36 62 24 58 20 48 C28 48 36 46 42 42
-                 C30 40 20 32 18 22 C28 26 38 30 46 36
-                 C40 24 42 12 50 8 C58 12 60 24 54 36
-                 C62 30 72 26 82 22 C80 32 70 40 58 42
-                 C64 46 72 48 80 48 C76 58 64 62 52 58 Z"
+        <path d="M50 92 L48 58
+                 C38 64 26 60 22 50 C30 50 38 48 44 44
+                 C32 40 22 32 20 20 C30 26 40 32 48 38
+                 C42 26 44 14 50 8 C56 14 58 26 52 38
+                 C60 32 70 26 80 20 C78 32 68 40 56 44
+                 C62 48 70 50 78 50 C74 60 62 64 52 58 Z"
               fill="#E63946" stroke="#C1121F" stroke-width="2"/>
-        <path d="M50 90 L50 30" fill="none" stroke="#C1121F" stroke-width="1.5"/>
+        <path d="M50 92 L50 30" fill="none" stroke="#C1121F" stroke-width="1.5"/>
         <ellipse cx="84" cy="48" rx="7" ry="5" fill="#E8D5B5" stroke="#C4A574" stroke-width="1.2"/>
         <path d="M86 44 L90 34 M90 46 L96 38" stroke="#C4A574" stroke-width="2" stroke-linecap="round"/>
         <circle cx="90" cy="32" r="2.2" fill="#FF8FAB"/>
@@ -1026,13 +1027,13 @@
     /* Serrated birch-style leaf — pink worm segment bottom-right */
     return `
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M50 92 L48 55
-                 C34 58 24 48 22 36 C28 40 36 42 42 40
-                 C30 34 24 22 28 12 C36 18 44 28 48 40
-                 C52 28 60 18 68 12 C72 22 66 34 56 40
-                 C64 42 72 40 78 36 C76 48 66 58 52 55 Z"
+        <path d="M50 94 L48 56
+                 C36 60 26 52 24 40 C30 44 38 46 44 42
+                 C32 36 26 24 30 12 C38 20 46 30 49 42
+                 C52 30 60 20 68 12 C72 24 66 36 56 42
+                 C64 46 72 44 78 40 C76 52 66 60 52 56 Z"
               fill="#E09F3E" stroke="#C47E1A" stroke-width="2"/>
-        <path d="M50 92 L50 28" fill="none" stroke="#C47E1A" stroke-width="1.5"/>
+        <path d="M50 94 L50 28" fill="none" stroke="#C47E1A" stroke-width="1.5"/>
         <path d="M30 24 L36 28 M34 40 L40 42 M62 24 L58 30 M66 40 L60 42"
               stroke="#C47E1A" stroke-width="1.2" opacity=".5"/>
         <path d="M72 70 C78 64 86 66 90 74 C86 80 78 78 72 70 Z" fill="#FF8FAB" stroke="#E8899A" stroke-width="1.3"/>
@@ -1044,14 +1045,12 @@
     /* Chestnut compound leaf — mouse head + pink tail */
     return `
       <svg viewBox="0 0 110 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g fill="#D4A373" stroke="#B08968" stroke-width="1.6">
-          <path d="M55 88 L55 48"/>
-          <ellipse cx="55" cy="28" rx="10" ry="22"/>
-          <ellipse cx="34" cy="40" rx="9" ry="20" transform="rotate(-28 34 40)"/>
-          <ellipse cx="76" cy="40" rx="9" ry="20" transform="rotate(28 76 40)"/>
-          <ellipse cx="24" cy="56" rx="8" ry="18" transform="rotate(-48 24 56)"/>
-          <ellipse cx="86" cy="56" rx="8" ry="18" transform="rotate(48 86 56)"/>
-        </g>
+        <line x1="55" y1="90" x2="55" y2="48" stroke="#B08968" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="55" cy="28" rx="10" ry="22" fill="#D4A373" stroke="#B08968" stroke-width="1.6"/>
+        <ellipse cx="34" cy="40" rx="9" ry="20" fill="#D4A373" stroke="#B08968" stroke-width="1.6" transform="rotate(-28 34 40)"/>
+        <ellipse cx="76" cy="40" rx="9" ry="20" fill="#D4A373" stroke="#B08968" stroke-width="1.6" transform="rotate(28 76 40)"/>
+        <ellipse cx="24" cy="56" rx="8" ry="18" fill="#D4A373" stroke="#B08968" stroke-width="1.6" transform="rotate(-48 24 56)"/>
+        <ellipse cx="86" cy="56" rx="8" ry="18" fill="#D4A373" stroke="#B08968" stroke-width="1.6" transform="rotate(48 86 56)"/>
         <circle cx="78" cy="72" r="10" fill="#B0B8C4" stroke="#7A8494" stroke-width="1.5"/>
         <circle cx="72" cy="64" r="5.5" fill="#C5CCD6" stroke="#7A8494" stroke-width="1.2"/>
         <circle cx="84" cy="64" r="5.5" fill="#C5CCD6" stroke="#7A8494" stroke-width="1.2"/>
@@ -1060,6 +1059,187 @@
         <circle cx="76" cy="72" r="1.6" fill="#222"/>
         <circle cx="82" cy="72" r="1.6" fill="#222"/>
         <path d="M88 78 Q102 70 106 82" fill="none" stroke="#FF8FAB" stroke-width="3" stroke-linecap="round"/>
+      </svg>`;
+  }
+
+
+
+
+  /* —— Doggys Fußbälle (Suchbild / circle-draw) —— */
+  function soccerBallSvg() {
+    return `
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="40" cy="40" r="28" fill="#F5F7FA" stroke="#334155" stroke-width="2.5"/>
+        <polygon points="40,22 48,28 45,38 35,38 32,28" fill="#1E293B"/>
+        <path d="M40 22 L48 28 L58 22" fill="none" stroke="#1E293B" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M48 28 L45 38 L56 44 L62 34" fill="none" stroke="#1E293B" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M45 38 L35 38 L30 48 L40 54 L50 48" fill="none" stroke="#1E293B" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M35 38 L32 28 L22 34 L26 44" fill="none" stroke="#1E293B" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M32 28 L22 22 L18 32" fill="none" stroke="#1E293B" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M26 44 L18 48 L28 58 L40 54" fill="none" stroke="#1E293B" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M50 48 L58 56 L62 46 L56 44" fill="none" stroke="#1E293B" stroke-width="2" stroke-linejoin="round"/>
+        <ellipse cx="30" cy="30" rx="6" ry="4" fill="#fff" opacity=".35"/>
+      </svg>`;
+  }
+
+  function beachBallSvg(rot) {
+    const r = rot == null ? -15 : rot;
+    return `
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g transform="rotate(${r} 40 40)">
+          <circle cx="40" cy="40" r="28" fill="#FF6B9D" stroke="rgba(0,0,0,.18)" stroke-width="2.2"/>
+          <path d="M12 40 A28 28 0 0 1 68 40 A28 28 0 0 1 12 40" fill="#FFD60A"/>
+          <path d="M40 12 A28 28 0 0 1 40 68 A28 28 0 0 1 40 12" fill="#4361EE" opacity=".85"/>
+          <path d="M16 28 Q40 40 64 28" fill="none" stroke="#52B788" stroke-width="14" stroke-linecap="round" opacity=".9"/>
+          <circle cx="40" cy="40" r="5" fill="#fff" opacity=".5"/>
+        </g>
+        <ellipse cx="30" cy="30" rx="7" ry="4" fill="#fff" opacity=".35"/>
+      </svg>`;
+  }
+
+  function playgroundBallSvg() {
+    return `
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="40" cy="40" r="28" fill="#FF8C42" stroke="#E76F3C" stroke-width="2.5"/>
+        <path d="M40 12 Q52 40 40 68 Q28 40 40 12 Z" fill="none" stroke="#E76F3C" stroke-width="2"/>
+        <path d="M14 28 Q40 36 66 28" fill="none" stroke="#E76F3C" stroke-width="2"/>
+        <path d="M14 52 Q40 44 66 52" fill="none" stroke="#E76F3C" stroke-width="2"/>
+        <circle cx="40" cy="40" r="4" fill="#E76F3C"/>
+        <ellipse cx="30" cy="30" rx="7" ry="4" fill="#fff" opacity=".28"/>
+      </svg>`;
+  }
+
+  function sheepSvg() {
+    return `
+      <svg viewBox="0 0 90 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="48" cy="48" rx="28" ry="22" fill="#F5F5F5" stroke="#94A3B8" stroke-width="2"/>
+        <circle cx="28" cy="40" r="8" fill="#F5F5F5" stroke="#94A3B8" stroke-width="1.5"/>
+        <circle cx="68" cy="40" r="8" fill="#F5F5F5" stroke="#94A3B8" stroke-width="1.5"/>
+        <circle cx="48" cy="28" r="9" fill="#F5F5F5" stroke="#94A3B8" stroke-width="1.5"/>
+        <circle cx="48" cy="64" r="7" fill="#F5F5F5" stroke="#94A3B8" stroke-width="1.5"/>
+        <circle cx="22" cy="46" r="10" fill="#FFF8E7" stroke="#E2C97E" stroke-width="1.5"/>
+        <ellipse cx="14" cy="40" rx="3.5" ry="5" fill="#5C4033"/>
+        <ellipse cx="18" cy="52" rx="3.5" ry="5" fill="#5C4033"/>
+        <circle cx="20" cy="44" r="1.6" fill="#222"/>
+        <circle cx="26" cy="44" r="1.6" fill="#222"/>
+        <ellipse cx="23" cy="48" rx="2.2" ry="1.6" fill="#5C4033"/>
+        <circle cx="40" cy="42" r="2.2" fill="#334155" opacity=".45"/>
+        <circle cx="56" cy="50" r="2" fill="#334155" opacity=".4"/>
+        <circle cx="50" cy="36" r="1.8" fill="#334155" opacity=".35"/>
+        <circle cx="62" cy="44" r="1.6" fill="#334155" opacity=".4"/>
+        <rect x="38" y="66" width="5" height="10" rx="2" fill="#5C4033"/>
+        <rect x="52" y="66" width="5" height="10" rx="2" fill="#5C4033"/>
+      </svg>`;
+  }
+
+  function searchDuckSvg() {
+    return `
+      <svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="40" cy="42" rx="24" ry="16" fill="#FFD60A"/>
+        <circle cx="58" cy="28" r="14" fill="#FFD60A"/>
+        <circle cx="62" cy="26" r="2.2" fill="#222"/>
+        <circle cx="63" cy="25" r="0.7" fill="#fff" opacity=".7"/>
+        <path d="M70 28 Q84 26 78 34 Q72 36 70 32Z" fill="#FF8C42"/>
+        <ellipse cx="28" cy="40" rx="6" ry="4" fill="#FFE66D"/>
+        <path d="M30 56 Q34 64 38 56 M42 56 Q46 64 50 56" fill="none" stroke="#FF8C42" stroke-width="3" stroke-linecap="round"/>
+      </svg>`;
+  }
+
+  function wateringCanSvg() {
+    return `
+      <svg viewBox="0 0 90 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M22 30 H58 L62 62 H18 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="2"/>
+        <path d="M58 34 Q78 28 82 42 Q78 48 62 46" fill="none" stroke="#2D6A4F" stroke-width="5" stroke-linecap="round"/>
+        <path d="M28 30 Q40 14 54 30" fill="none" stroke="#2D6A4F" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="40" cy="30" rx="18" ry="5" fill="#74C69D"/>
+        <circle cx="82" cy="42" r="3" fill="#2D6A4F"/>
+        <rect x="22" y="38" width="10" height="6" rx="1" fill="#fff" opacity=".25"/>
+      </svg>`;
+  }
+
+  function shovelSvg() {
+    return `
+      <svg viewBox="0 0 70 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="30" y="8" width="8" height="48" rx="3" fill="#C4A574" stroke="#8B5E3C" stroke-width="1.5"/>
+        <rect x="26" y="4" width="16" height="10" rx="3" fill="#8B5E3C"/>
+        <path d="M18 56 H50 L46 90 Q38 98 30 90 Z" fill="#94A3B8" stroke="#64748B" stroke-width="2"/>
+        <path d="M24 62 H44" stroke="#CBD5E1" stroke-width="2" opacity=".6"/>
+      </svg>`;
+  }
+
+  function bucketSvg() {
+    return `
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M22 28 H58 L54 68 H26 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="2"/>
+        <ellipse cx="40" cy="28" rx="18" ry="6" fill="#74C69D" stroke="#2D6A4F" stroke-width="1.5"/>
+        <path d="M28 28 Q40 10 52 28" fill="none" stroke="#2D6A4F" stroke-width="3.5" stroke-linecap="round"/>
+        <rect x="30" y="40" width="20" height="8" rx="2" fill="#fff" opacity=".22"/>
+      </svg>`;
+  }
+
+  function flowerPotSvg() {
+    return `
+      <svg viewBox="0 0 70 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="16" y="22" width="38" height="10" rx="2" fill="#E76F3C"/>
+        <path d="M20 32 H50 L46 68 H24 Z" fill="#D4693B" stroke="#B45309" stroke-width="1.5"/>
+        <ellipse cx="35" cy="22" rx="20" ry="5" fill="#F4A261"/>
+        <rect x="26" y="40" width="18" height="6" rx="1" fill="#fff" opacity=".2"/>
+      </svg>`;
+  }
+
+  function capSvg(color) {
+    const c = color || '#A3CB38';
+    return `
+      <svg viewBox="0 0 90 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="40" cy="42" rx="28" ry="16" fill="${c}" stroke="rgba(0,0,0,.15)" stroke-width="2"/>
+        <path d="M14 42 Q40 18 66 42" fill="${c}" stroke="rgba(0,0,0,.12)" stroke-width="1.5"/>
+        <path d="M66 40 Q84 38 86 46 Q70 52 60 48" fill="${c}" stroke="rgba(0,0,0,.15)" stroke-width="1.5"/>
+        <ellipse cx="34" cy="34" rx="8" ry="4" fill="#fff" opacity=".28"/>
+        <circle cx="40" cy="30" r="3" fill="#FFD60A"/>
+      </svg>`;
+  }
+
+  function sunglassesSvg() {
+    return `
+      <svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="12" y="14" width="28" height="22" rx="8" fill="#4361EE" stroke="#1E3A8A" stroke-width="2.5"/>
+        <rect x="60" y="14" width="28" height="22" rx="8" fill="#4361EE" stroke="#1E3A8A" stroke-width="2.5"/>
+        <path d="M40 24 H60" stroke="#1E3A8A" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M12 20 Q4 16 2 22" fill="none" stroke="#1E3A8A" stroke-width="3" stroke-linecap="round"/>
+        <path d="M88 20 Q96 16 98 22" fill="none" stroke="#1E3A8A" stroke-width="3" stroke-linecap="round"/>
+        <rect x="16" y="18" width="10" height="6" rx="2" fill="#fff" opacity=".35"/>
+        <rect x="64" y="18" width="10" height="6" rx="2" fill="#fff" opacity=".35"/>
+      </svg>`;
+  }
+
+  function rocksSvg() {
+    return `
+      <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="28" cy="36" rx="18" ry="14" fill="#94A3B8" stroke="#64748B" stroke-width="2"/>
+        <ellipse cx="52" cy="40" rx="16" ry="12" fill="#CBD5E1" stroke="#64748B" stroke-width="2"/>
+        <ellipse cx="40" cy="24" rx="12" ry="10" fill="#A8B4C4" stroke="#64748B" stroke-width="1.5"/>
+        <ellipse cx="22" cy="30" rx="4" ry="2.5" fill="#fff" opacity=".25"/>
+      </svg>`;
+  }
+
+  function stickSvg(rot) {
+    const r = rot == null ? -30 : rot;
+    return `
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g transform="rotate(${r} 40 40)">
+          <path d="M18 50 Q30 28 42 22 Q55 18 64 28" fill="none" stroke="#8B5E3C" stroke-width="5" stroke-linecap="round"/>
+          <path d="M42 22 Q48 30 46 40" fill="none" stroke="#A67C52" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="64" cy="28" r="3" fill="#6B4423"/>
+        </g>
+      </svg>`;
+  }
+
+  function archBlockSvg() {
+    return `
+      <svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 58 V28 Q10 10 40 10 Q70 10 70 28 V58 H54 V30 Q54 22 40 22 Q26 22 26 30 V58 Z"
+          fill="#52B788" stroke="#2D6A4F" stroke-width="2.2"/>
+        <rect x="14" y="44" width="12" height="6" rx="1" fill="#fff" opacity=".25"/>
       </svg>`;
   }
 
@@ -1343,6 +1523,59 @@
       ],
     },
 
+
+    doggysFussbaelle: {
+      title: 'Doggys Fußbälle',
+      hint: 'Doggy spielt gerne Fußball. Suche alle Fußbälle und kreise sie ein!',
+      mode: 'circle-draw',
+      targetMatch: 'soccer',
+      boardClass: 'meadow-board',
+      itemClass: 'clutter-item',
+      itemLabel: 'Gegenstand',
+      fixedLayout: true,
+      sources: [
+        /* 6 soccer balls (targets) */
+        { id: 'fb_s1', match: 'soccer', svg: soccerBallSvg, x: 0.22, y: 0.18, w: 0.11, aspect: 1.0 },
+        { id: 'fb_s2', match: 'soccer', svg: soccerBallSvg, x: 0.78, y: 0.16, w: 0.11, aspect: 1.0 },
+        { id: 'fb_s3', match: 'soccer', svg: soccerBallSvg, x: 0.14, y: 0.42, w: 0.11, aspect: 1.0 },
+        { id: 'fb_s4', match: 'soccer', svg: soccerBallSvg, x: 0.48, y: 0.46, w: 0.11, aspect: 1.0 },
+        { id: 'fb_s5', match: 'soccer', svg: soccerBallSvg, x: 0.42, y: 0.72, w: 0.11, aspect: 1.0 },
+        { id: 'fb_s6', match: 'soccer', svg: soccerBallSvg, x: 0.82, y: 0.70, w: 0.11, aspect: 1.0 },
+        /* distractors */
+        { id: 'fb_bb1', match: 'beach', svg: () => beachBallSvg(-20), x: 0.58, y: 0.18, w: 0.11, aspect: 1.0 },
+        { id: 'fb_bb2', match: 'beach', svg: () => beachBallSvg(25),  x: 0.30, y: 0.58, w: 0.11, aspect: 1.0 },
+        { id: 'fb_ob1', match: 'orangeball', svg: playgroundBallSvg, x: 0.66, y: 0.36, w: 0.10, aspect: 1.0 },
+        { id: 'fb_ob2', match: 'orangeball', svg: playgroundBallSvg, x: 0.18, y: 0.68, w: 0.10, aspect: 1.0 },
+        { id: 'fb_sh', match: 'sheep', svg: sheepSvg, x: 0.50, y: 0.32, w: 0.14, aspect: 0.9 },
+        { id: 'fb_d1', match: 'duck', svg: searchDuckSvg, x: 0.34, y: 0.28, w: 0.11, aspect: 0.85 },
+        { id: 'fb_d2', match: 'duck', svg: searchDuckSvg, x: 0.70, y: 0.58, w: 0.11, aspect: 0.85 },
+        { id: 'fb_wc', match: 'can', svg: wateringCanSvg, x: 0.38, y: 0.12, w: 0.12, aspect: 0.9 },
+        { id: 'fb_sv', match: 'shovel', svg: shovelSvg, x: 0.08, y: 0.55, w: 0.09, aspect: 1.35 },
+        { id: 'fb_bk', match: 'bucket', svg: bucketSvg, x: 0.10, y: 0.78, w: 0.10, aspect: 1.0 },
+        { id: 'fb_p1', match: 'pot', svg: flowerPotSvg, x: 0.90, y: 0.28, w: 0.09, aspect: 1.15 },
+        { id: 'fb_p2', match: 'pot', svg: flowerPotSvg, x: 0.58, y: 0.70, w: 0.09, aspect: 1.15 },
+        { id: 'fb_p3', match: 'pot', svg: flowerPotSvg, x: 0.28, y: 0.82, w: 0.09, aspect: 1.15 },
+        { id: 'fb_c1', match: 'cap', svg: () => capSvg('#A3CB38'), x: 0.90, y: 0.48, w: 0.11, aspect: 0.8 },
+        { id: 'fb_c2', match: 'cap', svg: () => capSvg('#A3CB38'), x: 0.58, y: 0.52, w: 0.11, aspect: 0.8 },
+        { id: 'fb_c3', match: 'cap', svg: () => capSvg('#E63946'), x: 0.22, y: 0.30, w: 0.11, aspect: 0.8 },
+        { id: 'fb_sg1', match: 'glasses', svg: sunglassesSvg, x: 0.86, y: 0.12, w: 0.12, aspect: 0.55 },
+        { id: 'fb_sg2', match: 'glasses', svg: sunglassesSvg, x: 0.38, y: 0.48, w: 0.12, aspect: 0.55 },
+        { id: 'fb_r1', match: 'rock', svg: rocksSvg, x: 0.08, y: 0.28, w: 0.11, aspect: 0.75 },
+        { id: 'fb_r2', match: 'rock', svg: rocksSvg, x: 0.62, y: 0.82, w: 0.11, aspect: 0.75 },
+        { id: 'fb_r3', match: 'rock', svg: rocksSvg, x: 0.90, y: 0.82, w: 0.11, aspect: 0.75 },
+        { id: 'fb_st1', match: 'stick', svg: () => stickSvg(-35), x: 0.72, y: 0.26, w: 0.10, aspect: 1.0 },
+        { id: 'fb_st2', match: 'stick', svg: () => stickSvg(20),  x: 0.46, y: 0.60, w: 0.10, aspect: 1.0 },
+        { id: 'fb_st3', match: 'stick', svg: () => stickSvg(-10), x: 0.14, y: 0.12, w: 0.10, aspect: 1.0 },
+        { id: 'fb_st4', match: 'stick', svg: () => stickSvg(40),  x: 0.74, y: 0.78, w: 0.10, aspect: 1.0 },
+        { id: 'fb_a1', match: 'block', svg: archBlockSvg, x: 0.34, y: 0.40, w: 0.11, aspect: 0.85 },
+        { id: 'fb_a2', match: 'block', svg: archBlockSvg, x: 0.86, y: 0.58, w: 0.11, aspect: 0.85 },
+        { id: 'fb_a3', match: 'block', svg: archBlockSvg, x: 0.52, y: 0.86, w: 0.11, aspect: 0.85 },
+      ],
+      targets: [],
+      mascot: { x: 0.12, y: 0.14, w: 0.16, aspect: 1.15 },
+    },
+
+
   };
 
   /* —— DOM —— */
@@ -1378,6 +1611,7 @@
     'doggysEntchen',
     'karotten',
     'versteckteTiere',
+    'doggysFussbaelle',
   ];
 
   /* Session-only completion (in-memory; clears when app fully reopened) */
@@ -2357,7 +2591,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=24').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=25').catch(() => {});
     });
   }
 
