@@ -548,8 +548,23 @@
   const celebrate = document.getElementById('celebrate');
   const btnBack = document.getElementById('btn-back');
   const btnAgain = document.getElementById('btn-again');
+  const celebrateNext = document.getElementById('celebrate-next');
   const celebrateAgain = document.getElementById('celebrate-again');
   const celebrateHome = document.getElementById('celebrate-home');
+
+  /* Menu order for "Nächstes Rätsel" — matches home buttons */
+  const MENU_ORDER = [
+    'bonbons',
+    'schneemaenner',
+    'tiere',
+    'formen',
+    'socken',
+    'zahlen',
+    'kleidung',
+  ];
+
+  /* Session-only completion (in-memory; clears when app fully reopened) */
+  const completedExercises = new Set();
 
   let currentId = null;
   let exercise = null;
@@ -570,7 +585,39 @@
     screenHome.hidden = !home;
     screenPlay.classList.toggle('active', !home);
     screenPlay.hidden = home;
-    if (home) hideCelebrate();
+    if (home) {
+      hideCelebrate();
+      updateHomeCheckmarks();
+    }
+  }
+
+  function updateHomeCheckmarks() {
+    document.querySelectorAll('.big-btn[data-exercise]').forEach((btn) => {
+      const id = btn.dataset.exercise;
+      const done = completedExercises.has(id);
+      btn.classList.toggle('done', done);
+      const label = (btn.querySelector('.big-btn-label') && btn.querySelector('.big-btn-label').textContent) || id;
+      btn.setAttribute('aria-label', done ? label + ' — erledigt' : label);
+    });
+  }
+
+  function markExerciseComplete(id) {
+    if (!id) return;
+    completedExercises.add(id);
+    updateHomeCheckmarks();
+  }
+
+  function nextUnfinishedId(fromId) {
+    const order = MENU_ORDER.filter((id) => EXERCISES[id]);
+    if (!order.length) return null;
+    const start = Math.max(0, order.indexOf(fromId));
+    /* Prefer next unfinished after current, wrapping around */
+    for (let i = 1; i <= order.length; i++) {
+      const id = order[(start + i) % order.length];
+      if (!completedExercises.has(id)) return id;
+    }
+    /* All done — wrap to first in menu */
+    return order[0];
   }
 
   function hideCelebrate() {
@@ -960,6 +1007,7 @@
     toEl.classList.add('matched');
 
     if (allDone()) {
+      markExerciseComplete(currentId);
       setTimeout(showCelebrate, 350);
     }
   }
@@ -1036,6 +1084,12 @@
     if (currentId) startExercise(currentId);
   });
 
+  celebrateNext.addEventListener('click', () => {
+    hideCelebrate();
+    const nextId = nextUnfinishedId(currentId);
+    if (nextId) startExercise(nextId);
+  });
+
   celebrateHome.addEventListener('click', () => {
     hideCelebrate();
     clearBoard();
@@ -1078,7 +1132,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=9').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=10').catch(() => {});
     });
   }
 

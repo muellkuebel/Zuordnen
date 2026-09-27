@@ -192,6 +192,45 @@ body {
   border-color: #cbd5e1;
 }
 
+.big-btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.big-btn {
+  position: relative;
+}
+
+.done-badge {
+  position: absolute;
+  right: 0.28cm;
+  top: 50%;
+  transform: translateY(-50%) scale(0.4);
+  width: 0.72cm;
+  height: 0.72cm;
+  border-radius: 50%;
+  background: var(--ok);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 0.45cm;
+  font-weight: 900;
+  box-shadow: 0 0.06cm 0.12cm rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s, transform 0.18s;
+}
+
+.big-btn.done .done-badge {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.big-btn[data-exercise] {
+  padding-right: 1.15cm;
+}
+
 /* —— Play —— */
 #screen-play {
   justify-content: stretch;
@@ -420,6 +459,12 @@ body {
   gap: 0.4cm;
   justify-content: center;
   margin-top: 0.2cm;
+  width: 100%;
+}
+
+.celebrate-actions .big-btn.primary {
+  width: 100%;
+  min-width: 0;
 }
 
 /* Portrait-only UI: no landscape redesign */
