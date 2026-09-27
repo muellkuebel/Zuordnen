@@ -1,5 +1,5 @@
 /* Service worker — cache all app assets for offline use */
-const CACHE = 'zuordnen-v21';
+const CACHE = 'zuordnen-v22';
 const ASSETS = [
   './',
   './index.html',
@@ -10,6 +10,9 @@ const ASSETS = [
   './icons/icon-512.png',
   './icons/celebrate-check.png',
   './icons/apple-touch-icon.png',
+  './icons/hands/hand-1.png',
+  './icons/hands/hand-2.png',
+  './icons/hands/hand-3.png',
 ];
 
 function isNetworkFirst(url) {

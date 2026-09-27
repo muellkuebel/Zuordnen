@@ -374,63 +374,9 @@
   }
 
   function handSvg(fingers) {
-    /* Cute kid-hand: warm skin, soft outline, rounded fingers.
-       Worksheet style: 1=thumb, 2=thumb+index, 3=thumb+index+middle.
-       Ring+pinky stay tucked as a soft fist knuckle so counts read clearly. */
-    const skin = '#FFBE98';
-    const outline = '#D4896A';
-    const blush = '#F4A88A';
-    const sw = 2.2;
-    /* shared fist/palm — chubby rounded mitt */
-    const palm = `
-      <ellipse cx="54" cy="78" rx="28" ry="24" fill="${skin}" stroke="${outline}" stroke-width="${sw}"/>
-      <ellipse cx="42" cy="70" rx="7" ry="4.5" fill="#fff" opacity=".28"/>
-      <ellipse cx="62" cy="86" rx="10" ry="6" fill="${blush}" opacity=".35"/>`;
-    /* tucked ring + pinky knuckles (always visible, never count) */
-    const tucked = `
-      <path d="M68 62 Q74 58 76 64 Q74 72 68 70 Z" fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>
-      <path d="M76 66 Q82 62 84 68 Q82 76 76 74 Z" fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>`;
-    /* thumb always up — short chubby capsule, angled left */
-    const thumb = `
-      <path d="M36 62
-               C28 54 24 40 28 28
-               C30 20 38 16 44 22
-               C50 28 50 44 46 58
-               C44 62 40 64 36 62 Z"
-            fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>
-      <ellipse cx="34" cy="34" rx="3.5" ry="5" fill="#fff" opacity=".22"/>`;
-    /* index — tall rounded finger */
-    const index = fingers >= 2 ? `
-      <path d="M48 58
-               C46 40 46 22 50 12
-               C52 6 60 6 62 14
-               C64 26 62 44 58 58
-               C56 62 50 62 48 58 Z"
-            fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>
-      <ellipse cx="54" cy="18" rx="3" ry="4.5" fill="#fff" opacity=".22"/>` : '';
-    /* middle — slightly taller, to the right of index */
-    const middle = fingers >= 3 ? `
-      <path d="M60 60
-               C60 42 62 24 66 14
-               C68 8 76 8 78 16
-               C80 28 78 46 74 60
-               C72 64 62 64 60 60 Z"
-            fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>
-      <ellipse cx="70" cy="20" rx="3" ry="4.5" fill="#fff" opacity=".22"/>` : '';
-    /* when only thumb: show two soft curled fingertips so it still looks like a hand */
-    const curledRest = fingers === 1 ? `
-      <path d="M50 58 Q52 48 58 50 Q60 58 54 62 Q50 62 50 58 Z" fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>
-      <path d="M58 60 Q62 50 68 52 Q70 60 64 64 Q58 64 58 60 Z" fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>` : (
-      fingers === 2 ? `
-      <path d="M60 60 Q64 50 70 52 Q72 60 66 64 Q60 64 60 60 Z" fill="${skin}" stroke="${outline}" stroke-width="${sw}" stroke-linejoin="round"/>` : ''
-    );
-    return `
-      <svg viewBox="0 0 100 110" aria-hidden="true">
-        ${palm}
-        ${tucked}
-        ${curledRest}
-        ${middle}${index}${thumb}
-      </svg>`;
+    /* Cute sticker-style counting hands (PNG): 1=thumb, 2=thumb+index, 3=thumb+index+middle */
+    const n = Math.max(1, Math.min(3, fingers | 0));
+    return `<img class="hand-sticker" src="icons/hands/hand-${n}.png" alt="" draggable="false" width="512" height="512"/>`;
   }
 
   /* Count-fill motifs (Zählen bis 3) */
@@ -526,12 +472,13 @@
   }
 
   function scarfSvg() {
+    /* Icy light-blue scarf — matches snowflake color for easy matching */
     return `
       <svg viewBox="0 0 90 80" aria-hidden="true">
-        <path d="M18 28 Q45 48 72 28" fill="none" stroke="#E63946" stroke-width="14" stroke-linecap="round"/>
-        <path d="M60 32 Q68 55 58 72" fill="none" stroke="#FFD60A" stroke-width="10" stroke-linecap="round"/>
-        <path d="M66 36 Q74 58 72 74" fill="none" stroke="#E63946" stroke-width="10" stroke-linecap="round"/>
-        <path d="M54 68 L50 78 M58 70 L56 80 M62 72 L66 80 M70 70 L74 78" stroke="#FFD60A" stroke-width="2"/>
+        <path d="M18 28 Q45 48 72 28" fill="none" stroke="#89C2D9" stroke-width="14" stroke-linecap="round"/>
+        <path d="M60 32 Q68 55 58 72" fill="none" stroke="#E0F2FE" stroke-width="10" stroke-linecap="round"/>
+        <path d="M66 36 Q74 58 72 74" fill="none" stroke="#89C2D9" stroke-width="10" stroke-linecap="round"/>
+        <path d="M54 68 L50 78 M58 70 L56 80 M62 72 L66 80 M70 70 L74 78" stroke="#4361EE" stroke-width="2"/>
       </svg>`;
   }
 
@@ -548,15 +495,16 @@
   }
 
   function rainCloudSvg() {
+    /* Blue rain cloud — matches blue raincoat for color matching */
     return `
       <svg viewBox="0 0 90 80" aria-hidden="true">
-        <ellipse cx="45" cy="32" rx="28" ry="16" fill="#94A3B8"/>
-        <circle cx="28" cy="34" r="14" fill="#94A3B8"/>
-        <circle cx="58" cy="30" r="16" fill="#64748B"/>
-        <circle cx="42" cy="24" r="14" fill="#CBD5E1"/>
-        <line x1="30" y1="52" x2="26" y2="70" stroke="#4361EE" stroke-width="4" stroke-linecap="round"/>
-        <line x1="45" y1="54" x2="42" y2="72" stroke="#4361EE" stroke-width="4" stroke-linecap="round"/>
-        <line x1="60" y1="52" x2="58" y2="68" stroke="#4361EE" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="45" cy="32" rx="28" ry="16" fill="#4361EE"/>
+        <circle cx="28" cy="34" r="14" fill="#5B7CFF"/>
+        <circle cx="58" cy="30" r="16" fill="#3A56D4"/>
+        <circle cx="42" cy="24" r="14" fill="#7B93FF"/>
+        <line x1="30" y1="52" x2="26" y2="70" stroke="#89C2D9" stroke-width="4" stroke-linecap="round"/>
+        <line x1="45" y1="54" x2="42" y2="72" stroke="#89C2D9" stroke-width="4" stroke-linecap="round"/>
+        <line x1="60" y1="52" x2="58" y2="68" stroke="#89C2D9" stroke-width="4" stroke-linecap="round"/>
       </svg>`;
   }
 
@@ -581,9 +529,10 @@
   }
 
   function snowflakeSvg() {
+    /* Icy light-blue snowflake — matches blue scarf */
     return `
       <svg viewBox="0 0 80 80" aria-hidden="true">
-        <g stroke="#89C2D9" stroke-width="4" stroke-linecap="round">
+        <g stroke="#89C2D9" stroke-width="5" stroke-linecap="round">
           <line x1="40" y1="10" x2="40" y2="70"/>
           <line x1="14" y1="25" x2="66" y2="55"/>
           <line x1="14" y1="55" x2="66" y2="25"/>
@@ -592,7 +541,7 @@
           <line x1="40" y1="58" x2="30" y2="64"/>
           <line x1="40" y1="58" x2="50" y2="64"/>
         </g>
-        <circle cx="40" cy="40" r="6" fill="#E0F2FE" stroke="#4361EE" stroke-width="2"/>
+        <circle cx="40" cy="40" r="8" fill="#E0F2FE" stroke="#89C2D9" stroke-width="3"/>
       </svg>`;
   }
 
@@ -864,7 +813,7 @@
     },
     kleidung: {
       title: 'Kleidung zum Wetter',
-      hint: 'Welche Kleidung passt zum Wetter? Verbinde!',
+      hint: 'Verbinde gleiche Farben! Gelber Hut zur Sonne, blauer Mantel zum Regen…',
       mode: 'one-to-one',
       sources: [
         { id: 'coat', match: 'rain', svg: raincoatSvg, x: 0.20, y: 0.16, w: 0.16, aspect: 1.15 },
@@ -937,16 +886,18 @@
       hint: 'Welches Windrad gehört zu welchem Papier? Verbinde die gleichen Farben!',
       mode: 'one-to-one',
       sources: [
-        { id: 'pw_red',    match: 'red',    svg: () => pinwheelSvg(COLORS.red),    x: 0.14, y: 0.78, w: 0.18, aspect: 1.35 },
-        { id: 'pw_blue',   match: 'blue',   svg: () => pinwheelSvg(COLORS.blue),   x: 0.38, y: 0.78, w: 0.18, aspect: 1.35 },
-        { id: 'pw_green',  match: 'green',  svg: () => pinwheelSvg(COLORS.green),  x: 0.62, y: 0.78, w: 0.18, aspect: 1.35 },
-        { id: 'pw_yellow', match: 'yellow', svg: () => pinwheelSvg(COLORS.yellow), x: 0.86, y: 0.78, w: 0.18, aspect: 1.35 },
+        /* Pinwheels on TOP */
+        { id: 'pw_red',    match: 'red',    svg: () => pinwheelSvg(COLORS.red),    x: 0.14, y: 0.22, w: 0.18, aspect: 1.35 },
+        { id: 'pw_blue',   match: 'blue',   svg: () => pinwheelSvg(COLORS.blue),   x: 0.38, y: 0.22, w: 0.18, aspect: 1.35 },
+        { id: 'pw_green',  match: 'green',  svg: () => pinwheelSvg(COLORS.green),  x: 0.62, y: 0.22, w: 0.18, aspect: 1.35 },
+        { id: 'pw_yellow', match: 'yellow', svg: () => pinwheelSvg(COLORS.yellow), x: 0.86, y: 0.22, w: 0.18, aspect: 1.35 },
       ],
       targets: [
-        { id: 'pp_yellow', match: 'yellow', svg: () => paperSquareSvg(COLORS.yellow), x: 0.14, y: 0.22, w: 0.18, aspect: 1.0 },
-        { id: 'pp_red',    match: 'red',    svg: () => paperSquareSvg(COLORS.red),    x: 0.38, y: 0.22, w: 0.18, aspect: 1.0 },
-        { id: 'pp_blue',   match: 'blue',   svg: () => paperSquareSvg(COLORS.blue),   x: 0.62, y: 0.22, w: 0.18, aspect: 1.0 },
-        { id: 'pp_green',  match: 'green',  svg: () => paperSquareSvg(COLORS.green),  x: 0.86, y: 0.22, w: 0.18, aspect: 1.0 },
+        /* Paper squares on BOTTOM */
+        { id: 'pp_yellow', match: 'yellow', svg: () => paperSquareSvg(COLORS.yellow), x: 0.14, y: 0.78, w: 0.18, aspect: 1.0 },
+        { id: 'pp_red',    match: 'red',    svg: () => paperSquareSvg(COLORS.red),    x: 0.38, y: 0.78, w: 0.18, aspect: 1.0 },
+        { id: 'pp_blue',   match: 'blue',   svg: () => paperSquareSvg(COLORS.blue),   x: 0.62, y: 0.78, w: 0.18, aspect: 1.0 },
+        { id: 'pp_green',  match: 'green',  svg: () => paperSquareSvg(COLORS.green),  x: 0.86, y: 0.78, w: 0.18, aspect: 1.0 },
       ],
     },
 
@@ -1975,7 +1926,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=21').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=22').catch(() => {});
     });
   }
 
