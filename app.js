@@ -613,6 +613,175 @@
       </svg>`;
   }
 
+  /* —— New puzzles: Stifte, Blumen/Vasen, Segelboote, Herbst-Pilze —— */
+  function pencilSvg(color) {
+    const c = color || COLORS.red;
+    return `
+      <svg viewBox="0 0 48 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="14" y="6" width="20" height="14" rx="4" fill="#FF6B9D" stroke="#2D3436" stroke-width="2.2"/>
+        <rect x="14" y="18" width="20" height="6" fill="#CBD5E1" stroke="#2D3436" stroke-width="2"/>
+        <rect x="14" y="22" width="20" height="68" fill="${c}" stroke="#2D3436" stroke-width="2.2"/>
+        <rect x="18" y="28" width="4" height="56" fill="#fff" opacity=".28"/>
+        <polygon points="14,90 34,90 24,114" fill="#F5D0A9" stroke="#2D3436" stroke-width="2.2" stroke-linejoin="round"/>
+        <polygon points="18,102 30,102 24,114" fill="${c}"/>
+        <line x1="20" y1="94" x2="28" y2="94" stroke="#2D3436" stroke-width="1.2" opacity=".35"/>
+      </svg>`;
+  }
+
+  function frogMatchSvg() {
+    return `
+      <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="50" cy="58" rx="34" ry="24" fill="#52B788" stroke="#2D3436" stroke-width="2.4"/>
+        <circle cx="28" cy="28" r="14" fill="#52B788" stroke="#2D3436" stroke-width="2.4"/>
+        <circle cx="72" cy="28" r="14" fill="#52B788" stroke="#2D3436" stroke-width="2.4"/>
+        <circle cx="28" cy="28" r="7" fill="#fff"/>
+        <circle cx="72" cy="28" r="7" fill="#fff"/>
+        <circle cx="30" cy="29" r="3.2" fill="#2D3436"/>
+        <circle cx="74" cy="29" r="3.2" fill="#2D3436"/>
+        <path d="M36 62 Q50 74 64 62" fill="none" stroke="#2D3436" stroke-width="2.6" stroke-linecap="round"/>
+        <ellipse cx="22" cy="70" rx="8" ry="5" fill="#3A9B6A" stroke="#2D3436" stroke-width="1.6"/>
+        <ellipse cx="78" cy="70" rx="8" ry="5" fill="#3A9B6A" stroke="#2D3436" stroke-width="1.6"/>
+        <circle cx="42" cy="52" r="3" fill="#FFD60A" opacity=".7"/>
+        <circle cx="58" cy="54" r="2.5" fill="#FFD60A" opacity=".55"/>
+      </svg>`;
+  }
+
+  function colorFlowerSvg(color) {
+    const c = color || COLORS.blue;
+    return `
+      <svg viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line x1="45" y1="52" x2="45" y2="92" stroke="#3A9B6A" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="34" cy="78" rx="10" ry="5" fill="#52B788" transform="rotate(-35 34 78)"/>
+        <ellipse cx="56" cy="78" rx="10" ry="5" fill="#52B788" transform="rotate(35 56 78)"/>
+        <circle cx="45" cy="22" r="14" fill="${c}" stroke="#2D3436" stroke-width="2"/>
+        <circle cx="28" cy="34" r="13" fill="${c}" stroke="#2D3436" stroke-width="2"/>
+        <circle cx="62" cy="34" r="13" fill="${c}" stroke="#2D3436" stroke-width="2"/>
+        <circle cx="34" cy="48" r="12" fill="${c}" stroke="#2D3436" stroke-width="2"/>
+        <circle cx="56" cy="48" r="12" fill="${c}" stroke="#2D3436" stroke-width="2"/>
+        <circle cx="45" cy="36" r="11" fill="#FFD60A" stroke="#2D3436" stroke-width="2"/>
+        <circle cx="41" cy="32" r="3" fill="#fff" opacity=".5"/>
+      </svg>`;
+  }
+
+  function crescentMoonSvg() {
+    return `
+      <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M52 12 A34 34 0 1 0 52 78 A26 26 0 1 1 52 12 Z" fill="#FFD60A" stroke="#2D3436" stroke-width="2.4"/>
+        <circle cx="58" cy="36" r="3.2" fill="#2D3436"/>
+        <path d="M52 52 Q60 58 68 50" fill="none" stroke="#2D3436" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="48" cy="28" r="4" fill="#fff" opacity=".35"/>
+        <circle cx="62" cy="60" r="3" fill="#FF8C42" opacity=".55"/>
+      </svg>`;
+  }
+
+  function heartMatchSvg(color) {
+    const c = color || COLORS.red;
+    return `
+      <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M45 78 C20 58 10 40 22 26 C30 16 42 20 45 30 C48 20 60 16 68 26 C80 40 70 58 45 78 Z"
+              fill="${c}" stroke="#2D3436" stroke-width="2.4" stroke-linejoin="round"/>
+        <ellipse cx="34" cy="34" rx="7" ry="4.5" fill="#fff" opacity=".35" transform="rotate(-30 34 34)"/>
+      </svg>`;
+  }
+
+  function tulipBouquetSvg(color) {
+    const c = color || COLORS.purple;
+    function tulip(tx, ty, s) {
+      return `<g transform="translate(${tx},${ty}) scale(${s})">
+        <line x1="20" y1="28" x2="20" y2="70" stroke="#3A9B6A" stroke-width="4" stroke-linecap="round"/>
+        <path d="M8 32 Q20 8 32 32 Q28 48 20 52 Q12 48 8 32 Z" fill="${c}" stroke="#2D3436" stroke-width="2"/>
+        <path d="M14 28 Q20 18 26 28" fill="none" stroke="#fff" stroke-width="1.6" opacity=".4"/>
+      </g>`;
+    }
+    return `
+      <svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        ${tulip(8, 8, 1)}
+        ${tulip(36, 0, 1.05)}
+        ${tulip(58, 10, 0.95)}
+        <ellipse cx="50" cy="92" rx="28" ry="10" fill="#52B788" stroke="#2D3436" stroke-width="2"/>
+        <path d="M30 88 Q50 78 70 88" fill="none" stroke="#3A9B6A" stroke-width="2"/>
+      </svg>`;
+  }
+
+  function stripedVaseSvg(color) {
+    const c = color || COLORS.red;
+    return `
+      <svg viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M22 18 H58 L54 28 Q70 42 66 78 Q62 100 40 102 Q18 100 14 78 Q10 42 26 28 Z"
+              fill="#fff" stroke="#2D3436" stroke-width="2.4" stroke-linejoin="round"/>
+        <path d="M24 34 H56" stroke="${c}" stroke-width="7" stroke-linecap="round"/>
+        <path d="M20 48 H60" stroke="${c}" stroke-width="7" stroke-linecap="round"/>
+        <path d="M18 62 H62" stroke="${c}" stroke-width="7" stroke-linecap="round"/>
+        <path d="M20 76 H60" stroke="${c}" stroke-width="7" stroke-linecap="round"/>
+        <path d="M24 88 H56" stroke="${c}" stroke-width="6" stroke-linecap="round"/>
+        <ellipse cx="40" cy="18" rx="20" ry="6" fill="${c}" stroke="#2D3436" stroke-width="2"/>
+        <ellipse cx="32" cy="40" rx="4" ry="10" fill="#fff" opacity=".35"/>
+      </svg>`;
+  }
+
+  function pairSailboatSvg(sailTop) {
+    const top = sailTop || COLORS.green;
+    return `
+      <svg viewBox="0 0 110 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="55" cy="86" rx="40" ry="8" fill="#89C2D9" opacity=".45"/>
+        <path d="M18 78 Q55 92 92 78 L84 68 H26 Z" fill="#8B5E3C" stroke="#2D3436" stroke-width="2.2" stroke-linejoin="round"/>
+        <rect x="52" y="18" width="4.5" height="52" rx="1.5" fill="#5C4033" stroke="#2D3436" stroke-width="1.4"/>
+        <!-- lower main sail (red) -->
+        <polygon points="57,42 86,62 57,68" fill="#E63946" stroke="#2D3436" stroke-width="2" stroke-linejoin="round"/>
+        <!-- top-left sail segment (match color) -->
+        <polygon points="57,20 57,44 30,40" fill="${top}" stroke="#2D3436" stroke-width="2" stroke-linejoin="round"/>
+        <!-- jib yellow/red -->
+        <polygon points="52,28 52,66 22,58" fill="#FFD60A" stroke="#2D3436" stroke-width="2" stroke-linejoin="round"/>
+        <polygon points="52,48 52,66 28,60" fill="#E63946" opacity=".85"/>
+        <ellipse cx="68" cy="50" rx="4" ry="3" fill="#fff" opacity=".3"/>
+      </svg>`;
+  }
+
+  function autumnLeafSvg(color, rot, kind) {
+    const c = color || COLORS.orange;
+    const r = rot == null ? 0 : rot;
+    const k = kind || 0;
+    let leaf;
+    if (k === 1) {
+      leaf = `<path d="M40 18 C58 22 70 40 62 58 C54 74 40 82 40 82 C40 82 26 74 18 58 C10 40 22 22 40 18 Z"
+                fill="${c}" stroke="#2D3436" stroke-width="2.2"/>
+              <path d="M40 22 L40 78 M40 40 Q28 48 24 58 M40 40 Q52 48 56 58 M40 55 Q30 62 28 70 M40 55 Q50 62 52 70"
+                fill="none" stroke="#5C4033" stroke-width="1.4" opacity=".55"/>`;
+    } else if (k === 2) {
+      leaf = `<ellipse cx="40" cy="48" rx="22" ry="32" fill="${c}" stroke="#2D3436" stroke-width="2.2"/>
+              <path d="M40 18 L40 78 M40 40 Q26 50 22 62 M40 40 Q54 50 58 62"
+                fill="none" stroke="#5C4033" stroke-width="1.4" opacity=".5"/>`;
+    } else {
+      leaf = `<path d="M40 14 C48 20 72 28 68 48 C64 66 48 78 40 86 C32 78 16 66 12 48 C8 28 32 20 40 14 Z"
+                fill="${c}" stroke="#2D3436" stroke-width="2.2"/>
+              <path d="M40 18 L40 82 M40 36 Q24 44 20 56 M40 36 Q56 44 60 56 M40 52 Q28 58 26 68 M40 52 Q52 58 54 68"
+                fill="none" stroke="#5C4033" stroke-width="1.35" opacity=".55"/>`;
+    }
+    return `
+      <svg viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g transform="rotate(${r} 40 50)">${leaf}
+        <line x1="40" y1="82" x2="40" y2="96" stroke="#8B5E3C" stroke-width="3" stroke-linecap="round"/>
+        </g>
+      </svg>`;
+  }
+
+  function mushroomSvg(rot) {
+    const r = rot == null ? 0 : rot;
+    return `
+      <svg viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g transform="rotate(${r} 45 55)">
+          <rect x="34" y="52" width="22" height="36" rx="8" fill="#C4A574" stroke="#2D3436" stroke-width="2.2"/>
+          <ellipse cx="45" cy="78" rx="14" ry="5" fill="#A67C52" opacity=".45"/>
+          <path d="M12 52 Q14 22 45 18 Q76 22 78 52 Z" fill="#8B5E3C" stroke="#2D3436" stroke-width="2.4"/>
+          <ellipse cx="45" cy="52" rx="34" ry="10" fill="#A67C52" stroke="#2D3436" stroke-width="2"/>
+          <circle cx="28" cy="40" r="5" fill="#F5D0A9"/>
+          <circle cx="48" cy="32" r="6" fill="#F5D0A9"/>
+          <circle cx="64" cy="42" r="4.5" fill="#F5D0A9"/>
+          <circle cx="38" cy="46" r="3.5" fill="#F5D0A9" opacity=".85"/>
+        </g>
+      </svg>`;
+  }
+
 
   function carrotSvg(rot) {
     const r = rot == null ? -25 : rot;
@@ -1589,6 +1758,93 @@
       mascot: { x: 0.12, y: 0.14, w: 0.16, aspect: 1.15 },
     },
 
+    stifteFarben: {
+      title: 'Stifte und Farben',
+      hint: 'Verbinde Stift und Bild gleicher Farbe.',
+      mode: 'one-to-one',
+      sources: [
+        { id: 'pen_red', match: 'red', svg: () => pencilSvg(COLORS.red), x: 0.20, y: 0.16, w: 0.14, aspect: 1.45 },
+        { id: 'pen_green', match: 'green', svg: () => pencilSvg(COLORS.green), x: 0.20, y: 0.39, w: 0.14, aspect: 1.45 },
+        { id: 'pen_blue', match: 'blue', svg: () => pencilSvg(COLORS.blue), x: 0.20, y: 0.62, w: 0.14, aspect: 1.45 },
+        { id: 'pen_yellow', match: 'yellow', svg: () => pencilSvg(COLORS.yellow), x: 0.20, y: 0.85, w: 0.14, aspect: 1.45 },
+      ],
+      targets: [
+        { id: 'img_frog', match: 'green', svg: frogMatchSvg, x: 0.78, y: 0.16, w: 0.20, aspect: 0.9 },
+        { id: 'img_flower', match: 'blue', svg: () => colorFlowerSvg(COLORS.blue), x: 0.78, y: 0.39, w: 0.18, aspect: 1.1 },
+        { id: 'img_moon', match: 'yellow', svg: crescentMoonSvg, x: 0.78, y: 0.62, w: 0.18, aspect: 1.0 },
+        { id: 'img_heart', match: 'red', svg: () => heartMatchSvg(COLORS.red), x: 0.78, y: 0.85, w: 0.18, aspect: 1.0 },
+      ],
+    },
+
+    blumenVasen: {
+      title: 'Blumen und Vasen',
+      hint: 'Verbinde Blumen und Vase gleicher Farbe.',
+      mode: 'one-to-one',
+      sources: [
+        { id: 'fl_purple', match: 'purple', svg: () => tulipBouquetSvg(COLORS.purple), x: 0.20, y: 0.16, w: 0.20, aspect: 1.1 },
+        { id: 'fl_red', match: 'red', svg: () => tulipBouquetSvg(COLORS.red), x: 0.20, y: 0.39, w: 0.20, aspect: 1.1 },
+        { id: 'fl_blue', match: 'blue', svg: () => tulipBouquetSvg(COLORS.blue), x: 0.20, y: 0.62, w: 0.20, aspect: 1.1 },
+        { id: 'fl_yellow', match: 'yellow', svg: () => tulipBouquetSvg(COLORS.yellow), x: 0.20, y: 0.85, w: 0.20, aspect: 1.1 },
+      ],
+      targets: [
+        { id: 'v_red', match: 'red', svg: () => stripedVaseSvg(COLORS.red), x: 0.78, y: 0.16, w: 0.16, aspect: 1.3 },
+        { id: 'v_blue', match: 'blue', svg: () => stripedVaseSvg(COLORS.blue), x: 0.78, y: 0.39, w: 0.16, aspect: 1.3 },
+        { id: 'v_yellow', match: 'yellow', svg: () => stripedVaseSvg(COLORS.yellow), x: 0.78, y: 0.62, w: 0.16, aspect: 1.3 },
+        { id: 'v_purple', match: 'purple', svg: () => stripedVaseSvg(COLORS.purple), x: 0.78, y: 0.85, w: 0.16, aspect: 1.3 },
+      ],
+    },
+
+    segelboote: {
+      title: 'Segelboote',
+      hint: 'Finde die gleichen Segelboote und verbinde sie.',
+      mode: 'one-to-one',
+      boardClass: 'ocean-board',
+      sources: [
+        { id: 'boat_l_green', match: 'green', svg: () => pairSailboatSvg(COLORS.green), x: 0.20, y: 0.16, w: 0.22, aspect: 0.9 },
+        { id: 'boat_l_blue', match: 'blue', svg: () => pairSailboatSvg(COLORS.blue), x: 0.20, y: 0.39, w: 0.22, aspect: 0.9 },
+        { id: 'boat_l_purple', match: 'purple', svg: () => pairSailboatSvg(COLORS.purple), x: 0.20, y: 0.62, w: 0.22, aspect: 0.9 },
+        { id: 'boat_l_orange', match: 'orange', svg: () => pairSailboatSvg(COLORS.orange), x: 0.20, y: 0.85, w: 0.22, aspect: 0.9 },
+      ],
+      targets: [
+        { id: 'boat_r_orange', match: 'orange', svg: () => pairSailboatSvg(COLORS.orange), x: 0.78, y: 0.16, w: 0.22, aspect: 0.9 },
+        { id: 'boat_r_green', match: 'green', svg: () => pairSailboatSvg(COLORS.green), x: 0.78, y: 0.39, w: 0.22, aspect: 0.9 },
+        { id: 'boat_r_purple', match: 'purple', svg: () => pairSailboatSvg(COLORS.purple), x: 0.78, y: 0.62, w: 0.22, aspect: 0.9 },
+        { id: 'boat_r_blue', match: 'blue', svg: () => pairSailboatSvg(COLORS.blue), x: 0.78, y: 0.85, w: 0.22, aspect: 0.9 },
+      ],
+    },
+
+    herbstPilze: {
+      title: 'Herbst-Pilze',
+      hint: 'Kreise alle 5 Pilze ein.',
+      mode: 'circle-draw',
+      targetMatch: 'mushroom',
+      boardClass: 'autumn-board',
+      itemClass: 'clutter-item',
+      itemLabel: 'Gegenstand',
+      fixedLayout: true,
+      sources: [
+        /* 5 mushrooms (targets) — larger for kids */
+        { id: 'hp_m1', match: 'mushroom', svg: () => mushroomSvg(-12), x: 0.18, y: 0.18, w: 0.16, aspect: 1.1 },
+        { id: 'hp_m2', match: 'mushroom', svg: () => mushroomSvg(10),  x: 0.78, y: 0.22, w: 0.16, aspect: 1.1 },
+        { id: 'hp_m3', match: 'mushroom', svg: () => mushroomSvg(-6),  x: 0.42, y: 0.46, w: 0.16, aspect: 1.1 },
+        { id: 'hp_m4', match: 'mushroom', svg: () => mushroomSvg(14),  x: 0.16, y: 0.68, w: 0.16, aspect: 1.1 },
+        { id: 'hp_m5', match: 'mushroom', svg: () => mushroomSvg(-8),  x: 0.72, y: 0.70, w: 0.16, aspect: 1.1 },
+        /* autumn leaves (distractors) */
+        { id: 'hp_l1', match: 'leaf', svg: () => autumnLeafSvg(COLORS.red, -25, 0), x: 0.42, y: 0.14, w: 0.15, aspect: 1.2 },
+        { id: 'hp_l2', match: 'leaf', svg: () => autumnLeafSvg(COLORS.orange, 20, 1), x: 0.62, y: 0.16, w: 0.15, aspect: 1.2 },
+        { id: 'hp_l3', match: 'leaf', svg: () => autumnLeafSvg(COLORS.yellow, -10, 2), x: 0.88, y: 0.40, w: 0.14, aspect: 1.2 },
+        { id: 'hp_l4', match: 'leaf', svg: () => autumnLeafSvg('#A67C52', 30, 0), x: 0.30, y: 0.32, w: 0.15, aspect: 1.2 },
+        { id: 'hp_l5', match: 'leaf', svg: () => autumnLeafSvg(COLORS.orange, -35, 1), x: 0.58, y: 0.34, w: 0.15, aspect: 1.2 },
+        { id: 'hp_l6', match: 'leaf', svg: () => autumnLeafSvg(COLORS.red, 15, 2), x: 0.12, y: 0.42, w: 0.14, aspect: 1.2 },
+        { id: 'hp_l7', match: 'leaf', svg: () => autumnLeafSvg(COLORS.yellow, -20, 0), x: 0.86, y: 0.56, w: 0.15, aspect: 1.2 },
+        { id: 'hp_l8', match: 'leaf', svg: () => autumnLeafSvg('#A67C52', 8, 1), x: 0.38, y: 0.64, w: 0.15, aspect: 1.2 },
+        { id: 'hp_l9', match: 'leaf', svg: () => autumnLeafSvg(COLORS.orange, -15, 2), x: 0.54, y: 0.78, w: 0.15, aspect: 1.2 },
+        { id: 'hp_l10', match: 'leaf', svg: () => autumnLeafSvg(COLORS.red, 25, 0), x: 0.88, y: 0.82, w: 0.14, aspect: 1.2 },
+        { id: 'hp_l11', match: 'leaf', svg: () => autumnLeafSvg(COLORS.yellow, -5, 1), x: 0.28, y: 0.86, w: 0.15, aspect: 1.2 },
+      ],
+      targets: [],
+    },
+
 
   };
 
@@ -1626,6 +1882,10 @@
     'karotten',
     'versteckteTiere',
     'doggysFussbaelle',
+    'stifteFarben',
+    'blumenVasen',
+    'segelboote',
+    'herbstPilze',
   ];
 
   /* Session-only completion (in-memory; clears when app fully reopened) */
@@ -1945,10 +2205,12 @@
       title: base.title,
       hint: base.hint,
       mode: base.mode,
+      boardClass: base.boardClass || '',
       sources: withShuffledSlots(base.sources),
       targets: withShuffledSlots(base.targets),
       mascot: base.mascot ? Object.assign({}, base.mascot) : null,
     };
+    if (base.boardClass) board.className = base.boardClass;
     exercise.sources.forEach((s) => makeItem(s, 'source'));
     exercise.targets.forEach((t) => makeItem(t, 'target'));
     placeMascot(exercise);
@@ -2605,7 +2867,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=28').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=29').catch(() => {});
     });
   }
 
