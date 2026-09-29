@@ -783,6 +783,210 @@
   }
 
 
+
+  /* —— Obstkörbe / Geburtstagsschatten / Schmetterlinge —— */
+  function bananaSvg() {
+    return `
+      <svg viewBox="0 0 90 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M22 58 C18 40 28 18 48 16 C62 14 74 24 78 38 C70 28 56 24 46 28 C34 34 28 48 30 62 Z"
+              fill="#FFD60A" stroke="#2D3436" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M30 62 C36 68 48 70 58 64 C64 60 68 54 70 48"
+              fill="none" stroke="#E0B000" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+        <ellipse cx="52" cy="28" rx="6" ry="3" fill="#fff" opacity=".35"/>
+        <path d="M48 14 Q50 8 54 10" fill="none" stroke="#8B5E3C" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>`;
+  }
+
+  function redAppleSvg() {
+    return `
+      <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M40 28 C22 28 14 44 16 58 C18 74 30 82 40 82 C50 82 62 74 64 58 C66 44 58 28 40 28 Z"
+              fill="#E63946" stroke="#2D3436" stroke-width="2.2"/>
+        <path d="M40 28 C34 40 28 44 24 46" fill="none" stroke="#C1121F" stroke-width="2" opacity=".35"/>
+        <ellipse cx="30" cy="48" rx="7" ry="10" fill="#fff" opacity=".28"/>
+        <path d="M40 28 Q42 16 48 12" fill="none" stroke="#5C4033" stroke-width="2.6" stroke-linecap="round"/>
+        <ellipse cx="54" cy="18" rx="8" ry="4.5" fill="#52B788" stroke="#2D3436" stroke-width="1.4" transform="rotate(25 54 18)"/>
+      </svg>`;
+  }
+
+  function greenPearSvg() {
+    return `
+      <svg viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M40 18 C48 18 54 28 52 40 C50 50 56 58 56 68 C56 82 48 90 40 90 C32 90 24 82 24 68 C24 58 30 50 28 40 C26 28 32 18 40 18 Z"
+              fill="#52B788" stroke="#2D3436" stroke-width="2.2"/>
+        <ellipse cx="32" cy="52" rx="6" ry="10" fill="#fff" opacity=".28"/>
+        <path d="M40 18 Q38 8 42 6" fill="none" stroke="#5C4033" stroke-width="2.6" stroke-linecap="round"/>
+        <ellipse cx="50" cy="12" rx="7" ry="4" fill="#3A9B6A" stroke="#2D3436" stroke-width="1.3" transform="rotate(20 50 12)"/>
+        <circle cx="46" cy="62" r="2.2" fill="#3A9B6A" opacity=".45"/>
+        <circle cx="36" cy="70" r="1.8" fill="#3A9B6A" opacity=".4"/>
+      </svg>`;
+  }
+
+  function fruitIconMini(kind) {
+    if (kind === 'banana') {
+      return `<g transform="translate(50,52) scale(0.42)">
+        <path d="M22 58 C18 40 28 18 48 16 C62 14 74 24 78 38 C70 28 56 24 46 28 C34 34 28 48 30 62 Z" fill="#FFD60A"/>
+      </g>`;
+    }
+    if (kind === 'apple') {
+      return `<g transform="translate(50,50) scale(0.38)">
+        <path d="M40 28 C22 28 14 44 16 58 C18 74 30 82 40 82 C50 82 62 74 64 58 C66 44 58 28 40 28 Z" fill="#E63946"/>
+        <ellipse cx="54" cy="18" rx="8" ry="4.5" fill="#52B788"/>
+      </g>`;
+    }
+    return `<g transform="translate(50,48) scale(0.36)">
+      <path d="M40 18 C48 18 54 28 52 40 C50 50 56 58 56 68 C56 82 48 90 40 90 C32 90 24 82 24 68 C24 58 30 50 28 40 C26 28 32 18 40 18 Z" fill="#52B788"/>
+    </g>`;
+  }
+
+  function fruitBasketSvg(kind) {
+    return `
+      <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M28 28 Q50 8 72 28" fill="none" stroke="#C4A574" stroke-width="6" stroke-linecap="round"/>
+        <path d="M12 38 Q14 78 50 82 Q86 78 88 38 Z" fill="#E8C99B" stroke="#2D3436" stroke-width="2.4"/>
+        <path d="M20 48 H80 M22 58 H78 M26 68 H74" stroke="#8B5E3C" stroke-width="2" opacity=".35"/>
+        <ellipse cx="50" cy="40" rx="30" ry="7" fill="rgba(255,255,255,.35)"/>
+        ${fruitIconMini(kind)}
+      </svg>`;
+  }
+
+  function birthdayBalloonSvg(asSilhouette) {
+    const fill = asSilhouette ? '#94A3B8' : '#FFD60A';
+    const stroke = asSilhouette ? '#64748B' : '#2D3436';
+    const highlight = asSilhouette ? 'none' : '#fff';
+    return `
+      <svg viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="40" cy="42" rx="26" ry="32" fill="${fill}" stroke="${stroke}" stroke-width="2.4"/>
+        <path d="M40 74 L46 82 L34 82 Z" fill="${fill}" stroke="${stroke}" stroke-width="1.8"/>
+        <path d="M40 82 Q48 92 36 102 Q28 108 40 110" fill="none" stroke="${stroke}" stroke-width="2.2" stroke-linecap="round"/>
+        ${asSilhouette ? '' : '<ellipse cx="30" cy="32" rx="8" ry="12" fill="#fff" opacity=".35"/>'}
+        ${asSilhouette ? '' : '<circle cx="48" cy="48" r="4" fill="#FF8C42" opacity=".55"/>'}
+      </svg>`;
+  }
+
+  function birthdayCakeSvg(asSilhouette) {
+    const top = asSilhouette ? '#94A3B8' : '#FFB4C8';
+    const mid = asSilhouette ? '#7B8A9A' : '#FFEAA7';
+    const base = asSilhouette ? '#64748B' : '#E8C99B';
+    const stroke = asSilhouette ? '#64748B' : '#2D3436';
+    const flame = asSilhouette ? '#94A3B8' : '#FF8C42';
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="46" y="12" width="8" height="18" rx="2" fill="${asSilhouette ? '#94A3B8' : '#FFF'}" stroke="${stroke}" stroke-width="1.6"/>
+        <ellipse cx="50" cy="12" rx="6" ry="8" fill="${flame}" stroke="${stroke}" stroke-width="1.4"/>
+        <rect x="18" y="30" width="64" height="22" rx="6" fill="${top}" stroke="${stroke}" stroke-width="2.2"/>
+        <rect x="14" y="50" width="72" height="24" rx="6" fill="${mid}" stroke="${stroke}" stroke-width="2.2"/>
+        <rect x="10" y="72" width="80" height="18" rx="6" fill="${base}" stroke="${stroke}" stroke-width="2.2"/>
+        ${asSilhouette ? '' : `
+        <circle cx="30" cy="41" r="3.5" fill="#E63946"/>
+        <circle cx="50" cy="41" r="3.5" fill="#4361EE"/>
+        <circle cx="70" cy="41" r="3.5" fill="#52B788"/>
+        <path d="M20 62 Q35 54 50 62 Q65 70 80 62" fill="none" stroke="#E84393" stroke-width="3" stroke-linecap="round"/>
+        `}
+      </svg>`;
+  }
+
+  function giftBoxSvg(asSilhouette) {
+    const box = asSilhouette ? '#94A3B8' : '#4361EE';
+    const lid = asSilhouette ? '#7B8A9A' : '#5B7CFF';
+    const ribbon = asSilhouette ? '#64748B' : '#E63946';
+    const stroke = asSilhouette ? '#64748B' : '#2D3436';
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="16" y="42" width="68" height="46" rx="6" fill="${box}" stroke="${stroke}" stroke-width="2.4"/>
+        <rect x="12" y="30" width="76" height="18" rx="5" fill="${lid}" stroke="${stroke}" stroke-width="2.4"/>
+        <rect x="44" y="30" width="12" height="58" fill="${ribbon}" opacity=".95"/>
+        <rect x="16" y="48" width="68" height="10" fill="${ribbon}" opacity=".95"/>
+        <path d="M50 30 Q38 10 28 22 Q34 34 50 30" fill="${ribbon}" stroke="${stroke}" stroke-width="1.6"/>
+        <path d="M50 30 Q62 10 72 22 Q66 34 50 30" fill="${ribbon}" stroke="${stroke}" stroke-width="1.6"/>
+        ${asSilhouette ? '' : '<ellipse cx="30" cy="56" rx="6" ry="4" fill="#fff" opacity=".25"/>'}
+      </svg>`;
+  }
+
+  function birthdayBouquetSvg(asSilhouette) {
+    if (asSilhouette) {
+      return `
+        <svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="28" y1="36" x2="40" y2="78" stroke="#64748B" stroke-width="4" stroke-linecap="round"/>
+          <line x1="50" y1="28" x2="50" y2="78" stroke="#64748B" stroke-width="4" stroke-linecap="round"/>
+          <line x1="72" y1="36" x2="60" y2="78" stroke="#64748B" stroke-width="4" stroke-linecap="round"/>
+          <path d="M18 38 Q30 12 42 38 Q38 52 30 56 Q22 52 18 38 Z" fill="#94A3B8" stroke="#64748B" stroke-width="2"/>
+          <path d="M38 30 Q50 6 62 30 Q58 46 50 50 Q42 46 38 30 Z" fill="#94A3B8" stroke="#64748B" stroke-width="2"/>
+          <path d="M58 38 Q70 14 82 38 Q78 52 70 56 Q62 52 58 38 Z" fill="#94A3B8" stroke="#64748B" stroke-width="2"/>
+          <ellipse cx="50" cy="92" rx="28" ry="10" fill="#7B8A9A" stroke="#64748B" stroke-width="2"/>
+        </svg>`;
+    }
+    return tulipBouquetSvg(COLORS.pink);
+  }
+
+  function butterflySvg(wingColor) {
+    const c = wingColor || COLORS.green;
+    return `
+      <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="28" cy="32" rx="20" ry="26" fill="${c}" stroke="#2D3436" stroke-width="2.2"/>
+        <ellipse cx="72" cy="32" rx="20" ry="26" fill="${c}" stroke="#2D3436" stroke-width="2.2"/>
+        <ellipse cx="30" cy="62" rx="14" ry="16" fill="${c}" stroke="#2D3436" stroke-width="2" opacity=".92"/>
+        <ellipse cx="70" cy="62" rx="14" ry="16" fill="${c}" stroke="#2D3436" stroke-width="2" opacity=".92"/>
+        <ellipse cx="50" cy="48" rx="8" ry="22" fill="#2D3436"/>
+        <circle cx="50" cy="28" r="6" fill="#2D3436"/>
+        <path d="M46 22 Q40 8 34 12" fill="none" stroke="#2D3436" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M54 22 Q60 8 66 12" fill="none" stroke="#2D3436" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="22" cy="28" r="5" fill="#FFD60A" opacity=".75"/>
+        <circle cx="78" cy="28" r="5" fill="#FFD60A" opacity=".75"/>
+        <circle cx="28" cy="58" r="3.5" fill="#fff" opacity=".4"/>
+        <circle cx="72" cy="58" r="3.5" fill="#fff" opacity=".4"/>
+      </svg>`;
+  }
+
+  function matchFlowerSvg(petal) {
+    return flowerSvg(petal);
+  }
+
+  function patternCandySvg(style) {
+    /* Decorative wrapped candy; style picks fill + pattern for odd-one-out rows */
+    let body = '#FF8C42';
+    let wrap = '#FF8C42';
+    let decor = '';
+    if (style === 'orange-plain') {
+      body = '#FF8C42'; wrap = '#E76F3C';
+      decor = '<ellipse cx="36" cy="20" rx="8" ry="5" fill="#fff" opacity=".3"/>';
+    } else if (style === 'orange-purple-stripe') {
+      body = '#FF8C42'; wrap = '#9B5DE5';
+      decor = `
+        <path d="M22 16 L58 32" stroke="#9B5DE5" stroke-width="4" stroke-linecap="round"/>
+        <path d="M20 24 L56 40" stroke="#9B5DE5" stroke-width="4" stroke-linecap="round"/>
+        <path d="M24 32 L60 48" stroke="#9B5DE5" stroke-width="4" stroke-linecap="round"/>`;
+    } else if (style === 'blue-polka') {
+      body = '#89C2D9'; wrap = '#5FA8C9';
+      decor = `
+        <circle cx="30" cy="18" r="3.5" fill="#1B3A4B"/>
+        <circle cx="44" cy="28" r="3.5" fill="#1B3A4B"/>
+        <circle cx="34" cy="34" r="3" fill="#1B3A4B"/>
+        <circle cx="50" cy="18" r="3" fill="#1B3A4B"/>`;
+    } else if (style === 'blue-polka-invert') {
+      body = '#1B3A4B'; wrap = '#0F2740';
+      decor = `
+        <circle cx="30" cy="18" r="3.5" fill="#89C2D9"/>
+        <circle cx="44" cy="28" r="3.5" fill="#89C2D9"/>
+        <circle cx="34" cy="34" r="3" fill="#89C2D9"/>
+        <circle cx="50" cy="18" r="3" fill="#89C2D9"/>`;
+    } else if (style === 'lime') {
+      body = '#B7E63A'; wrap = '#8BC34A';
+      decor = '<ellipse cx="36" cy="20" rx="8" ry="5" fill="#fff" opacity=".3"/>';
+    } else if (style === 'dark-green') {
+      body = '#1B7A4A'; wrap = '#145C38';
+      decor = '<ellipse cx="36" cy="20" rx="8" ry="5" fill="#fff" opacity=".18"/>';
+    }
+    return `
+      <svg viewBox="0 0 80 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="4,24 16,10 16,38" fill="${wrap}"/>
+        <ellipse cx="40" cy="24" rx="24" ry="16" fill="${body}" stroke="#2D3436" stroke-width="1.6"/>
+        <polygon points="76,24 64,10 64,38" fill="${wrap}"/>
+        ${decor}
+      </svg>`;
+  }
+
+
   function carrotSvg(rot) {
     const r = rot == null ? -25 : rot;
     return `
@@ -1324,6 +1528,43 @@
       </svg>`;
   }
 
+  function elephantSvg() {
+    return `
+      <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="52" cy="52" rx="30" ry="22" fill="#B0BEC5" stroke="#2D3436" stroke-width="2.2"/>
+        <circle cx="28" cy="44" r="16" fill="#B0BEC5" stroke="#2D3436" stroke-width="2.2"/>
+        <path d="M18 50 Q8 68 16 78 Q22 72 24 58" fill="#90A4AE" stroke="#2D3436" stroke-width="2" stroke-linejoin="round"/>
+        <ellipse cx="14" cy="38" rx="5" ry="8" fill="#90A4AE" stroke="#2D3436" stroke-width="1.6"/>
+        <ellipse cx="34" cy="34" rx="5" ry="8" fill="#90A4AE" stroke="#2D3436" stroke-width="1.6"/>
+        <circle cx="24" cy="42" r="2.2" fill="#222"/>
+        <circle cx="34" cy="42" r="2.2" fill="#222"/>
+        <path d="M78 48 Q92 40 88 58 Q82 62 76 56" fill="#90A4AE" stroke="#2D3436" stroke-width="1.8"/>
+        <rect x="40" y="68" width="7" height="14" rx="3" fill="#78909C" stroke="#2D3436" stroke-width="1.4"/>
+        <rect x="58" y="68" width="7" height="14" rx="3" fill="#78909C" stroke="#2D3436" stroke-width="1.4"/>
+        <ellipse cx="44" cy="48" rx="5" ry="3" fill="#fff" opacity=".3"/>
+      </svg>`;
+  }
+
+  function lionSvg() {
+    return `
+      <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="50" cy="48" r="28" fill="#E17055" stroke="#2D3436" stroke-width="2.2"/>
+        <circle cx="50" cy="48" r="18" fill="#F4A261" stroke="#2D3436" stroke-width="2"/>
+        <circle cx="42" cy="44" r="2.4" fill="#222"/>
+        <circle cx="58" cy="44" r="2.4" fill="#222"/>
+        <ellipse cx="50" cy="52" rx="4" ry="3" fill="#E76F3C"/>
+        <path d="M44 58 Q50 64 56 58" fill="none" stroke="#2D3436" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="28" cy="30" r="7" fill="#E17055" stroke="#2D3436" stroke-width="1.6"/>
+        <circle cx="72" cy="30" r="7" fill="#E17055" stroke="#2D3436" stroke-width="1.6"/>
+        <circle cx="24" cy="50" r="7" fill="#E17055" stroke="#2D3436" stroke-width="1.6"/>
+        <circle cx="76" cy="50" r="7" fill="#E17055" stroke="#2D3436" stroke-width="1.6"/>
+        <circle cx="36" cy="68" r="6" fill="#E17055" stroke="#2D3436" stroke-width="1.6"/>
+        <circle cx="64" cy="68" r="6" fill="#E17055" stroke="#2D3436" stroke-width="1.6"/>
+        <ellipse cx="44" cy="40" rx="3" ry="2" fill="#fff" opacity=".35"/>
+      </svg>`;
+  }
+
+
   function searchDuckSvg() {
     return `
       <svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1845,6 +2086,122 @@
       targets: [],
     },
 
+    obstkoerbe: {
+      title: 'Obstkörbe',
+      hint: 'Verbinde Obst und passenden Korb.',
+      mode: 'many-to-one',
+      sources: [
+        { id: 'ban1', match: 'banana', svg: bananaSvg, x: 0.16, y: 0.12, w: 0.14, aspect: 0.85 },
+        { id: 'apl1', match: 'apple',  svg: redAppleSvg, x: 0.42, y: 0.10, w: 0.13, aspect: 1.05 },
+        { id: 'pear1', match: 'pear',  svg: greenPearSvg, x: 0.70, y: 0.12, w: 0.13, aspect: 1.15 },
+        { id: 'ban2', match: 'banana', svg: bananaSvg, x: 0.28, y: 0.30, w: 0.14, aspect: 0.85 },
+        { id: 'apl2', match: 'apple',  svg: redAppleSvg, x: 0.55, y: 0.28, w: 0.13, aspect: 1.05 },
+        { id: 'pear2', match: 'pear',  svg: greenPearSvg, x: 0.82, y: 0.32, w: 0.13, aspect: 1.15 },
+        { id: 'ban3', match: 'banana', svg: bananaSvg, x: 0.14, y: 0.48, w: 0.14, aspect: 0.85 },
+        { id: 'apl3', match: 'apple',  svg: redAppleSvg, x: 0.40, y: 0.50, w: 0.13, aspect: 1.05 },
+        { id: 'pear3', match: 'pear',  svg: greenPearSvg, x: 0.66, y: 0.48, w: 0.13, aspect: 1.15 },
+      ],
+      targets: [
+        { id: 'bask_ban', match: 'banana', svg: () => fruitBasketSvg('banana'), x: 0.20, y: 0.84, w: 0.22, aspect: 0.9 },
+        { id: 'bask_apl', match: 'apple',  svg: () => fruitBasketSvg('apple'),  x: 0.50, y: 0.84, w: 0.22, aspect: 0.9 },
+        { id: 'bask_pear', match: 'pear',  svg: () => fruitBasketSvg('pear'),   x: 0.80, y: 0.84, w: 0.22, aspect: 0.9 },
+      ],
+    },
+
+    geburtstagSchatten: {
+      title: 'Geburtstagsschatten',
+      hint: 'Verbinde Bild und Schatten.',
+      mode: 'one-to-one',
+      sources: [
+        { id: 'gb_balloon', match: 'balloon', svg: () => birthdayBalloonSvg(false), x: 0.20, y: 0.16, w: 0.16, aspect: 1.3 },
+        { id: 'gb_cake', match: 'cake', svg: () => birthdayCakeSvg(false), x: 0.20, y: 0.39, w: 0.18, aspect: 1.0 },
+        { id: 'gb_gift', match: 'gift', svg: () => giftBoxSvg(false), x: 0.20, y: 0.62, w: 0.18, aspect: 1.0 },
+        { id: 'gb_flowers', match: 'flowers', svg: () => birthdayBouquetSvg(false), x: 0.20, y: 0.85, w: 0.18, aspect: 1.1 },
+      ],
+      targets: [
+        { id: 'gs_gift', match: 'gift', svg: () => giftBoxSvg(true), x: 0.78, y: 0.16, w: 0.18, aspect: 1.0 },
+        { id: 'gs_flowers', match: 'flowers', svg: () => birthdayBouquetSvg(true), x: 0.78, y: 0.39, w: 0.18, aspect: 1.1 },
+        { id: 'gs_balloon', match: 'balloon', svg: () => birthdayBalloonSvg(true), x: 0.78, y: 0.62, w: 0.16, aspect: 1.3 },
+        { id: 'gs_cake', match: 'cake', svg: () => birthdayCakeSvg(true), x: 0.78, y: 0.85, w: 0.18, aspect: 1.0 },
+      ],
+    },
+
+    schmetterlinge: {
+      title: 'Schmetterlinge',
+      hint: 'Verbinde Schmetterling und Blume.',
+      mode: 'one-to-one',
+      sources: [
+        /* Worksheet pairs: green→red, blue→purple, yellow→yellow */
+        { id: 'bf_green', match: 'green-red', svg: () => butterflySvg(COLORS.green), x: 0.20, y: 0.22, w: 0.20, aspect: 0.9 },
+        { id: 'bf_blue', match: 'blue-purple', svg: () => butterflySvg(COLORS.blue), x: 0.20, y: 0.50, w: 0.20, aspect: 0.9 },
+        { id: 'bf_yellow', match: 'yellow-yellow', svg: () => butterflySvg(COLORS.yellow), x: 0.20, y: 0.78, w: 0.20, aspect: 0.9 },
+      ],
+      targets: [
+        { id: 'fl_purple', match: 'blue-purple', svg: () => matchFlowerSvg(COLORS.purple), x: 0.78, y: 0.22, w: 0.18, aspect: 1.2 },
+        { id: 'fl_yellow', match: 'yellow-yellow', svg: () => matchFlowerSvg(COLORS.yellow), x: 0.78, y: 0.50, w: 0.18, aspect: 1.2 },
+        { id: 'fl_red', match: 'green-red', svg: () => matchFlowerSvg(COLORS.red), x: 0.78, y: 0.78, w: 0.18, aspect: 1.2 },
+      ],
+    },
+
+    bonbonsStreichen: {
+      title: 'Bonbons',
+      hint: 'Streiche in jeder Reihe das andere Bonbon durch.',
+      mode: 'strike-draw',
+      targetMatch: 'odd',
+      boardClass: 'candy-strike-board',
+      itemClass: 'candy-strike-item',
+      itemLabel: 'Bonbon',
+      fixedLayout: true,
+      sources: [
+        /* Row 1 — orange; odd = purple stripes */
+        { id: 'bs_r1a', match: 'same', svg: () => patternCandySvg('orange-plain'), x: 0.14, y: 0.20, w: 0.18, aspect: 0.6 },
+        { id: 'bs_r1b', match: 'odd',  svg: () => patternCandySvg('orange-purple-stripe'), x: 0.38, y: 0.20, w: 0.18, aspect: 0.6 },
+        { id: 'bs_r1c', match: 'same', svg: () => patternCandySvg('orange-plain'), x: 0.62, y: 0.20, w: 0.18, aspect: 0.6 },
+        { id: 'bs_r1d', match: 'same', svg: () => patternCandySvg('orange-plain'), x: 0.86, y: 0.20, w: 0.18, aspect: 0.6 },
+        /* Row 2 — light-blue polka; odd = inverted dark */
+        { id: 'bs_r2a', match: 'same', svg: () => patternCandySvg('blue-polka'), x: 0.14, y: 0.50, w: 0.18, aspect: 0.6 },
+        { id: 'bs_r2b', match: 'same', svg: () => patternCandySvg('blue-polka'), x: 0.38, y: 0.50, w: 0.18, aspect: 0.6 },
+        { id: 'bs_r2c', match: 'same', svg: () => patternCandySvg('blue-polka'), x: 0.62, y: 0.50, w: 0.18, aspect: 0.6 },
+        { id: 'bs_r2d', match: 'odd',  svg: () => patternCandySvg('blue-polka-invert'), x: 0.86, y: 0.50, w: 0.18, aspect: 0.6 },
+        /* Row 3 — lime; odd = solid dark green */
+        { id: 'bs_r3a', match: 'odd',  svg: () => patternCandySvg('dark-green'), x: 0.14, y: 0.80, w: 0.18, aspect: 0.6 },
+        { id: 'bs_r3b', match: 'same', svg: () => patternCandySvg('lime'), x: 0.38, y: 0.80, w: 0.18, aspect: 0.6 },
+        { id: 'bs_r3c', match: 'same', svg: () => patternCandySvg('lime'), x: 0.62, y: 0.80, w: 0.18, aspect: 0.6 },
+        { id: 'bs_r3d', match: 'same', svg: () => patternCandySvg('lime'), x: 0.86, y: 0.80, w: 0.18, aspect: 0.6 },
+      ],
+      targets: [],
+    },
+
+    grossUndKlein: {
+      title: 'Groß und klein',
+      hint: 'Kreise in jeder Reihe das größte Tier ein.',
+      mode: 'circle-draw',
+      targetMatch: 'large',
+      boardClass: 'size-board',
+      itemClass: 'size-item',
+      itemLabel: 'Tier',
+      fixedLayout: true,
+      sources: [
+        /* Row 1 — sheep: med, large, small */
+        { id: 'gk_sh_m', match: 'medium', svg: sheepSvg, x: 0.18, y: 0.18, w: 0.16, aspect: 0.9 },
+        { id: 'gk_sh_l', match: 'large',  svg: sheepSvg, x: 0.50, y: 0.18, w: 0.24, aspect: 0.9 },
+        { id: 'gk_sh_s', match: 'small',  svg: sheepSvg, x: 0.82, y: 0.18, w: 0.11, aspect: 0.9 },
+        /* Row 2 — elephants: large, small, med */
+        { id: 'gk_el_l', match: 'large',  svg: elephantSvg, x: 0.18, y: 0.50, w: 0.26, aspect: 0.9 },
+        { id: 'gk_el_s', match: 'small',  svg: elephantSvg, x: 0.50, y: 0.50, w: 0.12, aspect: 0.9 },
+        { id: 'gk_el_m', match: 'medium', svg: elephantSvg, x: 0.82, y: 0.50, w: 0.18, aspect: 0.9 },
+        /* Row 3 — lions: small, med, large */
+        { id: 'gk_li_s', match: 'small',  svg: lionSvg, x: 0.18, y: 0.82, w: 0.11, aspect: 0.9 },
+        { id: 'gk_li_m', match: 'medium', svg: lionSvg, x: 0.50, y: 0.82, w: 0.16, aspect: 0.9 },
+        { id: 'gk_li_l', match: 'large',  svg: lionSvg, x: 0.82, y: 0.82, w: 0.24, aspect: 0.9 },
+      ],
+      targets: [],
+    },
+
+
+
+
+
 
   };
 
@@ -1886,6 +2243,11 @@
     'blumenVasen',
     'segelboote',
     'herbstPilze',
+    'obstkoerbe',
+    'geburtstagSchatten',
+    'schmetterlinge',
+    'bonbonsStreichen',
+    'grossUndKlein',
   ];
 
   /* Session-only completion (in-memory; clears when app fully reopened) */
@@ -1906,6 +2268,8 @@
   let countFillState = null; /* { rows: [{id, count, filled, wasCorrect}] } */
   let circleMarks = new Map(); /* id -> { el, normR } for circle-draw */
   let circleDrawMode = false;
+  let strikeMarks = new Map(); /* id -> { el, normSize } for strike-draw */
+  let strikeDrawMode = false;
 
   function showScreen(which) {
     const home = which === 'home';
@@ -1920,6 +2284,7 @@
   }
 
   function updateHomeCheckmarks() {
+    applyMenuNumbers();
     document.querySelectorAll('.big-btn[data-exercise]').forEach((btn) => {
       const id = btn.dataset.exercise;
       const done = completedExercises.has(id);
@@ -1935,17 +2300,42 @@
     updateHomeCheckmarks();
   }
 
-  function nextUnfinishedId(fromId) {
-    const order = MENU_ORDER.filter((id) => EXERCISES[id]);
-    if (!order.length) return null;
-    const start = Math.max(0, order.indexOf(fromId));
-    /* Prefer next unfinished after current, wrapping around */
-    for (let i = 1; i <= order.length; i++) {
-      const id = order[(start + i) % order.length];
-      if (!completedExercises.has(id)) return id;
+  function pickRandomIncompleteExercise() {
+    const pool = MENU_ORDER.filter((id) => EXERCISES[id] && !completedExercises.has(id));
+    if (!pool.length) return null;
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  function showHomeToast(msg) {
+    let el = document.getElementById('home-toast');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'home-toast';
+      el.className = 'home-toast';
+      el.setAttribute('role', 'status');
+      el.setAttribute('aria-live', 'polite');
+      const card = document.querySelector('.home-card') || document.getElementById('app');
+      card.appendChild(el);
     }
-    /* All done — wrap to first in menu */
-    return order[0];
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(showHomeToast._t);
+    showHomeToast._t = setTimeout(() => el.classList.remove('show'), 2200);
+  }
+
+  function applyMenuNumbers() {
+    MENU_ORDER.forEach((id, i) => {
+      const btn = document.querySelector('.big-btn[data-exercise="' + id + '"]');
+      if (!btn) return;
+      let badge = btn.querySelector('.num-badge');
+      if (!badge) {
+        badge = document.createElement('span');
+        badge.className = 'num-badge';
+        badge.setAttribute('aria-hidden', 'true');
+        btn.appendChild(badge);
+      }
+      badge.textContent = String(i + 1);
+    });
   }
 
   function hideCelebrate() {
@@ -2010,6 +2400,8 @@
     repositionItems();
     /* After layout, rematch lines to current item centers */
     redrawConnections();
+    redrawCircleMarks();
+    redrawStrikeMarks();
   }
 
   function tryLockPortrait() {
@@ -2080,6 +2472,8 @@
     countFillState = null;
     circleMarks.clear();
     circleDrawMode = false;
+    strikeMarks.clear();
+    strikeDrawMode = false;
   }
 
   function makeItem(def, kind) {
@@ -2200,6 +2594,30 @@
       return;
     }
 
+    if (base.mode === 'strike-draw') {
+      exercise = {
+        title: base.title,
+        hint: base.hint,
+        mode: 'strike-draw',
+        targetMatch: base.targetMatch || 'odd',
+        boardClass: base.boardClass || 'candy-strike-board',
+        itemClass: base.itemClass || 'candy-strike-item',
+        itemLabel: base.itemLabel || 'Bonbon',
+        sources: base.fixedLayout
+          ? base.sources.map((s) => Object.assign({}, s))
+          : withShuffledSlots(base.sources),
+        targets: [],
+        mascot: null,
+      };
+      startStrikeDrawBoard(exercise);
+      showScreen('play');
+      requestAnimationFrame(() => {
+        sizeStage();
+        requestAnimationFrame(sizeStage);
+      });
+      return;
+    }
+
     /* Fresh shuffled layout every open / Nochmal — match ids stay correct */
     exercise = {
       title: base.title,
@@ -2284,6 +2702,23 @@
       el.dataset.color = s.match;
     });
     placeMascot(ex);
+  }
+
+  function startStrikeDrawBoard(ex) {
+    board.className = ex.boardClass || 'candy-strike-board';
+    strikeDrawMode = true;
+    circleDrawMode = false;
+    strikeMarks.clear();
+    linesSvg.style.display = '';
+    drawSvg.style.display = '';
+    const itemClass = ex.itemClass || 'candy-strike-item';
+    const itemLabel = ex.itemLabel || 'Bonbon';
+    ex.sources.forEach((s) => {
+      const el = makeItem(s, 'source');
+      el.classList.add(itemClass);
+      el.setAttribute('aria-label', itemLabel);
+      el.dataset.color = s.match;
+    });
   }
 
   function pathLength(pts) {
@@ -2494,6 +2929,143 @@
       markExerciseComplete(currentId);
       setTimeout(() => {
         if (exercise && exercise.mode === 'circle-draw') showCelebrate();
+      }, 350);
+    }
+  }
+
+  function isRoughlyStraightStroke(pts) {
+    if (!pts || pts.length < 4) return false;
+    const len = pathLength(pts);
+    if (len < 36) return false;
+    const a = pts[0];
+    const b = pts[pts.length - 1];
+    const chord = Math.hypot(a.x - b.x, a.y - b.y);
+    /* Straight-ish: chord ≈ path length; reject loops / scribbles */
+    if (chord < Math.max(28, len * 0.68)) return false;
+    /* Also reject almost-closed shapes */
+    if (chord < 24 && len > 70) return false;
+    return true;
+  }
+
+  function strokeHitsItem(pts, el) {
+    const c = centerOf(el);
+    const half = Math.max(el.offsetWidth || 40, el.offsetHeight || 40) * 0.48;
+    let minDist = Infinity;
+    for (let i = 0; i < pts.length; i++) {
+      const d = Math.hypot(pts[i].x - c.x, pts[i].y - c.y);
+      if (d < minDist) minDist = d;
+    }
+    if (minDist > half) return false;
+    const a = pts[0];
+    const b = pts[pts.length - 1];
+    const startDist = Math.hypot(a.x - c.x, a.y - c.y);
+    const endDist = Math.hypot(b.x - c.x, b.y - c.y);
+    /* Prefer a swipe that crosses through (at least one end outside-ish) */
+    return startDist > half * 0.35 || endDist > half * 0.35;
+  }
+
+  function findStruckCandy(pts) {
+    if (!exercise || exercise.mode !== 'strike-draw') return null;
+    if (!isRoughlyStraightStroke(pts)) return null;
+    let best = null;
+    let bestDist = Infinity;
+    itemEls.forEach((el, id) => {
+      const meta = itemMeta.get(id);
+      if (!meta || meta.role !== 'source') return;
+      if (!strokeHitsItem(pts, el)) return;
+      const c = centerOf(el);
+      const mid = pts[Math.floor(pts.length / 2)];
+      const d = Math.hypot(mid.x - c.x, mid.y - c.y);
+      if (d < bestDist) {
+        bestDist = d;
+        best = { id, el, meta };
+      }
+    });
+    return best;
+  }
+
+  function placeStrikeMark(id, el) {
+    const c = centerOf(el);
+    const size = Math.max(el.offsetWidth || 40, el.offsetHeight || 40) * 0.55;
+    const { w: sw, h: sh } = stageSize();
+    let mark = strikeMarks.get(id);
+    if (!mark) {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'strike-mark');
+      const l1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      const l2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      g.appendChild(l1);
+      g.appendChild(l2);
+      linesSvg.appendChild(g);
+      mark = { el: g, l1: l1, l2: l2, normSize: size / Math.min(sw || 1, sh || 1) };
+      strikeMarks.set(id, mark);
+    }
+    const s = size;
+    mark.l1.setAttribute('x1', String(c.x - s));
+    mark.l1.setAttribute('y1', String(c.y - s * 0.55));
+    mark.l1.setAttribute('x2', String(c.x + s));
+    mark.l1.setAttribute('y2', String(c.y + s * 0.55));
+    mark.l2.setAttribute('x1', String(c.x + s));
+    mark.l2.setAttribute('y1', String(c.y - s * 0.55));
+    mark.l2.setAttribute('x2', String(c.x - s));
+    mark.l2.setAttribute('y2', String(c.y + s * 0.55));
+    mark.normSize = s / Math.min(sw || 1, sh || 1);
+  }
+
+  function redrawStrikeMarks() {
+    if (!strikeDrawMode) return;
+    const { w: sw, h: sh } = stageSize();
+    const base = Math.min(sw || 1, sh || 1);
+    strikeMarks.forEach((mark, id) => {
+      const el = itemEls.get(id);
+      if (!el || !mark.el) return;
+      const c = centerOf(el);
+      const s = (mark.normSize || 0.08) * base;
+      mark.l1.setAttribute('x1', String(c.x - s));
+      mark.l1.setAttribute('y1', String(c.y - s * 0.55));
+      mark.l1.setAttribute('x2', String(c.x + s));
+      mark.l1.setAttribute('y2', String(c.y + s * 0.55));
+      mark.l2.setAttribute('x1', String(c.x + s));
+      mark.l2.setAttribute('y1', String(c.y - s * 0.55));
+      mark.l2.setAttribute('x2', String(c.x - s));
+      mark.l2.setAttribute('y2', String(c.y + s * 0.55));
+    });
+  }
+
+  function endStrikeDraw(clientX, clientY) {
+    if (!drawing) return;
+    const pts = points.slice();
+    if (clientX != null && clientY != null) {
+      pts.push(stagePoint(clientX, clientY));
+    }
+    drawing = false;
+    drawFromId = null;
+    livePath = null;
+    points = [];
+    activePointerId = null;
+    drawSvg.innerHTML = '';
+
+    const hit = findStruckCandy(simplify(pts, 4));
+    if (!hit) return;
+
+    const isTarget = hit.meta.match === (exercise.targetMatch || 'odd');
+    if (!isTarget) {
+      gentleShake(hit.el);
+      return;
+    }
+    if (matched.has(hit.id)) return;
+
+    matched.add(hit.id);
+    hit.el.classList.add('struck');
+    placeStrikeMark(hit.id, hit.el);
+    playCorrectBing();
+
+    const need = exercise.sources.filter((s) => s.match === (exercise.targetMatch || 'odd'));
+    const done = need.every((s) => matched.has(s.id));
+    if (done) {
+      markExerciseComplete(currentId);
+      setTimeout(() => {
+        if (exercise && exercise.mode === 'strike-draw') showCelebrate();
       }, 350);
     }
   }
@@ -2765,7 +3337,7 @@
     if (drawing) return;
     if (exercise && exercise.mode === 'count-fill') return;
     let started = false;
-    if (exercise && exercise.mode === 'circle-draw') {
+    if (exercise && (exercise.mode === 'circle-draw' || exercise.mode === 'strike-draw')) {
       started = beginCircleDraw(e.pointerId, e.clientX, e.clientY);
     } else {
       started = beginDraw(e.pointerId, e.clientX, e.clientY);
@@ -2778,7 +3350,7 @@
 
   stage.addEventListener('pointermove', (e) => {
     if (!drawing || e.pointerId !== activePointerId) return;
-    if (exercise && exercise.mode === 'circle-draw') {
+    if (exercise && (exercise.mode === 'circle-draw' || exercise.mode === 'strike-draw')) {
       moveCircleDraw(e.clientX, e.clientY);
     } else {
       moveDraw(e.clientX, e.clientY);
@@ -2790,6 +3362,8 @@
     if (!drawing || e.pointerId !== activePointerId) return;
     if (exercise && exercise.mode === 'circle-draw') {
       endCircleDraw(e.clientX, e.clientY);
+    } else if (exercise && exercise.mode === 'strike-draw') {
+      endStrikeDraw(e.clientX, e.clientY);
     } else {
       endDraw(e.clientX, e.clientY);
     }
@@ -2821,9 +3395,29 @@
 
   celebrateNext.addEventListener('click', () => {
     hideCelebrate();
-    const nextId = nextUnfinishedId(currentId);
-    if (nextId) startExercise(nextId);
+    const nextId = pickRandomIncompleteExercise();
+    if (nextId) {
+      startExercise(nextId);
+    } else {
+      clearBoard();
+      showScreen('home');
+      showHomeToast('Alle Rätsel geschafft!');
+    }
   });
+
+  const btnZufall = document.getElementById('btn-zufall');
+  if (btnZufall) {
+    btnZufall.addEventListener('click', () => {
+      const id = pickRandomIncompleteExercise();
+      if (!id) {
+        showHomeToast('Alle Rätsel geschafft!');
+        return;
+      }
+      startExercise(id);
+    });
+  }
+
+  applyMenuNumbers();
 
   celebrateHome.addEventListener('click', () => {
     hideCelebrate();
@@ -2867,7 +3461,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=29').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=30').catch(() => {});
     });
   }
 

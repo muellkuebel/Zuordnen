@@ -834,3 +834,127 @@ body {
   border-radius: 0.35cm;
   box-shadow: inset 0 0 0 0.06cm rgba(210, 120, 40, 0.22);
 }
+
+
+/* —— Menu number badges —— */
+.num-badge {
+  position: absolute;
+  left: 0.22cm;
+  top: 0.18cm;
+  min-width: 0.55cm;
+  height: 0.55cm;
+  padding: 0 0.12cm;
+  border-radius: 0.28cm;
+  background: #FFEAA7;
+  border: 0.05cm solid #2D3436;
+  box-shadow: 0.04cm 0.05cm 0 #2D3436;
+  color: #2D3436;
+  font-size: 0.32cm;
+  font-weight: 900;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.home-btns .big-btn[data-exercise] {
+  padding-left: 0.95cm;
+}
+
+/* —— Zufall button —— */
+.zufall-btn {
+  width: 100%;
+  min-height: 1.55cm;
+  margin: 0.1cm 0 0.15cm;
+  border: 0.08cm solid #2D3436;
+  border-radius: 0.55cm;
+  background: linear-gradient(135deg, #FF8C42 0%, #FF6B35 55%, #E63946 100%);
+  color: #fff;
+  box-shadow: 0.12cm 0.14cm 0 #2D3436, 0 0.2cm 0.4cm rgba(0,0,0,.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35cm;
+  cursor: pointer;
+  touch-action: manipulation;
+  appearance: none;
+  -webkit-appearance: none;
+  flex: 0 0 auto;
+  transform: rotate(-0.8deg);
+}
+.zufall-btn:active {
+  transform: translate(0.08cm, 0.08cm) rotate(0deg);
+  box-shadow: 0.03cm 0.04cm 0 #2D3436;
+}
+.zufall-label {
+  font-size: clamp(1.15rem, 3.6vw, 1.55rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+.zufall-dice {
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 0.06cm 0 rgba(0,0,0,.2));
+}
+
+/* —— Home toast —— */
+.home-toast {
+  position: absolute;
+  left: 50%;
+  bottom: 0.55cm;
+  transform: translateX(-50%) translateY(0.4cm);
+  background: #2D3436;
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(0.95rem, 2.8vw, 1.15rem);
+  padding: 0.35cm 0.7cm;
+  border-radius: 0.4cm;
+  border: 0.06cm solid #FFEAA7;
+  box-shadow: 0.1cm 0.12cm 0 rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 5;
+  white-space: nowrap;
+  max-width: 92%;
+}
+.home-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Pastel tiles for new menu buttons 20–24 */
+.home-btns .big-btn:nth-child(20) { background: #FFF8E1; border-color: #F9A825; box-shadow: 0.1cm 0.12cm 0 #F57F17, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
+.home-btns .big-btn:nth-child(21) { background: #FCE4EC; border-color: #EC407A; box-shadow: 0.1cm 0.12cm 0 #C2185B, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
+.home-btns .big-btn:nth-child(22) { background: #E8F5E9; border-color: #66BB6A; box-shadow: 0.1cm 0.12cm 0 #2E7D32, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
+.home-btns .big-btn:nth-child(23) { background: #E3F2FD; border-color: #42A5F5; box-shadow: 0.1cm 0.12cm 0 #1565C0, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
+.home-btns .big-btn:nth-child(24) { background: #F3E5F5; border-color: #AB47BC; box-shadow: 0.1cm 0.12cm 0 #6A1B9A, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
+
+/* Strike-through marks (Bonbons odd-one-out) */
+.strike-mark line {
+  stroke: #E63946;
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  opacity: 0.95;
+  pointer-events: none;
+}
+.item.struck {
+  filter: drop-shadow(0 0 0.1cm rgba(230, 57, 70, 0.45));
+}
+
+/* Candy strike / size boards */
+#board.candy-strike-board {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255,255,255,0.5) 0 0.3cm, transparent 0.35cm),
+    linear-gradient(180deg, #FFF5F8 0%, #FFE8F0 55%, #FFD6E5 100%);
+  border-radius: 0.35cm;
+  box-shadow: inset 0 0 0 0.06cm rgba(232, 67, 147, 0.18);
+}
+#board.size-board {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255,255,255,0.4) 0 0.3cm, transparent 0.35cm),
+    linear-gradient(180deg, #E8F5E9 0%, #C8E6C9 50%, #A5D6A7 100%);
+  border-radius: 0.35cm;
+  box-shadow: inset 0 0 0 0.06cm rgba(46, 125, 50, 0.18);
+}
