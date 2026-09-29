@@ -135,7 +135,24 @@ body {
   flex: 1 1 auto;
   min-height: 0;
   padding-right: 0.1cm;
+  padding-top: 0.12cm;
+  padding-bottom: 0.12cm;
   touch-action: pan-y;
+  /* Soft fade (Weichzeichner) at top & bottom so list doesn't hard-clip */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 0.35cm,
+    #000 calc(100% - 0.35cm),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 0.35cm,
+    #000 calc(100% - 0.35cm),
+    transparent 100%
+  );
 }
 
 .big-btn {
@@ -931,19 +948,23 @@ body {
 .home-btns .big-btn:nth-child(23) { background: #E3F2FD; border-color: #42A5F5; box-shadow: 0.1cm 0.12cm 0 #1565C0, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
 .home-btns .big-btn:nth-child(24) { background: #F3E5F5; border-color: #AB47BC; box-shadow: 0.1cm 0.12cm 0 #6A1B9A, 0 0.2cm 0.35cm rgba(0,0,0,.1); }
 
-/* Strike-through marks (Bonbons odd-one-out) */
+/* Strike-through marks (Bonbons odd-one-out) — green X on correct */
 .strike-mark line {
-  stroke: #E63946;
+  stroke: #52B788;
   stroke-width: 4.5;
   stroke-linecap: round;
   opacity: 0.95;
   pointer-events: none;
 }
 .item.struck {
-  filter: drop-shadow(0 0 0.1cm rgba(230, 57, 70, 0.45));
+  filter: drop-shadow(0 0 0.1cm rgba(82, 183, 136, 0.5));
 }
 
-/* Candy strike / size boards */
+/* Candy strike / size boards + horizontal row dividers */
+#board.candy-strike-board,
+#board.size-board {
+  position: relative;
+}
 #board.candy-strike-board {
   background:
     radial-gradient(circle at 20% 18%, rgba(255,255,255,0.5) 0 0.3cm, transparent 0.35cm),
@@ -957,4 +978,20 @@ body {
     linear-gradient(180deg, #E8F5E9 0%, #C8E6C9 50%, #A5D6A7 100%);
   border-radius: 0.35cm;
   box-shadow: inset 0 0 0 0.06cm rgba(46, 125, 50, 0.18);
+}
+/* Horizontal lines between the 3 rows */
+#board.candy-strike-board::before,
+#board.size-board::before {
+  content: '';
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(#64748B, #64748B) center 35% / 100% 2px no-repeat,
+    linear-gradient(#64748B, #64748B) center 65% / 100% 2px no-repeat;
+  opacity: 0.45;
 }

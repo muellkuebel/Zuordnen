@@ -721,19 +721,17 @@
 
   function pairSailboatSvg(sailTop) {
     const top = sailTop || COLORS.green;
+    /* Clear triangular sails: large main (match color) + yellow jib */
     return `
       <svg viewBox="0 0 110 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <ellipse cx="55" cy="86" rx="40" ry="8" fill="#89C2D9" opacity=".45"/>
-        <path d="M18 78 Q55 92 92 78 L84 68 H26 Z" fill="#8B5E3C" stroke="#2D3436" stroke-width="2.2" stroke-linejoin="round"/>
-        <rect x="52" y="18" width="4.5" height="52" rx="1.5" fill="#5C4033" stroke="#2D3436" stroke-width="1.4"/>
-        <!-- lower main sail (red) -->
-        <polygon points="57,42 86,62 57,68" fill="#E63946" stroke="#2D3436" stroke-width="2" stroke-linejoin="round"/>
-        <!-- top-left sail segment (match color) -->
-        <polygon points="57,20 57,44 30,40" fill="${top}" stroke="#2D3436" stroke-width="2" stroke-linejoin="round"/>
-        <!-- jib yellow/red -->
-        <polygon points="52,28 52,66 22,58" fill="#FFD60A" stroke="#2D3436" stroke-width="2" stroke-linejoin="round"/>
-        <polygon points="52,48 52,66 28,60" fill="#E63946" opacity=".85"/>
-        <ellipse cx="68" cy="50" rx="4" ry="3" fill="#fff" opacity=".3"/>
+        <ellipse cx="55" cy="88" rx="42" ry="7" fill="#89C2D9" opacity=".4"/>
+        <path d="M16 80 Q55 94 94 80 L86 70 H24 Z" fill="#8B5E3C" stroke="#2D3436" stroke-width="2.2" stroke-linejoin="round"/>
+        <line x1="52" y1="14" x2="52" y2="72" stroke="#5C4033" stroke-width="4.5" stroke-linecap="round"/>
+        <!-- main sail (match color) — clean right triangle -->
+        <polygon points="54,14 96,70 54,70" fill="${top}" stroke="#2D3436" stroke-width="2.4" stroke-linejoin="round"/>
+        <!-- jib — clean left triangle (yellow so top sail color stays readable) -->
+        <polygon points="50,28 50,70 16,70" fill="#FFD60A" stroke="#2D3436" stroke-width="2.4" stroke-linejoin="round"/>
+        <ellipse cx="72" cy="48" rx="5" ry="3.5" fill="#fff" opacity=".28"/>
       </svg>`;
   }
 
@@ -840,12 +838,25 @@
   }
 
   function fruitBasketSvg(kind) {
+    /* Whole basket tinted to matching fruit color (not only the front icon) */
+    let body = COLORS.yellow;
+    let handle = '#E0B000';
+    if (kind === 'apple') {
+      body = COLORS.red;
+      handle = '#C1121F';
+    } else if (kind === 'pear') {
+      body = COLORS.green;
+      handle = '#3A9B6A';
+    } else if (kind === 'banana') {
+      body = COLORS.yellow;
+      handle = '#E0B000';
+    }
     return `
       <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M28 28 Q50 8 72 28" fill="none" stroke="#C4A574" stroke-width="6" stroke-linecap="round"/>
-        <path d="M12 38 Q14 78 50 82 Q86 78 88 38 Z" fill="#E8C99B" stroke="#2D3436" stroke-width="2.4"/>
-        <path d="M20 48 H80 M22 58 H78 M26 68 H74" stroke="#8B5E3C" stroke-width="2" opacity=".35"/>
-        <ellipse cx="50" cy="40" rx="30" ry="7" fill="rgba(255,255,255,.35)"/>
+        <path d="M28 28 Q50 8 72 28" fill="none" stroke="${handle}" stroke-width="6" stroke-linecap="round"/>
+        <path d="M12 38 Q14 78 50 82 Q86 78 88 38 Z" fill="${body}" stroke="#2D3436" stroke-width="2.4"/>
+        <path d="M20 48 H80 M22 58 H78 M26 68 H74" stroke="rgba(0,0,0,.28)" stroke-width="2"/>
+        <ellipse cx="50" cy="40" rx="30" ry="7" fill="rgba(255,255,255,.32)"/>
         ${fruitIconMini(kind)}
       </svg>`;
   }
@@ -2004,10 +2015,10 @@
       hint: 'Verbinde Stift und Bild gleicher Farbe.',
       mode: 'one-to-one',
       sources: [
-        { id: 'pen_red', match: 'red', svg: () => pencilSvg(COLORS.red), x: 0.20, y: 0.16, w: 0.14, aspect: 1.45 },
-        { id: 'pen_green', match: 'green', svg: () => pencilSvg(COLORS.green), x: 0.20, y: 0.39, w: 0.14, aspect: 1.45 },
-        { id: 'pen_blue', match: 'blue', svg: () => pencilSvg(COLORS.blue), x: 0.20, y: 0.62, w: 0.14, aspect: 1.45 },
-        { id: 'pen_yellow', match: 'yellow', svg: () => pencilSvg(COLORS.yellow), x: 0.20, y: 0.85, w: 0.14, aspect: 1.45 },
+        { id: 'pen_red', match: 'red', svg: () => pencilSvg(COLORS.red), x: 0.20, y: 0.16, w: 0.11, aspect: 1.45 },
+        { id: 'pen_green', match: 'green', svg: () => pencilSvg(COLORS.green), x: 0.20, y: 0.39, w: 0.11, aspect: 1.45 },
+        { id: 'pen_blue', match: 'blue', svg: () => pencilSvg(COLORS.blue), x: 0.20, y: 0.62, w: 0.11, aspect: 1.45 },
+        { id: 'pen_yellow', match: 'yellow', svg: () => pencilSvg(COLORS.yellow), x: 0.20, y: 0.85, w: 0.11, aspect: 1.45 },
       ],
       targets: [
         { id: 'img_frog', match: 'green', svg: frogMatchSvg, x: 0.78, y: 0.16, w: 0.20, aspect: 0.9 },
@@ -2131,13 +2142,13 @@
       hint: 'Verbinde Schmetterling und Blume.',
       mode: 'one-to-one',
       sources: [
-        /* Worksheet pairs: green→red, blue→purple, yellow→yellow */
+        /* Pairs: green→red, blue→blue, yellow→yellow */
         { id: 'bf_green', match: 'green-red', svg: () => butterflySvg(COLORS.green), x: 0.20, y: 0.22, w: 0.20, aspect: 0.9 },
-        { id: 'bf_blue', match: 'blue-purple', svg: () => butterflySvg(COLORS.blue), x: 0.20, y: 0.50, w: 0.20, aspect: 0.9 },
+        { id: 'bf_blue', match: 'blue-blue', svg: () => butterflySvg(COLORS.blue), x: 0.20, y: 0.50, w: 0.20, aspect: 0.9 },
         { id: 'bf_yellow', match: 'yellow-yellow', svg: () => butterflySvg(COLORS.yellow), x: 0.20, y: 0.78, w: 0.20, aspect: 0.9 },
       ],
       targets: [
-        { id: 'fl_purple', match: 'blue-purple', svg: () => matchFlowerSvg(COLORS.purple), x: 0.78, y: 0.22, w: 0.18, aspect: 1.2 },
+        { id: 'fl_blue', match: 'blue-blue', svg: () => matchFlowerSvg(COLORS.blue), x: 0.78, y: 0.22, w: 0.18, aspect: 1.2 },
         { id: 'fl_yellow', match: 'yellow-yellow', svg: () => matchFlowerSvg(COLORS.yellow), x: 0.78, y: 0.50, w: 0.18, aspect: 1.2 },
         { id: 'fl_red', match: 'green-red', svg: () => matchFlowerSvg(COLORS.red), x: 0.78, y: 0.78, w: 0.18, aspect: 1.2 },
       ],
@@ -3461,7 +3472,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=30').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=31').catch(() => {});
     });
   }
 
