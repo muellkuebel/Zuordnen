@@ -960,11 +960,10 @@ body {
   filter: drop-shadow(0 0 0.1cm rgba(82, 183, 136, 0.5));
 }
 
-/* Candy strike / size boards + horizontal row dividers */
-#board.candy-strike-board,
-#board.size-board {
-  position: relative;
-}
+/* Candy strike / size boards + horizontal row dividers
+   Do NOT set position:relative here — #board is already position:absolute; inset:0.
+   Overriding to relative collapses height to 0 (children are absolute), so pastel
+   backgrounds and %-positioned ::before/::after dividers never paint. */
 #board.candy-strike-board {
   background:
     radial-gradient(circle at 20% 18%, rgba(255,255,255,0.5) 0 0.3cm, transparent 0.35cm),
@@ -979,19 +978,30 @@ body {
   border-radius: 0.35cm;
   box-shadow: inset 0 0 0 0.06cm rgba(46, 125, 50, 0.18);
 }
-/* Horizontal lines between the 3 rows */
+/* Full-width horizontal dividers under row 1 and row 2 */
 #board.candy-strike-board::before,
-#board.size-board::before {
+#board.size-board::before,
+#board.candy-strike-board::after,
+#board.size-board::after {
   content: '';
   position: absolute;
-  left: 6%;
-  right: 6%;
-  top: 0;
-  bottom: 0;
+  left: 3%;
+  right: 3%;
+  height: 3px;
+  background: #5C4A3A; /* soft brown — clearly visible on pastel boards */
+  border-radius: 2px;
   pointer-events: none;
-  z-index: 0;
-  background:
-    linear-gradient(#64748B, #64748B) center 35% / 100% 2px no-repeat,
-    linear-gradient(#64748B, #64748B) center 65% / 100% 2px no-repeat;
-  opacity: 0.45;
+  z-index: 1; /* above board wash, below .item (z-index 4) */
+  opacity: 0.9;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+/* Under row 1 (candies ~y0.20 / sheep ~y0.18) */
+#board.candy-strike-board::before,
+#board.size-board::before {
+  top: 34%;
+}
+/* Under row 2 (candies ~y0.50 / elephants ~y0.50) */
+#board.candy-strike-board::after,
+#board.size-board::after {
+  top: 66%;
 }
