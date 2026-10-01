@@ -1688,6 +1688,369 @@
   }
 
 
+
+  /* —— Neue Motive: Vorne/Hinten, Regensachen, Pizza, Murmeln, Erstes Zählen —— */
+
+  function animalFrontElephantSvg() {
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="50" cy="62" rx="28" ry="22" fill="#B0BEC5" stroke="#2D3436" stroke-width="2.2"/>
+        <ellipse cx="22" cy="48" rx="14" ry="18" fill="#90A4AE" stroke="#2D3436" stroke-width="2"/>
+        <ellipse cx="78" cy="48" rx="14" ry="18" fill="#90A4AE" stroke="#2D3436" stroke-width="2"/>
+        <circle cx="50" cy="42" r="20" fill="#B0BEC5" stroke="#2D3436" stroke-width="2.2"/>
+        <path d="M44 52 Q50 78 56 52" fill="#90A4AE" stroke="#2D3436" stroke-width="2"/>
+        <path d="M48 70 Q42 82 46 88" fill="none" stroke="#78909C" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="42" cy="38" rx="3.2" ry="4" fill="#fff"/>
+        <ellipse cx="58" cy="38" rx="3.2" ry="4" fill="#fff"/>
+        <circle cx="43" cy="39" r="1.8" fill="#222"/>
+        <circle cx="59" cy="39" r="1.8" fill="#222"/>
+        <path d="M36 48 L30 54 M64 48 L70 54" fill="none" stroke="#ECEFF1" stroke-width="3" stroke-linecap="round"/>
+        <rect x="36" y="78" width="8" height="14" rx="3" fill="#78909C" stroke="#2D3436" stroke-width="1.4"/>
+        <rect x="56" y="78" width="8" height="14" rx="3" fill="#78909C" stroke="#2D3436" stroke-width="1.4"/>
+      </svg>`;
+  }
+
+  function animalBackElephantSvg() {
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="50" cy="58" rx="30" ry="24" fill="#B0BEC5" stroke="#2D3436" stroke-width="2.2"/>
+        <ellipse cx="18" cy="50" rx="10" ry="14" fill="#90A4AE" stroke="#2D3436" stroke-width="1.8"/>
+        <ellipse cx="82" cy="50" rx="10" ry="14" fill="#90A4AE" stroke="#2D3436" stroke-width="1.8"/>
+        <path d="M50 78 Q48 92 52 96" fill="none" stroke="#78909C" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="52" cy="96" rx="5" ry="3" fill="#546E7A"/>
+        <path d="M42 34 Q36 22 30 28" fill="none" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
+        <rect x="34" y="78" width="8" height="14" rx="3" fill="#78909C" stroke="#2D3436" stroke-width="1.4"/>
+        <rect x="58" y="78" width="8" height="14" rx="3" fill="#78909C" stroke="#2D3436" stroke-width="1.4"/>
+      </svg>`;
+  }
+
+  function animalFrontLionSvg() {
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="50" cy="48" r="30" fill="#E17055" stroke="#2D3436" stroke-width="2.2"/>
+        <ellipse cx="50" cy="72" rx="18" ry="16" fill="#F4A261" stroke="#2D3436" stroke-width="2"/>
+        <circle cx="50" cy="46" r="18" fill="#F4A261" stroke="#2D3436" stroke-width="2"/>
+        <circle cx="42" cy="44" r="2.4" fill="#222"/>
+        <circle cx="58" cy="44" r="2.4" fill="#222"/>
+        <ellipse cx="50" cy="52" rx="4" ry="3" fill="#E76F3C"/>
+        <path d="M44 58 Q50 64 56 58" fill="none" stroke="#2D3436" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="28" cy="30" r="7" fill="#E17055" stroke="#2D3436" stroke-width="1.5"/>
+        <circle cx="72" cy="30" r="7" fill="#E17055" stroke="#2D3436" stroke-width="1.5"/>
+        <circle cx="22" cy="50" r="7" fill="#E17055" stroke="#2D3436" stroke-width="1.5"/>
+        <circle cx="78" cy="50" r="7" fill="#E17055" stroke="#2D3436" stroke-width="1.5"/>
+        <path d="M68 78 Q86 70 88 88" fill="none" stroke="#E17055" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="88" cy="90" rx="5" ry="3.5" fill="#E76F3C" stroke="#2D3436" stroke-width="1.2"/>
+        <rect x="40" y="84" width="7" height="10" rx="2" fill="#E76F3C" stroke="#2D3436" stroke-width="1.2"/>
+        <rect x="54" y="84" width="7" height="10" rx="2" fill="#E76F3C" stroke="#2D3436" stroke-width="1.2"/>
+      </svg>`;
+  }
+
+  function animalBackLionSvg() {
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="50" cy="46" r="30" fill="#E17055" stroke="#2D3436" stroke-width="2.2"/>
+        <ellipse cx="50" cy="70" rx="18" ry="16" fill="#F4A261" stroke="#2D3436" stroke-width="2"/>
+        <circle cx="50" cy="44" r="16" fill="#F4A261" stroke="#2D3436" stroke-width="1.8"/>
+        <circle cx="28" cy="28" r="7" fill="#E17055" stroke="#2D3436" stroke-width="1.5"/>
+        <circle cx="72" cy="28" r="7" fill="#E17055" stroke="#2D3436" stroke-width="1.5"/>
+        <circle cx="22" cy="48" r="7" fill="#E17055" stroke="#2D3436" stroke-width="1.5"/>
+        <circle cx="78" cy="48" r="7" fill="#E17055" stroke="#2D3436" stroke-width="1.5"/>
+        <path d="M32 78 Q14 70 12 88" fill="none" stroke="#E17055" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="12" cy="90" rx="5" ry="3.5" fill="#E76F3C" stroke="#2D3436" stroke-width="1.2"/>
+        <rect x="40" y="82" width="7" height="12" rx="2" fill="#E76F3C" stroke="#2D3436" stroke-width="1.2"/>
+        <rect x="54" y="82" width="7" height="12" rx="2" fill="#E76F3C" stroke="#2D3436" stroke-width="1.2"/>
+      </svg>`;
+  }
+
+  function animalFrontSheepSvg() {
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="50" cy="58" rx="30" ry="24" fill="#F5F5F5" stroke="#94A3B8" stroke-width="2"/>
+        <circle cx="28" cy="48" r="10" fill="#F5F5F5" stroke="#94A3B8" stroke-width="1.5"/>
+        <circle cx="72" cy="48" r="10" fill="#F5F5F5" stroke="#94A3B8" stroke-width="1.5"/>
+        <circle cx="50" cy="36" r="12" fill="#F5F5F5" stroke="#94A3B8" stroke-width="1.5"/>
+        <ellipse cx="50" cy="48" rx="14" ry="12" fill="#8B6914" stroke="#5C4033" stroke-width="1.6"/>
+        <ellipse cx="50" cy="54" rx="7" ry="5" fill="#C4A574"/>
+        <circle cx="44" cy="46" r="2" fill="#222"/>
+        <circle cx="56" cy="46" r="2" fill="#222"/>
+        <ellipse cx="38" cy="36" rx="4" ry="7" fill="#5C4033"/>
+        <ellipse cx="62" cy="36" rx="4" ry="7" fill="#5C4033"/>
+        <rect x="36" y="78" width="6" height="14" rx="2" fill="#5C4033"/>
+        <rect x="48" y="78" width="6" height="14" rx="2" fill="#5C4033"/>
+        <rect x="58" y="78" width="6" height="14" rx="2" fill="#5C4033"/>
+      </svg>`;
+  }
+
+  function animalBackSheepSvg() {
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="50" cy="56" rx="30" ry="24" fill="#F5F5F5" stroke="#94A3B8" stroke-width="2"/>
+        <circle cx="28" cy="46" r="10" fill="#F5F5F5" stroke="#94A3B8" stroke-width="1.5"/>
+        <circle cx="72" cy="46" r="10" fill="#F5F5F5" stroke="#94A3B8" stroke-width="1.5"/>
+        <circle cx="50" cy="34" r="11" fill="#F5F5F5" stroke="#94A3B8" stroke-width="1.5"/>
+        <path d="M50 78 Q48 86 52 90 Q56 86 54 78" fill="#E8E8E8" stroke="#94A3B8" stroke-width="1.4"/>
+        <rect x="34" y="76" width="6" height="14" rx="2" fill="#5C4033"/>
+        <rect x="46" y="76" width="6" height="14" rx="2" fill="#5C4033"/>
+        <rect x="58" y="76" width="6" height="14" rx="2" fill="#5C4033"/>
+      </svg>`;
+  }
+
+  function animalFrontHareSvg() {
+    return `
+      <svg viewBox="0 0 90 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="32" cy="22" rx="9" ry="24" fill="#C4A574" stroke="#8B5E3C" stroke-width="1.6" transform="rotate(-8 32 22)"/>
+        <ellipse cx="32" cy="22" rx="4" ry="14" fill="#E8C4A0" transform="rotate(-8 32 22)"/>
+        <ellipse cx="58" cy="22" rx="9" ry="24" fill="#C4A574" stroke="#8B5E3C" stroke-width="1.6" transform="rotate(8 58 22)"/>
+        <ellipse cx="58" cy="22" rx="4" ry="14" fill="#E8C4A0" transform="rotate(8 58 22)"/>
+        <ellipse cx="45" cy="78" rx="22" ry="20" fill="#C4A574" stroke="#8B5E3C" stroke-width="1.8"/>
+        <circle cx="45" cy="52" r="20" fill="#C4A574" stroke="#8B5E3C" stroke-width="1.8"/>
+        <circle cx="37" cy="50" r="2.2" fill="#222"/>
+        <circle cx="53" cy="50" r="2.2" fill="#222"/>
+        <ellipse cx="45" cy="58" rx="4" ry="3" fill="#E8897A"/>
+        <path d="M40 62 Q45 66 50 62" fill="none" stroke="#5C4033" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="28" y1="56" x2="18" y2="54" stroke="#5C4033" stroke-width="1.2"/>
+        <line x1="28" y1="60" x2="18" y2="62" stroke="#5C4033" stroke-width="1.2"/>
+        <line x1="62" y1="56" x2="72" y2="54" stroke="#5C4033" stroke-width="1.2"/>
+        <line x1="62" y1="60" x2="72" y2="62" stroke="#5C4033" stroke-width="1.2"/>
+        <ellipse cx="34" cy="92" rx="7" ry="5" fill="#A67C52" stroke="#8B5E3C" stroke-width="1.2"/>
+        <ellipse cx="56" cy="92" rx="7" ry="5" fill="#A67C52" stroke="#8B5E3C" stroke-width="1.2"/>
+      </svg>`;
+  }
+
+  function animalBackHareSvg() {
+    return `
+      <svg viewBox="0 0 90 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="32" cy="20" rx="9" ry="24" fill="#C4A574" stroke="#8B5E3C" stroke-width="1.6" transform="rotate(-6 32 20)"/>
+        <ellipse cx="58" cy="20" rx="9" ry="24" fill="#C4A574" stroke="#8B5E3C" stroke-width="1.6" transform="rotate(6 58 20)"/>
+        <ellipse cx="45" cy="76" rx="22" ry="20" fill="#C4A574" stroke="#8B5E3C" stroke-width="1.8"/>
+        <circle cx="45" cy="50" r="18" fill="#C4A574" stroke="#8B5E3C" stroke-width="1.8"/>
+        <circle cx="45" cy="88" r="8" fill="#FFF8E7" stroke="#E2C97E" stroke-width="1.5"/>
+        <ellipse cx="34" cy="92" rx="7" ry="5" fill="#A67C52" stroke="#8B5E3C" stroke-width="1.2"/>
+        <ellipse cx="56" cy="92" rx="7" ry="5" fill="#A67C52" stroke="#8B5E3C" stroke-width="1.2"/>
+      </svg>`;
+  }
+
+  function umbrellaSvg(side, mid) {
+    return `
+      <svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 58 Q50 8 88 58 Z" fill="${side}" stroke="#2D3436" stroke-width="2.2"/>
+        <path d="M30 58 Q50 22 70 58" fill="${mid}" stroke="#2D3436" stroke-width="1.6"/>
+        <line x1="50" y1="18" x2="50" y2="92" stroke="#8B5E3C" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="50" cy="14" r="4" fill="#546E7A" stroke="#2D3436" stroke-width="1.4"/>
+        <path d="M50 92 Q62 98 58 104" fill="none" stroke="#8B5E3C" stroke-width="4" stroke-linecap="round"/>
+        <path d="M20 58 Q28 66 36 58 Q44 66 50 58 Q56 66 64 58 Q72 66 80 58"
+          fill="none" stroke="#2D3436" stroke-width="1.5" opacity=".35"/>
+      </svg>`;
+  }
+
+  function rainBootsSvg(body, stripe) {
+    return `
+      <svg viewBox="0 0 110 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g transform="translate(4,8)">
+          <path d="M18 18 H42 V58 Q42 72 28 78 H12 Q8 72 10 58 Z" fill="${body}" stroke="#2D3436" stroke-width="2"/>
+          <rect x="12" y="40" width="30" height="10" rx="3" fill="${stripe}"/>
+          <path d="M10 70 H44 Q48 78 40 82 H14 Q8 78 10 70Z" fill="${stripe}" stroke="#2D3436" stroke-width="1.4"/>
+        </g>
+        <g transform="translate(54,8)">
+          <path d="M18 18 H42 V58 Q42 72 28 78 H12 Q8 72 10 58 Z" fill="${body}" stroke="#2D3436" stroke-width="2"/>
+          <rect x="12" y="40" width="30" height="10" rx="3" fill="${stripe}"/>
+          <path d="M10 70 H44 Q48 78 40 82 H14 Q8 78 10 70Z" fill="${stripe}" stroke="#2D3436" stroke-width="1.4"/>
+        </g>
+      </svg>`;
+  }
+
+  function pizzaSliceSvg(topping) {
+    const crust = '#E0A96D';
+    const sauce = '#E63946';
+    let tops = '';
+    if (topping === 'strips') {
+      tops = `
+        <line x1="48" y1="28" x2="48" y2="72" stroke="#C1121F" stroke-width="4" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="38" y2="68" stroke="#C1121F" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="58" y1="32" x2="58" y2="68" stroke="#C1121F" stroke-width="3.5" stroke-linecap="round"/>`;
+    } else if (topping === 'mushrooms') {
+      tops = `
+        <g transform="translate(34,36)">
+          <ellipse cx="10" cy="6" rx="10" ry="6" fill="#F5F5F5" stroke="#8B5E3C" stroke-width="1.4"/>
+          <rect x="6" y="6" width="8" height="10" rx="2" fill="#C4A574"/>
+        </g>
+        <g transform="translate(50,50)">
+          <ellipse cx="10" cy="6" rx="10" ry="6" fill="#F5F5F5" stroke="#8B5E3C" stroke-width="1.4"/>
+          <rect x="6" y="6" width="8" height="10" rx="2" fill="#C4A574"/>
+        </g>`;
+    } else if (topping === 'circles') {
+      tops = `
+        <circle cx="40" cy="40" r="7" fill="#C1121F" stroke="#8B0000" stroke-width="1.2"/>
+        <circle cx="56" cy="52" r="7" fill="#C1121F" stroke="#8B0000" stroke-width="1.2"/>
+        <circle cx="44" cy="64" r="6" fill="#C1121F" stroke="#8B0000" stroke-width="1.2"/>`;
+    } else if (topping === 'broccoli') {
+      tops = `
+        <circle cx="40" cy="38" r="8" fill="#52B788"/>
+        <circle cx="34" cy="34" r="5" fill="#40916C"/>
+        <circle cx="46" cy="34" r="5" fill="#40916C"/>
+        <rect x="38" y="42" width="4" height="8" fill="#74C69D"/>
+        <circle cx="56" cy="56" r="7" fill="#52B788"/>
+        <circle cx="52" cy="52" r="4" fill="#40916C"/>
+        <circle cx="60" cy="52" r="4" fill="#40916C"/>
+        <rect x="54" y="58" width="4" height="7" fill="#74C69D"/>`;
+    }
+    return `
+      <svg viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M45 12 L78 88 L12 88 Z" fill="${crust}" stroke="#2D3436" stroke-width="2.2"/>
+        <path d="M45 22 L70 82 L20 82 Z" fill="${sauce}"/>
+        ${tops}
+      </svg>`;
+  }
+
+  function pizzaWholeSvg(topping) {
+    const crust = '#E0A96D';
+    const sauce = '#E63946';
+    let tops = '';
+    if (topping === 'strips') {
+      tops = `
+        <g stroke="#C1121F" stroke-width="3.2" stroke-linecap="round">
+          <line x1="38" y1="28" x2="38" y2="62"/><line x1="48" y1="24" x2="48" y2="58"/>
+          <line x1="58" y1="28" x2="58" y2="62"/><line x1="30" y1="40" x2="30" y2="70"/>
+          <line x1="66" y1="40" x2="66" y2="70"/>
+        </g>`;
+    } else if (topping === 'mushrooms') {
+      tops = `
+        <g transform="translate(28,30)"><ellipse cx="8" cy="5" rx="8" ry="5" fill="#F5F5F5" stroke="#8B5E3C" stroke-width="1.2"/><rect x="5" y="5" width="6" height="8" rx="1" fill="#C4A574"/></g>
+        <g transform="translate(52,36)"><ellipse cx="8" cy="5" rx="8" ry="5" fill="#F5F5F5" stroke="#8B5E3C" stroke-width="1.2"/><rect x="5" y="5" width="6" height="8" rx="1" fill="#C4A574"/></g>
+        <g transform="translate(36,54)"><ellipse cx="8" cy="5" rx="8" ry="5" fill="#F5F5F5" stroke="#8B5E3C" stroke-width="1.2"/><rect x="5" y="5" width="6" height="8" rx="1" fill="#C4A574"/></g>
+        <g transform="translate(58,58)"><ellipse cx="8" cy="5" rx="8" ry="5" fill="#F5F5F5" stroke="#8B5E3C" stroke-width="1.2"/><rect x="5" y="5" width="6" height="8" rx="1" fill="#C4A574"/></g>`;
+    } else if (topping === 'circles') {
+      tops = `
+        <circle cx="34" cy="34" r="6" fill="#C1121F"/><circle cx="52" cy="30" r="6" fill="#C1121F"/>
+        <circle cx="66" cy="44" r="6" fill="#C1121F"/><circle cx="40" cy="52" r="6" fill="#C1121F"/>
+        <circle cx="56" cy="58" r="5.5" fill="#C1121F"/>`;
+    } else if (topping === 'broccoli') {
+      tops = `
+        <circle cx="34" cy="34" r="7" fill="#52B788"/><circle cx="30" cy="30" r="4" fill="#40916C"/><circle cx="38" cy="30" r="4" fill="#40916C"/>
+        <circle cx="58" cy="32" r="7" fill="#52B788"/><circle cx="54" cy="28" r="4" fill="#40916C"/><circle cx="62" cy="28" r="4" fill="#40916C"/>
+        <circle cx="44" cy="54" r="7" fill="#52B788"/><circle cx="40" cy="50" r="4" fill="#40916C"/><circle cx="48" cy="50" r="4" fill="#40916C"/>
+        <circle cx="64" cy="58" r="6" fill="#52B788"/>`;
+    }
+    /* missing wedge at bottom-right */
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="50" cy="50" r="38" fill="${crust}" stroke="#2D3436" stroke-width="2.2"/>
+        <circle cx="50" cy="50" r="30" fill="${sauce}"/>
+        ${tops}
+        <path d="M50 50 L78 68 L72 82 L50 50 Z" fill="#FFF8E7"/>
+        <path d="M50 50 L78 68" stroke="#2D3436" stroke-width="1.4" opacity=".4"/>
+        <path d="M50 50 L72 82" stroke="#2D3436" stroke-width="1.4" opacity=".4"/>
+      </svg>`;
+  }
+
+  function swirlMarbleSvg() {
+    /* Kein shared gradient-id — mehrere Murmeln auf dem Board */
+    return `
+      <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="30" cy="30" r="22" fill="#B3E5FC" stroke="#2D3436" stroke-width="1.8"/>
+        <ellipse cx="24" cy="24" rx="14" ry="12" fill="#FFFDE7" opacity=".55"/>
+        <path d="M14 28 Q24 18 34 30 Q42 40 48 28" fill="none" stroke="#546E7A" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+        <path d="M18 40 Q30 28 42 42" fill="none" stroke="#FFD54F" stroke-width="2.2" stroke-linecap="round" opacity=".8"/>
+        <path d="M22 18 Q30 26 28 38" fill="none" stroke="#78909C" stroke-width="1.8" opacity=".7"/>
+        <ellipse cx="22" cy="20" rx="7" ry="4" fill="#fff" opacity=".4"/>
+      </svg>`;
+  }
+
+  function toyBlockRectSvg(color, hole) {
+    const h = hole
+      ? `<circle cx="40" cy="36" r="10" fill="#FFF8E7" stroke="#2D3436" stroke-width="1.4"/>`
+      : `<rect x="18" y="28" width="16" height="8" rx="2" fill="#fff" opacity=".25"/>`;
+    return `
+      <svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="8" y="14" width="64" height="44" rx="6" fill="${color}" stroke="#2D3436" stroke-width="2"/>
+        <path d="M14 14 L22 6 H70 L64 14 Z" fill="${color}" stroke="#2D3436" stroke-width="1.5" opacity=".9"/>
+        <path d="M72 14 L78 8 V48 L72 54 Z" fill="${color}" stroke="#2D3436" stroke-width="1.4" opacity=".85"/>
+        ${h}
+      </svg>`;
+  }
+
+  function toyBlockConeSvg(color) {
+    return `
+      <svg viewBox="0 0 70 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M35 8 L62 68 H8 Z" fill="${color}" stroke="#2D3436" stroke-width="2"/>
+        <ellipse cx="35" cy="68" rx="28" ry="8" fill="${color}" stroke="#2D3436" stroke-width="1.6"/>
+        <path d="M28 28 L40 28" stroke="#fff" stroke-width="3" opacity=".3" stroke-linecap="round"/>
+      </svg>`;
+  }
+
+  function toyBlockCylSvg(color) {
+    return `
+      <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="12" y="18" width="36" height="48" fill="${color}" stroke="#2D3436" stroke-width="2"/>
+        <ellipse cx="30" cy="18" rx="18" ry="8" fill="${color}" stroke="#2D3436" stroke-width="2"/>
+        <ellipse cx="30" cy="66" rx="18" ry="8" fill="${color}" stroke="#2D3436" stroke-width="2"/>
+        <ellipse cx="30" cy="18" rx="10" ry="4" fill="#fff" opacity=".25"/>
+      </svg>`;
+  }
+
+  function toyBlockArchSvg(color) {
+    return `
+      <svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 58 V28 Q10 10 40 10 Q70 10 70 28 V58 H54 V30 Q54 22 40 22 Q26 22 26 30 V58 Z"
+          fill="${color}" stroke="#2D3436" stroke-width="2.2"/>
+        <rect x="14" y="44" width="12" height="6" rx="1" fill="#fff" opacity=".25"/>
+      </svg>`;
+  }
+
+  function beachBallCardSvg() {
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="6" y="6" width="88" height="88" rx="12" fill="#FFF8E7" stroke="#E2C97E" stroke-width="2"/>
+        <circle cx="50" cy="50" r="28" fill="#fff" stroke="#2D3436" stroke-width="2"/>
+        <path d="M50 22 A28 28 0 0 1 74 60 L50 50 Z" fill="#E63946"/>
+        <path d="M74 60 A28 28 0 0 1 50 78 L50 50 Z" fill="#9B5DE5"/>
+        <path d="M50 78 A28 28 0 0 1 26 60 L50 50 Z" fill="#4361EE"/>
+        <path d="M26 60 A28 28 0 0 1 36 28 L50 50 Z" fill="#52B788"/>
+        <path d="M36 28 A28 28 0 0 1 50 22 L50 50 Z" fill="#FFD60A"/>
+        <circle cx="50" cy="50" r="5" fill="#FF8C42" stroke="#2D3436" stroke-width="1.2"/>
+      </svg>`;
+  }
+
+  function pencilsCardSvg() {
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="6" y="6" width="88" height="88" rx="12" fill="#FFF8E7" stroke="#E2C97E" stroke-width="2"/>
+        <g transform="translate(28,22) rotate(-18 8 30)">
+          <rect x="4" y="8" width="10" height="52" rx="2" fill="#E63946"/>
+          <polygon points="4,8 14,8 9,0" fill="#E0D5C0"/>
+          <polygon points="6,4 12,4 9,0" fill="#5C4033"/>
+        </g>
+        <g transform="translate(44,18)">
+          <rect x="4" y="8" width="10" height="56" rx="2" fill="#4361EE"/>
+          <polygon points="4,8 14,8 9,0" fill="#E0D5C0"/>
+          <polygon points="6,4 12,4 9,0" fill="#5C4033"/>
+        </g>
+        <g transform="translate(58,24) rotate(16 8 30)">
+          <rect x="4" y="8" width="10" height="52" rx="2" fill="#FFD60A"/>
+          <polygon points="4,8 14,8 9,0" fill="#E0D5C0"/>
+          <polygon points="6,4 12,4 9,0" fill="#5C4033"/>
+        </g>
+      </svg>`;
+  }
+
+  function socksPairCardSvg() {
+    return `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="6" y="6" width="88" height="88" rx="12" fill="#FFF8E7" stroke="#E2C97E" stroke-width="2"/>
+        <g transform="translate(18,22)">
+          <path d="M18 8 H34 V40 Q34 52 22 56 Q10 52 10 40 V28 Q10 20 18 16 Z" fill="#FFD60A" stroke="#2D3436" stroke-width="1.6"/>
+          <rect x="18" y="8" width="16" height="8" rx="2" fill="#FF8C42"/>
+          <ellipse cx="16" cy="52" rx="10" ry="7" fill="#FF8C42" stroke="#2D3436" stroke-width="1.2"/>
+        </g>
+        <g transform="translate(48,26)">
+          <path d="M18 8 H34 V40 Q34 52 22 56 Q10 52 10 40 V28 Q10 20 18 16 Z" fill="#FFD60A" stroke="#2D3436" stroke-width="1.6"/>
+          <rect x="18" y="8" width="16" height="8" rx="2" fill="#FF8C42"/>
+          <ellipse cx="16" cy="52" rx="10" ry="7" fill="#FF8C42" stroke="#2D3436" stroke-width="1.2"/>
+        </g>
+      </svg>`;
+  }
+
+
   const EXERCISES = {
     bonbons: {
       title: 'Bunte Bonbons',
@@ -2209,9 +2572,118 @@
       targets: [],
     },
 
+    vorneHinten: {
+      title: 'Von hinten und von vorne',
+      hint: 'Hier siehst du 4 Tiere von vorne und von hinten. Verbinde die passenden Paare!',
+      mode: 'one-to-one',
+      sources: [
+        { id: 'vh_el_f', match: 'elephant', svg: animalFrontElephantSvg, x: 0.20, y: 0.16, w: 0.20, aspect: 1.0 },
+        { id: 'vh_li_f', match: 'lion', svg: animalFrontLionSvg, x: 0.20, y: 0.39, w: 0.20, aspect: 1.0 },
+        { id: 'vh_sh_f', match: 'sheep', svg: animalFrontSheepSvg, x: 0.20, y: 0.62, w: 0.20, aspect: 1.0 },
+        { id: 'vh_ha_f', match: 'hare', svg: animalFrontHareSvg, x: 0.20, y: 0.85, w: 0.18, aspect: 1.15 },
+      ],
+      targets: [
+        { id: 'vh_sh_b', match: 'sheep', svg: animalBackSheepSvg, x: 0.78, y: 0.16, w: 0.20, aspect: 1.0 },
+        { id: 'vh_el_b', match: 'elephant', svg: animalBackElephantSvg, x: 0.78, y: 0.39, w: 0.20, aspect: 1.0 },
+        { id: 'vh_ha_b', match: 'hare', svg: animalBackHareSvg, x: 0.78, y: 0.62, w: 0.18, aspect: 1.15 },
+        { id: 'vh_li_b', match: 'lion', svg: animalBackLionSvg, x: 0.78, y: 0.85, w: 0.20, aspect: 1.0 },
+      ],
+    },
 
+    regensachen: {
+      title: 'Regensachen',
+      hint: 'Immer ein Regenschirm hat die gleichen Farben wie ein Paar Gummistiefel. Verbinde passend!',
+      mode: 'one-to-one',
+      sources: [
+        { id: 'rs_u_gb', match: 'green-blue', svg: () => umbrellaSvg(COLORS.green, COLORS.blue), x: 0.20, y: 0.22, w: 0.20, aspect: 1.1 },
+        { id: 'rs_u_rg', match: 'red-green', svg: () => umbrellaSvg(COLORS.red, COLORS.green), x: 0.20, y: 0.50, w: 0.20, aspect: 1.1 },
+        { id: 'rs_u_br', match: 'blue-red', svg: () => umbrellaSvg(COLORS.blue, COLORS.red), x: 0.20, y: 0.78, w: 0.20, aspect: 1.1 },
+      ],
+      targets: [
+        { id: 'rs_b_rg', match: 'red-green', svg: () => rainBootsSvg(COLORS.red, COLORS.green), x: 0.78, y: 0.22, w: 0.22, aspect: 0.9 },
+        { id: 'rs_b_br', match: 'blue-red', svg: () => rainBootsSvg(COLORS.blue, COLORS.red), x: 0.78, y: 0.50, w: 0.22, aspect: 0.9 },
+        { id: 'rs_b_gb', match: 'green-blue', svg: () => rainBootsSvg(COLORS.green, COLORS.blue), x: 0.78, y: 0.78, w: 0.22, aspect: 0.9 },
+      ],
+    },
 
+    pizzatag: {
+      title: 'Pizzatag',
+      hint: 'Welches Pizzastück gehört zu welcher Pizza? Verbinde!',
+      mode: 'one-to-one',
+      sources: [
+        { id: 'pz_s_strips', match: 'strips', svg: () => pizzaSliceSvg('strips'), x: 0.20, y: 0.16, w: 0.18, aspect: 1.1 },
+        { id: 'pz_s_mush', match: 'mushrooms', svg: () => pizzaSliceSvg('mushrooms'), x: 0.20, y: 0.39, w: 0.18, aspect: 1.1 },
+        { id: 'pz_s_circ', match: 'circles', svg: () => pizzaSliceSvg('circles'), x: 0.20, y: 0.62, w: 0.18, aspect: 1.1 },
+        { id: 'pz_s_broc', match: 'broccoli', svg: () => pizzaSliceSvg('broccoli'), x: 0.20, y: 0.85, w: 0.18, aspect: 1.1 },
+      ],
+      targets: [
+        { id: 'pz_w_broc', match: 'broccoli', svg: () => pizzaWholeSvg('broccoli'), x: 0.78, y: 0.16, w: 0.20, aspect: 1.0 },
+        { id: 'pz_w_strips', match: 'strips', svg: () => pizzaWholeSvg('strips'), x: 0.78, y: 0.39, w: 0.20, aspect: 1.0 },
+        { id: 'pz_w_circ', match: 'circles', svg: () => pizzaWholeSvg('circles'), x: 0.78, y: 0.62, w: 0.20, aspect: 1.0 },
+        { id: 'pz_w_mush', match: 'mushrooms', svg: () => pizzaWholeSvg('mushrooms'), x: 0.78, y: 0.85, w: 0.20, aspect: 1.0 },
+      ],
+    },
 
+    murmelsuche: {
+      title: 'Murmelsuche',
+      hint: 'Doggy sucht seine Murmeln. Kreise alle 10 Murmeln ein!',
+      mode: 'circle-draw',
+      targetMatch: 'marble',
+      boardClass: 'clutter-board',
+      itemClass: 'clutter-item',
+      itemLabel: 'Gegenstand',
+      fixedLayout: true,
+      sources: [
+        /* 10 marbles */
+        { id: 'mm_1', match: 'marble', svg: swirlMarbleSvg, x: 0.42, y: 0.14, w: 0.09, aspect: 1.0 },
+        { id: 'mm_2', match: 'marble', svg: swirlMarbleSvg, x: 0.62, y: 0.18, w: 0.09, aspect: 1.0 },
+        { id: 'mm_3', match: 'marble', svg: swirlMarbleSvg, x: 0.86, y: 0.14, w: 0.09, aspect: 1.0 },
+        { id: 'mm_4', match: 'marble', svg: swirlMarbleSvg, x: 0.28, y: 0.28, w: 0.09, aspect: 1.0 },
+        { id: 'mm_5', match: 'marble', svg: swirlMarbleSvg, x: 0.50, y: 0.42, w: 0.09, aspect: 1.0 },
+        { id: 'mm_6', match: 'marble', svg: swirlMarbleSvg, x: 0.88, y: 0.40, w: 0.09, aspect: 1.0 },
+        { id: 'mm_7', match: 'marble', svg: swirlMarbleSvg, x: 0.18, y: 0.58, w: 0.09, aspect: 1.0 },
+        { id: 'mm_8', match: 'marble', svg: swirlMarbleSvg, x: 0.40, y: 0.62, w: 0.09, aspect: 1.0 },
+        { id: 'mm_9', match: 'marble', svg: swirlMarbleSvg, x: 0.72, y: 0.66, w: 0.09, aspect: 1.0 },
+        { id: 'mm_10', match: 'marble', svg: swirlMarbleSvg, x: 0.52, y: 0.82, w: 0.09, aspect: 1.0 },
+        /* distractor blocks */
+        { id: 'mm_a1', match: 'block', svg: () => toyBlockArchSvg(COLORS.blue), x: 0.34, y: 0.12, w: 0.14, aspect: 0.85 },
+        { id: 'mm_a2', match: 'block', svg: () => toyBlockArchSvg(COLORS.red), x: 0.70, y: 0.12, w: 0.13, aspect: 0.85 },
+        { id: 'mm_a3', match: 'block', svg: () => toyBlockArchSvg(COLORS.blue), x: 0.28, y: 0.72, w: 0.14, aspect: 0.85 },
+        { id: 'mm_a4', match: 'block', svg: () => toyBlockArchSvg(COLORS.red), x: 0.78, y: 0.78, w: 0.13, aspect: 0.85 },
+        { id: 'mm_a5', match: 'block', svg: () => toyBlockArchSvg(COLORS.yellow), x: 0.58, y: 0.88, w: 0.13, aspect: 0.85 },
+        { id: 'mm_r1', match: 'block', svg: () => toyBlockRectSvg(COLORS.yellow, true), x: 0.52, y: 0.28, w: 0.13, aspect: 0.85 },
+        { id: 'mm_r2', match: 'block', svg: () => toyBlockRectSvg(COLORS.orange, true), x: 0.86, y: 0.26, w: 0.12, aspect: 0.85 },
+        { id: 'mm_r3', match: 'block', svg: () => toyBlockRectSvg(COLORS.blue, true), x: 0.58, y: 0.48, w: 0.13, aspect: 0.85 },
+        { id: 'mm_r4', match: 'block', svg: () => toyBlockRectSvg(COLORS.red, true), x: 0.22, y: 0.46, w: 0.13, aspect: 0.85 },
+        { id: 'mm_r5', match: 'block', svg: () => toyBlockRectSvg(COLORS.green, false), x: 0.14, y: 0.34, w: 0.12, aspect: 0.85 },
+        { id: 'mm_r6', match: 'block', svg: () => toyBlockRectSvg(COLORS.yellow, false), x: 0.86, y: 0.58, w: 0.12, aspect: 0.85 },
+        { id: 'mm_c1', match: 'block', svg: () => toyBlockConeSvg(COLORS.red), x: 0.18, y: 0.18, w: 0.10, aspect: 1.1 },
+        { id: 'mm_c2', match: 'block', svg: () => toyBlockConeSvg(COLORS.orange), x: 0.78, y: 0.48, w: 0.10, aspect: 1.1 },
+        { id: 'mm_y1', match: 'block', svg: () => toyBlockCylSvg(COLORS.purple), x: 0.38, y: 0.36, w: 0.08, aspect: 1.2 },
+        { id: 'mm_y2', match: 'block', svg: () => toyBlockCylSvg(COLORS.blue), x: 0.66, y: 0.36, w: 0.08, aspect: 1.2 },
+        { id: 'mm_y3', match: 'block', svg: () => toyBlockCylSvg(COLORS.green), x: 0.34, y: 0.52, w: 0.08, aspect: 1.2 },
+        { id: 'mm_y4', match: 'block', svg: () => toyBlockCylSvg(COLORS.purple), x: 0.14, y: 0.78, w: 0.08, aspect: 1.2 },
+        { id: 'mm_y5', match: 'block', svg: () => toyBlockCylSvg(COLORS.green), x: 0.90, y: 0.72, w: 0.08, aspect: 1.2 },
+      ],
+      targets: [],
+      mascot: { x: 0.12, y: 0.12, w: 0.16, aspect: 1.15 },
+    },
+
+    erstesZaehlen: {
+      title: 'Erstes Zählen',
+      hint: 'Wie viele Gegenstände sind auf jeder Karte? Zähle und verbinde mit den passenden Fingern!',
+      mode: 'one-to-one',
+      sources: [
+        { id: 'ez_ball', match: 'n1', svg: beachBallCardSvg, x: 0.20, y: 0.22, w: 0.24, aspect: 1.0 },
+        { id: 'ez_pens', match: 'n3', svg: pencilsCardSvg, x: 0.50, y: 0.22, w: 0.24, aspect: 1.0 },
+        { id: 'ez_socks', match: 'n2', svg: socksPairCardSvg, x: 0.80, y: 0.22, w: 0.24, aspect: 1.0 },
+      ],
+      targets: [
+        { id: 'ez_h1', match: 'n1', svg: () => handSvg(1), x: 0.20, y: 0.78, w: 0.22, aspect: 1.1 },
+        { id: 'ez_h2', match: 'n2', svg: () => handSvg(2), x: 0.50, y: 0.78, w: 0.22, aspect: 1.1 },
+        { id: 'ez_h3', match: 'n3', svg: () => handSvg(3), x: 0.80, y: 0.78, w: 0.22, aspect: 1.1 },
+      ],
+    },
 
 
   };
@@ -2259,6 +2731,11 @@
     'schmetterlinge',
     'bonbonsStreichen',
     'grossUndKlein',
+    'vorneHinten',
+    'regensachen',
+    'pizzatag',
+    'murmelsuche',
+    'erstesZaehlen',
   ];
 
   /* Session-only completion (in-memory; clears when app fully reopened) */
