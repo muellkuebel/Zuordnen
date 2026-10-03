@@ -2110,21 +2110,35 @@
     return out;
   }
 
+  /* Corridor around a mole tunnel. Base was max(20, min(sw,sh)*0.055); kids get 2.2×. */
   function traceTol(sw, sh) {
-    return Math.max(20, Math.min(sw, sh) * 0.055);
+    const base = Math.max(20, Math.min(sw, sh) * 0.055);
+    return base * 2.2;
   }
 
   function traceStartOk(hit, tol) {
-    return hit.dist <= tol && hit.arc <= Math.max(tol * 1.6, 28);
+    const base = tol / 2.2;
+    return hit.dist <= tol && hit.arc <= Math.max(base * 1.6, 28);
   }
 
   function advanceTrace(progress, total, hitArc, hitDist, tol) {
-    if (hitDist > tol) return { progress: progress, status: 'stray' };
-    const maxStep = Math.max(tol * 3.2, total * 0.2);
-    if (hitArc > progress + maxStep) return { progress: progress, status: 'stray' };
+    if (hitDist > tol) return { progress: progress, status: 'pause' };
+    const base = tol / 2.2;
+    const maxStep = Math.max(base * 3.2, total * 0.2);
+    if (hitArc > progress + maxStep) return { progress: progress, status: 'pause' };
     const next = Math.max(progress, hitArc);
     if (next >= total * 0.92) return { progress: total, status: 'done' };
     return { progress: next, status: 'ok' };
+  }
+
+  function distPointToSeg(px, py, ax, ay, bx, by) {
+    const vx = bx - ax;
+    const vy = by - ay;
+    const len2 = vx * vx + vy * vy || 1e-9;
+    let t = ((px - ax) * vx + (py - ay) * vy) / len2;
+    if (t < 0) t = 0;
+    if (t > 1) t = 1;
+    return Math.hypot(px - (ax + vx * t), py - (ay + vy * t));
   }
 
   function dotNextIndex(visited, n) {
@@ -3200,6 +3214,7 @@
   let dotVisited = 0;
   let dotSegs = [];
   let dotGesture = null;
+  let ladybugDone = false;
 
   function showScreen(which) {
     const home = which === 'home';
@@ -4333,6 +4348,7 @@
     dotVisited = 0;
     dotSegs = [];
     dotGesture = null;
+    ladybugDone = false;
     linesSvg.style.display = '';
     drawSvg.style.display = '';
     mountDeco(ladybugSceneSvg(dotPts));
@@ -4395,6 +4411,15 @@
   }
 
   function finishLadybug() {
+    if (ladybugDone) return;
+    ladybugDone = true;
+    drawing = false;
+    drawFromId = null;
+    livePath = null;
+    points = [];
+    activePointerId = null;
+    dotGesture = null;
+    drawSvg.innerHTML = '';
     const shell = board.querySelector('#ladybug-shell');
     if (shell) shell.setAttribute('fill', '#F40616');
     board.querySelectorAll('.lb-dot').forEach((c) => {
@@ -4434,7 +4459,6 @@
       segLen: best.metric.segLen,
       total: best.metric.total,
       progress: best.hit.arc,
-      strayed: false,
     };
     const shown = polylineToArc(best.pts, best.metric.segLen, best.hit.arc);
     points = shown;
@@ -4447,18 +4471,14 @@
   }
 
   function movePathTrace(clientX, clientY) {
-    if (!drawing || !traceActive || traceActive.strayed || !livePath) return;
+    if (!drawing || !traceActive || !livePath) return;
     const cur = stagePoint(clientX, clientY);
     const { w, h } = stageSize();
     const tol = traceTol(w, h);
     const hit = closestOnPolyline(traceActive.pts, traceActive.segLen, cur.x, cur.y);
     const adv = advanceTrace(traceActive.progress, traceActive.total, hit.arc, hit.dist, tol);
-    if (adv.status === 'stray') {
-      traceActive.strayed = true;
-      drawSvg.innerHTML = '';
-      livePath = null;
-      return;
-    }
+    /* Too far from the tunnel: keep the ink and the progress, just wait. */
+    if (adv.status === 'pause') return;
     traceActive.progress = adv.progress;
     const shown = polylineToArc(traceActive.pts, traceActive.segLen, adv.progress);
     livePath.setAttribute('d', pathFromPoints(shown));
@@ -4511,44 +4531,98 @@
     drawSvg.innerHTML = '';
   }
 
+  function dotAnchorIndex() {
+    const n = dotPts.length;
+    if (dotVisited <= 1) return 0;
+    return (dotVisited - 1) % n;
+  }
+
+  /* Lock every next dot the finger passes, in order, without lifting. */
+  function captureDotHits(cur, prev) {
+    if (!dotTraceMode || ladybugDone) return;
+    const pts = dotStagePts();
+    const n = pts.length;
+    if (dotVisited >= n + 1) return;
+    const tol = dotTolPx();
+    let from = prev;
+    let gained = 0;
+    while (dotVisited < n + 1) {
+      const next = dotNextIndex(dotVisited, n);
+      if (next < 0) break;
+      const anchor = dotAnchorIndex();
+      const dCur = Math.hypot(cur.x - pts[next].x, cur.y - pts[next].y);
+      const dSeg = from
+        ? distPointToSeg(pts[next].x, pts[next].y, from.x, from.y, cur.x, cur.y)
+        : Infinity;
+      /* Must be moving toward the next dot, so a wide finger on the last dot does not skip ahead. */
+      if (from && dCur >= Math.hypot(cur.x - from.x, cur.y - from.y)) break;
+      if (dCur > tol && dSeg > tol) break;
+      pushDotSeg(pts[anchor], pts[next]);
+      dotVisited += 1;
+      gained += 1;
+      from = pts[next];
+      if (dotGesture) {
+        dotGesture.anchor = next % n;
+        dotGesture.origin = pts[next % n];
+        dotGesture.next = dotNextIndex(dotVisited, n);
+        dotGesture.last = pts[next % n];
+      }
+    }
+    if (gained) {
+      playCorrectBing();
+      refreshDotNext();
+    }
+    if (dotVisited >= n + 1) finishLadybug();
+  }
+
   function beginDotTrace(pointerId, clientX, clientY) {
-    if (!dotTraceMode || !dotPts.length) return false;
+    if (!dotTraceMode || !dotPts.length || ladybugDone) return false;
     const n = dotPts.length;
     if (dotVisited >= n + 1) return false;
     const pts = dotStagePts();
-    const next = dotNextIndex(dotVisited, n);
-    const anchor = dotVisited === 0 ? 0 : (dotVisited - 1) % n;
     const cur = stagePoint(clientX, clientY);
     const tol = dotTolPx();
-    const dNext = Math.hypot(cur.x - pts[next].x, cur.y - pts[next].y);
+    if (dotVisited === 0) {
+      if (Math.hypot(cur.x - pts[0].x, cur.y - pts[0].y) > tol) return false;
+      dotVisited = 1;
+      refreshDotNext();
+    }
+    const anchor = dotAnchorIndex();
+    const next = dotNextIndex(dotVisited, n);
     const dAnc = Math.hypot(cur.x - pts[anchor].x, cur.y - pts[anchor].y);
-    if (dNext > tol && dAnc > tol) return false;
+    const dNext = next >= 0 ? Math.hypot(cur.x - pts[next].x, cur.y - pts[next].y) : Infinity;
+    if (dAnc > tol * 1.6 && dNext > tol) return false;
     drawing = true;
     activePointerId = pointerId;
     drawFromId = 'dot';
     ensureAudio();
-    dotGesture = { anchor: anchor, next: next, origin: pts[anchor] };
-    points = [pts[anchor], cur];
+    dotGesture = { anchor: anchor, next: next, origin: pts[anchor], last: cur };
     drawSvg.innerHTML = '';
     livePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     livePath.setAttribute('class', 'live-line');
-    livePath.setAttribute('d', pathFromPoints(points));
     drawSvg.appendChild(livePath);
+    captureDotHits(cur, pts[anchor]);
+    if (ladybugDone || !livePath || !dotGesture) return true;
+    points = [dotGesture.origin, cur];
+    livePath.setAttribute('d', pathFromPoints(points));
     return true;
   }
 
   function moveDotTrace(clientX, clientY) {
-    if (!drawing || !livePath || !dotGesture) return;
+    if (!drawing || !livePath || !dotGesture || ladybugDone) return;
     const cur = stagePoint(clientX, clientY);
-    points.push(cur);
-    points = simplify(points, 4);
-    points[0] = dotGesture.origin;
+    const prev = dotGesture.last || dotGesture.origin;
+    captureDotHits(cur, prev);
+    if (ladybugDone || !drawing || !livePath || !dotGesture) return;
+    dotGesture.last = cur;
+    points = [dotGesture.origin, cur];
     livePath.setAttribute('d', pathFromPoints(points));
   }
 
   function endDotTrace(clientX, clientY) {
-    const gesture = dotGesture;
-    const up = stagePoint(clientX, clientY);
+    const cur = stagePoint(clientX, clientY);
+    const prev = dotGesture ? (dotGesture.last || dotGesture.origin) : cur;
+    if (dotGesture && !ladybugDone) captureDotHits(cur, prev);
     drawing = false;
     drawFromId = null;
     livePath = null;
@@ -4556,28 +4630,7 @@
     activePointerId = null;
     dotGesture = null;
     drawSvg.innerHTML = '';
-    if (!gesture || !dotTraceMode) return;
-    const pts = dotStagePts();
-    const n = pts.length;
-    const tol = dotTolPx();
-    if (dotVisited === 0) {
-      const d0 = Math.hypot(up.x - pts[0].x, up.y - pts[0].y);
-      const d1 = Math.hypot(up.x - pts[1].x, up.y - pts[1].y);
-      if (d1 <= tol) {
-        pushDotSeg(pts[0], pts[1]);
-        dotVisited = 2;
-        playCorrectBing();
-      } else if (d0 <= tol) {
-        dotVisited = 1;
-        playCorrectBing();
-      }
-    } else if (Math.hypot(up.x - pts[gesture.next].x, up.y - pts[gesture.next].y) <= tol) {
-      pushDotSeg(pts[gesture.anchor], pts[gesture.next]);
-      dotVisited += 1;
-      playCorrectBing();
-    }
-    refreshDotNext();
-    if (dotVisited >= n + 1) finishLadybug();
+    if (!ladybugDone) refreshDotNext();
   }
 
   stage.addEventListener('pointerdown', (e) => {
@@ -4610,7 +4663,7 @@
       }
       for (let si = 0; si < list.length; si++) {
         movePathTrace(list[si].clientX, list[si].clientY);
-        if (!drawing || (traceActive && traceActive.strayed)) break;
+        if (!drawing) break;
       }
     } else if (exercise && exercise.mode === 'dot-to-dot') {
       moveDotTrace(e.clientX, e.clientY);
@@ -4625,7 +4678,7 @@
   function onPointerUp(e) {
     if (!drawing || e.pointerId !== activePointerId) return;
     if (exercise && exercise.mode === 'path-trace') {
-      if (traceActive && !traceActive.strayed) movePathTrace(e.clientX, e.clientY);
+      if (traceActive) movePathTrace(e.clientX, e.clientY);
       if (drawing) endPathTrace();
     } else if (exercise && exercise.mode === 'dot-to-dot') {
       endDotTrace(e.clientX, e.clientY);
@@ -4730,7 +4783,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=34').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=35').catch(() => {});
     });
   }
 
