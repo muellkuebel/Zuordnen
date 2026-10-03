@@ -2051,6 +2051,351 @@
   }
 
 
+
+  /* TRACE_MATH_START */
+  function polylineSegLens(pts) {
+    const segLen = [];
+    let total = 0;
+    for (let i = 1; i < pts.length; i++) {
+      const len = Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y);
+      segLen.push(len);
+      total += len;
+    }
+    return { segLen: segLen, total: total };
+  }
+
+  function closestOnPolyline(pts, segLen, x, y) {
+    let best = { dist: Infinity, arc: 0, px: pts[0].x, py: pts[0].y };
+    let arcBase = 0;
+    for (let i = 1; i < pts.length; i++) {
+      const ax = pts[i - 1].x;
+      const ay = pts[i - 1].y;
+      const bx = pts[i].x;
+      const by = pts[i].y;
+      const vx = bx - ax;
+      const vy = by - ay;
+      const len2 = vx * vx + vy * vy || 1e-9;
+      let t = ((x - ax) * vx + (y - ay) * vy) / len2;
+      if (t < 0) t = 0;
+      if (t > 1) t = 1;
+      const px = ax + vx * t;
+      const py = ay + vy * t;
+      const dist = Math.hypot(x - px, y - py);
+      const arc = arcBase + (segLen[i - 1] || 0) * t;
+      if (dist < best.dist) best = { dist: dist, arc: arc, px: px, py: py };
+      arcBase += segLen[i - 1] || 0;
+    }
+    return best;
+  }
+
+  function polylineToArc(pts, segLen, arc) {
+    if (!pts.length) return [];
+    const out = [{ x: pts[0].x, y: pts[0].y }];
+    let remain = Math.max(0, arc);
+    for (let i = 1; i < pts.length; i++) {
+      const len = segLen[i - 1] || 0;
+      if (remain >= len - 0.01) {
+        out.push({ x: pts[i].x, y: pts[i].y });
+        remain -= len;
+      } else {
+        const t = len > 0 ? remain / len : 0;
+        out.push({
+          x: pts[i - 1].x + (pts[i].x - pts[i - 1].x) * t,
+          y: pts[i - 1].y + (pts[i].y - pts[i - 1].y) * t,
+        });
+        break;
+      }
+    }
+    if (out.length === 1) out.push({ x: pts[0].x, y: pts[0].y });
+    return out;
+  }
+
+  function traceTol(sw, sh) {
+    return Math.max(20, Math.min(sw, sh) * 0.055);
+  }
+
+  function traceStartOk(hit, tol) {
+    return hit.dist <= tol && hit.arc <= Math.max(tol * 1.6, 28);
+  }
+
+  function advanceTrace(progress, total, hitArc, hitDist, tol) {
+    if (hitDist > tol) return { progress: progress, status: 'stray' };
+    const maxStep = Math.max(tol * 3.2, total * 0.2);
+    if (hitArc > progress + maxStep) return { progress: progress, status: 'stray' };
+    const next = Math.max(progress, hitArc);
+    if (next >= total * 0.92) return { progress: total, status: 'done' };
+    return { progress: next, status: 'ok' };
+  }
+
+  function dotNextIndex(visited, n) {
+    if (visited >= n + 1) return -1;
+    if (visited === 0) return 0;
+    return visited % n;
+  }
+  /* TRACE_MATH_END */
+
+  const MOLE_PATHS = [
+    { id: 'flower', pts: [[22,16],[22,44],[11,44],[11,74],[28,74],[28,98],[40,98],[40,116],[50,128]] },
+    { id: 'shovel', pts: [[50,20],[50,42],[68,42],[68,60],[48,60],[48,84],[64,84],[64,104],[52,116],[50,128]] },
+    { id: 'beetle', pts: [[80,16],[80,46],[92,46],[92,68],[70,68],[70,92],[90,92],[90,112],[66,112],[50,128]] },
+  ];
+
+  function moleSvg(x, y, kind) {
+    const prop = kind === 'flower'
+      ? `<line x1="7" y1="-1" x2="7" y2="-16" stroke="#2F8A45" stroke-width="1.3" stroke-linecap="round"/>
+         <circle cx="7" cy="-18" r="3.3" fill="#E85D8C" stroke="#2D3436" stroke-width="0.45"/>
+         <circle cx="7" cy="-18" r="1.2" fill="#F6E27A"/>`
+      : kind === 'shovel'
+      ? `<line x1="1" y1="-4" x2="1" y2="-16" stroke="#8B5E3C" stroke-width="1.3" stroke-linecap="round"/>
+         <rect x="-3.4" y="-20.2" width="7" height="4.4" rx="0.7" fill="#B0B7BE" stroke="#2D3436" stroke-width="0.45"/>`
+      : `<line x1="8" y1="1" x2="16" y2="-1" stroke="#8B5E3C" stroke-width="1.2" stroke-linecap="round"/>
+         <rect x="14.2" y="-4.2" width="6.2" height="3.4" rx="0.5" fill="#B0B7BE" stroke="#2D3436" stroke-width="0.4"/>
+         <ellipse cx="-9" cy="-1" rx="3.4" ry="2.5" fill="#E23B3B" stroke="#2D3436" stroke-width="0.45"/>
+         <circle cx="-10.2" cy="-1.3" r="0.7" fill="#2D3436"/>
+         <circle cx="-8" cy="-0.5" r="0.55" fill="#2D3436"/>
+         <circle cx="-11.6" cy="-1" r="1.35" fill="#2D3436"/>`;
+    return `<g transform="translate(${x},${y})">
+      <ellipse cx="0" cy="3" rx="7.2" ry="5.6" fill="#6B7280" stroke="#2D3436" stroke-width="0.7"/>
+      <circle cx="-4.2" cy="-1.5" r="4.3" fill="#6B7280" stroke="#2D3436" stroke-width="0.7"/>
+      <circle cx="-5.6" cy="-2.2" r="0.85" fill="#fff"/>
+      <circle cx="-3.2" cy="-2.2" r="0.85" fill="#fff"/>
+      <circle cx="-5.5" cy="-2.1" r="0.38" fill="#222"/>
+      <circle cx="-3.1" cy="-2.1" r="0.38" fill="#222"/>
+      <ellipse cx="-6.6" cy="0.2" rx="1.4" ry="0.9" fill="#F0A0A8"/>
+      ${prop}
+    </g>`;
+  }
+
+  function mazeSceneSvg() {
+    const tunnels = MOLE_PATHS.map((p) => {
+      const d = p.pts.map((pt, i) => (i ? 'L' : 'M') + pt[0] + ' ' + pt[1]).join(' ');
+      return `<path d="${d}" fill="none" stroke="#A67C52" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="${d}" fill="none" stroke="#D7B48A" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+    }).join('');
+    const specks = MOLE_PATHS.map((p) => p.pts.filter((_, i) => i % 2 === 1).map(([x, y]) =>
+      `<circle cx="${x}" cy="${y}" r="0.7" fill="#6B4A2E" opacity=".45"/>`
+    ).join('')).join('');
+    return `<svg viewBox="0 0 100 140" preserveAspectRatio="none" aria-hidden="true">
+      <rect width="100" height="36" fill="#D5EFF8"/>
+      <rect y="34" width="100" height="106" fill="#A9D98A"/>
+      <path d="M4 36 l2 -7 M10 36 l1.5 -6 M18 36 l2 -8 M88 36 l2 -7 M94 36 l-1 -6" fill="none" stroke="#3D8B4A" stroke-width="0.7" stroke-linecap="round"/>
+      <ellipse cx="22" cy="33" rx="16" ry="7.5" fill="#C4A574" stroke="#6B4A2E" stroke-width="0.6"/>
+      <ellipse cx="50" cy="35" rx="13" ry="6.5" fill="#C4A574" stroke="#6B4A2E" stroke-width="0.6"/>
+      <ellipse cx="80" cy="33" rx="16" ry="7.5" fill="#C4A574" stroke="#6B4A2E" stroke-width="0.6"/>
+      ${tunnels}
+      ${specks}
+      <g transform="translate(50,130)">
+        <ellipse cx="0" cy="3" rx="11" ry="5.2" fill="#E7D3A4" stroke="#8B5E3C" stroke-width="0.45"/>
+        <ellipse cx="-4.2" cy="1.2" rx="2.3" ry="1.6" fill="#FFF3C4" stroke="#C4A574" stroke-width="0.3"/>
+        <ellipse cx="0" cy="2.2" rx="2.3" ry="1.6" fill="#FFF3C4" stroke="#C4A574" stroke-width="0.3"/>
+        <ellipse cx="4.3" cy="1.3" rx="2.2" ry="1.5" fill="#FFF3C4" stroke="#C4A574" stroke-width="0.3"/>
+        <ellipse cx="-2" cy="4.2" rx="2" ry="1.35" fill="#FFE9A0" stroke="#C4A574" stroke-width="0.3"/>
+        <ellipse cx="2.6" cy="4.3" rx="2" ry="1.35" fill="#FFE9A0" stroke="#C4A574" stroke-width="0.3"/>
+      </g>
+      ${moleSvg(22, 18, 'flower')}
+      ${moleSvg(50, 22, 'shovel')}
+      ${moleSvg(80, 18, 'beetle')}
+    </svg>`;
+  }
+
+  function ladybugDotPts() {
+    const pts = [];
+    const n = 20;
+    for (let i = 0; i < n; i++) {
+      const ang = -Math.PI / 2 + (i * 2 * Math.PI) / n;
+      pts.push({
+        x: +(50 + 32 * Math.cos(ang)).toFixed(2),
+        y: +(82 + 34 * Math.sin(ang)).toFixed(2),
+      });
+    }
+    return pts;
+  }
+
+  function lbLeg(x1, y1, x2, y2, x3, y3) {
+    return `<polyline points="${x1},${y1} ${x2},${y2} ${x3},${y3}" fill="none" stroke="#4B5563" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="${x2}" cy="${y2}" r="1.6" fill="#6B7280" stroke="#2D3436" stroke-width="0.35"/>`;
+  }
+
+  function ladybugSceneSvg(dots) {
+    const circles = dots.map((p, i) =>
+      `<circle class="lb-dot" data-i="${i}" cx="${p.x}" cy="${p.y}" r="1.7" fill="#222"/>`
+    ).join('');
+    return `<svg viewBox="0 0 100 140" preserveAspectRatio="none" aria-hidden="true">
+      <ellipse id="ladybug-shell" cx="50" cy="82" rx="29.5" ry="31.5" fill="#F7F3EA"/>
+      <line x1="50" y1="54" x2="50" y2="112" stroke="#222" stroke-width="0.85" stroke-dasharray="1.8 1.5"/>
+      <circle cx="40" cy="70" r="4.6" fill="#222"/>
+      <circle cx="63" cy="74" r="4.1" fill="#222"/>
+      <circle cx="35" cy="90" r="3.7" fill="#222"/>
+      <circle cx="57" cy="96" r="5" fill="#222"/>
+      <circle cx="44" cy="108" r="3.3" fill="#222"/>
+      <circle cx="67" cy="100" r="3.1" fill="#222"/>
+      ${lbLeg(20,64,10,56,5,48)}
+      ${lbLeg(18,82,7,84,3,76)}
+      ${lbLeg(20,100,10,108,6,118)}
+      ${lbLeg(80,64,90,56,95,48)}
+      ${lbLeg(82,82,93,84,97,76)}
+      ${lbLeg(80,100,90,108,94,118)}
+      <g>
+        <circle cx="50" cy="30" r="12" fill="#2D3436"/>
+        <circle cx="44.8" cy="28.2" r="3.2" fill="#fff"/>
+        <circle cx="55.2" cy="28.2" r="3.2" fill="#fff"/>
+        <circle cx="45.4" cy="28.6" r="1.45" fill="#222"/>
+        <circle cx="55.8" cy="28.6" r="1.45" fill="#222"/>
+        <path d="M44 20 Q39 9 33 12" fill="none" stroke="#2D3436" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M56 20 Q61 9 67 12" fill="none" stroke="#2D3436" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="33" cy="12" r="1.9" fill="#2D3436"/>
+        <circle cx="67" cy="12" r="1.9" fill="#2D3436"/>
+      </g>
+      ${circles}
+    </svg>`;
+  }
+
+  function seaTone(shadow, color, accent) {
+    if (shadow) {
+      return { fill: '#8E959D', stroke: '#4E565E', accent: '#6E767E', spot: '#5E666E', light: '#A8B0B6' };
+    }
+    return { fill: color, stroke: '#2D3436', accent: accent, spot: '#2D3436', light: '#fff' };
+  }
+
+  function seahorseSvg(shadow) {
+    const c = seaTone(shadow, '#F4C95D', '#E09A2B');
+    return `<svg viewBox="0 0 80 120" aria-hidden="true">
+      <path d="M48 18 C62 18 68 32 60 42 C70 48 70 64 56 66 C58 78 48 86 40 80 C34 92 22 96 20 108 C18 116 28 118 32 112 C36 104 34 96 42 92 C52 100 66 92 62 78 C74 74 78 52 64 40 C74 28 66 10 48 12 C40 6 30 12 32 22 C28 20 24 26 28 32"
+        fill="${c.fill}" stroke="${c.stroke}" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M40 28 C48 34 46 48 38 52" fill="none" stroke="${c.accent}" stroke-width="3" stroke-linecap="round"/>
+      <path d="M36 58 C44 64 42 74 36 76" fill="none" stroke="${c.accent}" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="50" cy="26" r="2.4" fill="${c.spot}"/>
+      <circle cx="50.6" cy="25.4" r="0.8" fill="${c.light}"/>
+      <path d="M58 22 L70 18" stroke="${c.stroke}" stroke-width="2" stroke-linecap="round"/>
+    </svg>`;
+  }
+
+  function starfishSvg(shadow) {
+    const c = seaTone(shadow, '#F08A3C', '#E7C15A');
+    return `<svg viewBox="0 0 90 90" aria-hidden="true">
+      <polygon points="45,6 54,32 82,32 60,50 68,78 45,60 22,78 30,50 8,32 36,32"
+        fill="${c.fill}" stroke="${c.stroke}" stroke-width="2.4" stroke-linejoin="round"/>
+      <circle cx="45" cy="44" r="3" fill="${c.spot}"/>
+      <circle cx="36" cy="40" r="2" fill="${c.spot}"/>
+      <circle cx="54" cy="40" r="2" fill="${c.spot}"/>
+      <circle cx="40" cy="52" r="2" fill="${c.spot}"/>
+      <circle cx="52" cy="52" r="2" fill="${c.spot}"/>
+    </svg>`;
+  }
+
+  function jellyfishSvg(shadow) {
+    const c = seaTone(shadow, '#7EC8E3', '#F7A8C4');
+    const tent = shadow ? c.accent : '#5BA8C4';
+    return `<svg viewBox="0 0 80 110" aria-hidden="true">
+      <path d="M12 48 Q12 16 40 14 Q68 16 68 48 Z" fill="${c.fill}" stroke="${c.stroke}" stroke-width="2.4"/>
+      <path d="M20 40 Q28 50 36 40 Q44 50 52 40 Q58 48 62 40" fill="none" stroke="${c.light}" stroke-width="2" opacity=".8"/>
+      <path d="M22 48 C18 70 28 78 24 96" fill="none" stroke="${tent}" stroke-width="3" stroke-linecap="round"/>
+      <path d="M34 50 C32 74 42 82 36 100" fill="none" stroke="${tent}" stroke-width="3" stroke-linecap="round"/>
+      <path d="M46 50 C50 74 42 86 48 102" fill="none" stroke="${tent}" stroke-width="3" stroke-linecap="round"/>
+      <path d="M58 48 C64 70 54 80 60 96" fill="none" stroke="${tent}" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="32" cy="34" r="2.2" fill="${c.spot}"/>
+      <circle cx="48" cy="34" r="2.2" fill="${c.spot}"/>
+    </svg>`;
+  }
+
+  function clownfishSvg(shadow) {
+    const c = seaTone(shadow, '#F07A2A', '#fff');
+    const band = shadow ? '#6A727A' : '#fff';
+    return `<svg viewBox="0 0 110 70" aria-hidden="true">
+      <path d="M18 35 C18 16 40 12 62 18 C82 12 98 24 96 35 C98 48 82 58 62 52 C40 60 18 54 18 35Z"
+        fill="${c.fill}" stroke="${c.stroke}" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M18 35 L4 22 L6 35 L4 48 Z" fill="${c.fill}" stroke="${c.stroke}" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M40 18 L46 35 L40 52" fill="none" stroke="${band}" stroke-width="5" stroke-linecap="round"/>
+      <path d="M58 16 L64 35 L58 54" fill="none" stroke="${band}" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="78" cy="32" r="3" fill="${c.spot}"/>
+      <circle cx="79" cy="31" r="1" fill="${c.light}"/>
+    </svg>`;
+  }
+
+  function shapeWideRect(fill) {
+    return `<svg viewBox="0 0 120 70" aria-hidden="true">
+      <rect x="6" y="16" width="108" height="40" rx="4" fill="${fill}" stroke="#2D3436" stroke-width="3"/>
+      <rect x="14" y="22" width="28" height="10" rx="2" fill="#fff" opacity=".28"/>
+    </svg>`;
+  }
+
+  function shapeCrateSvg(kind) {
+    const icon = kind === 'circle'
+      ? '<circle cx="50" cy="58" r="13" fill="none" stroke="#5C4033" stroke-width="2.6"/>'
+      : kind === 'triangle'
+      ? '<polygon points="50,44 66,70 34,70" fill="none" stroke="#5C4033" stroke-width="2.6" stroke-linejoin="round"/>'
+      : kind === 'square'
+      ? '<rect x="36" y="46" width="28" height="26" rx="2" fill="none" stroke="#5C4033" stroke-width="2.6"/>'
+      : '<rect x="30" y="52" width="40" height="18" rx="2" fill="none" stroke="#5C4033" stroke-width="2.6"/>';
+    return `<svg viewBox="0 0 100 90" aria-hidden="true">
+      <path d="M10 30 H90 L82 78 H18 Z" fill="#E2B86A" stroke="#5C4033" stroke-width="2.6" stroke-linejoin="round"/>
+      <path d="M10 30 L20 16 H80 L90 30" fill="#F3D7A0" stroke="#5C4033" stroke-width="2.6" stroke-linejoin="round"/>
+      <path d="M28 30 L34 16 M50 30 L50 16 M72 30 L66 16" fill="none" stroke="#C4964E" stroke-width="1.4"/>
+      ${icon}
+    </svg>`;
+  }
+
+  function laundrySockSvg(body, cuff, decor) {
+    return `<svg viewBox="0 0 80 100" aria-hidden="true">
+      <path d="M28 16 H52 Q60 16 60 26 V50 Q60 60 70 70 Q76 78 70 86 Q62 94 50 92 L32 90 Q18 86 18 74 V26 Q18 16 28 16Z"
+        fill="${body}" stroke="#2D3436" stroke-width="2.3" stroke-linejoin="round"/>
+      <rect x="22" y="8" width="36" height="16" rx="5" fill="${cuff}" stroke="#2D3436" stroke-width="2.2"/>
+      ${decor || ''}
+    </svg>`;
+  }
+
+  function laundryShortsSvg() {
+    return `<svg viewBox="0 0 90 70" aria-hidden="true">
+      <path d="M14 14 H76 L82 36 L52 36 L48 58 L42 58 L38 36 L8 36 Z" fill="#3D7EBF" stroke="#2D3436" stroke-width="2.3" stroke-linejoin="round"/>
+      <path d="M18 20 H72" stroke="#7EB6E6" stroke-width="3" stroke-linecap="round"/>
+    </svg>`;
+  }
+
+  function laundrySweaterSvg() {
+    return `<svg viewBox="0 0 100 80" aria-hidden="true">
+      <path d="M30 22 L18 34 L26 44 L34 36 V66 H66 V36 L74 44 L82 34 L70 22 Q50 10 30 22Z" fill="#F08A3C" stroke="#2D3436" stroke-width="2.3" stroke-linejoin="round"/>
+      <path d="M40 20 Q50 30 60 20" fill="#fff" stroke="#2D3436" stroke-width="2"/>
+      <rect x="44" y="40" width="12" height="10" rx="2" fill="#3D8B4A" stroke="#2D3436" stroke-width="1.2"/>
+    </svg>`;
+  }
+
+  function laundryScarfSvg() {
+    return `<svg viewBox="0 0 70 110" aria-hidden="true">
+      <path d="M18 8 H40 V78 H28 V20 H18 Z" fill="#F2C14E" stroke="#2D3436" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M18 8 H40 M18 20 H40 M18 32 H40 M18 44 H40 M18 56 H40 M18 68 H40" stroke="#6B7280" stroke-width="4"/>
+      <path d="M28 78 H46 L42 100 H24 Z" fill="#F2C14E" stroke="#2D3436" stroke-width="2.2"/>
+      <path d="M26 88 H44" stroke="#6B7280" stroke-width="4"/>
+    </svg>`;
+  }
+
+  function laundryShirtSvg() {
+    return `<svg viewBox="0 0 90 80" aria-hidden="true">
+      <path d="M28 16 L14 28 L22 36 L30 28 V68 H60 V28 L68 36 L76 28 L62 16 Q45 26 28 16Z" fill="#7DCE6A" stroke="#2D3436" stroke-width="2.3" stroke-linejoin="round"/>
+      <circle cx="45" cy="42" r="10" fill="#F08A3C" stroke="#2D3436" stroke-width="1.4"/>
+      <circle cx="42" cy="40" r="1.3" fill="#2D3436"/>
+      <circle cx="49" cy="40" r="1.3" fill="#2D3436"/>
+      <path d="M42 46 Q45 48 49 45" fill="none" stroke="#2D3436" stroke-width="1.2"/>
+    </svg>`;
+  }
+
+  function laundryTankSvg() {
+    return `<svg viewBox="0 0 70 90" aria-hidden="true">
+      <path d="M18 18 L28 12 H42 L52 18 L48 28 V78 H22 V28 Z" fill="#8FD4E8" stroke="#2D3436" stroke-width="2.3" stroke-linejoin="round"/>
+    </svg>`;
+  }
+
+  function laundryWasherSvg() {
+    return `<svg viewBox="0 0 90 100" aria-hidden="true">
+      <rect x="10" y="8" width="70" height="84" rx="8" fill="#F4F7FA" stroke="#2D3436" stroke-width="2.4"/>
+      <rect x="16" y="14" width="58" height="14" rx="3" fill="#FFE08A" stroke="#2D3436" stroke-width="1.4"/>
+      <circle cx="24" cy="21" r="2" fill="#E23B3B"/>
+      <circle cx="32" cy="21" r="2" fill="#3D8B4A"/>
+      <circle cx="45" cy="58" r="22" fill="#D7EEF8" stroke="#2D3436" stroke-width="2.4"/>
+      <path d="M30 60 Q40 50 52 62 Q48 70 36 66" fill="#7EC8E3" opacity=".85"/>
+      <circle cx="45" cy="58" r="6" fill="#C5D5DE" stroke="#2D3436" stroke-width="1.2"/>
+    </svg>`;
+  }
+
   const EXERCISES = {
     bonbons: {
       title: 'Bunte Bonbons',
@@ -2686,6 +3031,89 @@
     },
 
 
+
+    maulwurfgaenge: {
+      title: 'Maulwurfgänge',
+      hint: 'Fahr jeden Gang mit dem Finger bis zur Höhle!',
+      mode: 'path-trace',
+      tracePaths: MOLE_PATHS.map((p) => ({
+        id: p.id,
+        vb: p.pts,
+        norm: p.pts.map(([x, y]) => ({ x: x / 100, y: y / 140 })),
+      })),
+    },
+
+    meerestiere: {
+      title: 'Meerestiere',
+      hint: 'Welcher Schatten gehört zu welchem Meerestier? Verbinde!',
+      mode: 'one-to-one',
+      boardClass: 'ocean-board',
+      sources: [
+        { id: 'sea_horse', match: 'horse', svg: () => seahorseSvg(false), x: 0.22, y: 0.14, w: 0.16, aspect: 1.45 },
+        { id: 'sea_star', match: 'star', svg: () => starfishSvg(false), x: 0.22, y: 0.38, w: 0.16, aspect: 1 },
+        { id: 'sea_jelly', match: 'jelly', svg: () => jellyfishSvg(false), x: 0.22, y: 0.62, w: 0.15, aspect: 1.35 },
+        { id: 'sea_fish', match: 'fish', svg: () => clownfishSvg(false), x: 0.22, y: 0.86, w: 0.20, aspect: 0.7 },
+      ],
+      targets: [
+        { id: 'sh_star', match: 'star', svg: () => starfishSvg(true), x: 0.78, y: 0.14, w: 0.16, aspect: 1 },
+        { id: 'sh_fish', match: 'fish', svg: () => clownfishSvg(true), x: 0.78, y: 0.38, w: 0.20, aspect: 0.7 },
+        { id: 'sh_horse', match: 'horse', svg: () => seahorseSvg(true), x: 0.78, y: 0.62, w: 0.16, aspect: 1.45 },
+        { id: 'sh_jelly', match: 'jelly', svg: () => jellyfishSvg(true), x: 0.78, y: 0.86, w: 0.15, aspect: 1.35 },
+      ],
+    },
+
+    marienkaefer: {
+      title: 'Marienkäfer',
+      hint: 'Verbinde die Punkte der Reihe nach — dann wird er rot!',
+      mode: 'dot-to-dot',
+      dots: ladybugDotPts(),
+    },
+
+    waescheSocken: {
+      title: 'Wäschedurcheinander',
+      hint: 'Doggy sucht seine Socken. Kreise alle 6 Socken ein!',
+      mode: 'circle-draw',
+      targetMatch: 'sock',
+      boardClass: 'laundry-board',
+      itemClass: 'clutter-item',
+      itemLabel: 'Wäschestück',
+      fixedLayout: true,
+      sources: [
+        { id: 'ws_1', match: 'sock', svg: () => laundrySockSvg('#E23B3B', '#E23B3B', '<path d="M24 40 H54" stroke="#F08A3C" stroke-width="5"/><path d="M24 52 H52" stroke="#F08A3C" stroke-width="5"/><path d="M26 64 H48" stroke="#F08A3C" stroke-width="5"/>'), x: 0.16, y: 0.16, w: 0.12, aspect: 1.25 },
+        { id: 'ws_2', match: 'sock', svg: () => laundrySockSvg('#F2C14E', '#E09A2B', '<path d="M30 36 L38 44 L46 36 L54 44" fill="none" stroke="#E23B3B" stroke-width="2.4"/><circle cx="34" cy="56" r="3" fill="#3D7EBF"/><circle cx="48" cy="62" r="3" fill="#E23B3B"/>'), x: 0.62, y: 0.14, w: 0.12, aspect: 1.25 },
+        { id: 'ws_3', match: 'sock', svg: () => laundrySockSvg('#4C6CB3', '#2E4578', '<path d="M24 36 H54 M24 46 H52 M26 56 H50 M28 66 H46" stroke="#1E2A4A" stroke-width="3.2"/>'), x: 0.14, y: 0.42, w: 0.12, aspect: 1.25 },
+        { id: 'ws_4', match: 'sock', svg: () => laundrySockSvg('#B7E4F5', '#7EC8E3', '<circle cx="32" cy="40" r="2.4" fill="#3D6F8A"/><circle cx="46" cy="48" r="2.4" fill="#3D6F8A"/><circle cx="34" cy="58" r="2.4" fill="#3D6F8A"/><circle cx="48" cy="64" r="2.2" fill="#3D6F8A"/>'), x: 0.78, y: 0.40, w: 0.12, aspect: 1.25 },
+        { id: 'ws_5', match: 'sock', svg: () => laundrySockSvg('#3D8B4A', '#2F6B38', '<path d="M22 70 Q40 78 58 66" fill="none" stroke="#3D7EBF" stroke-width="6" stroke-linecap="round"/>'), x: 0.88, y: 0.62, w: 0.12, aspect: 1.25 },
+        { id: 'ws_6', match: 'sock', svg: () => laundrySockSvg('#E23B3B', '#2E4578', '<path d="M30 28 V70 M40 28 V72 M50 28 V68" stroke="#3D7EBF" stroke-width="3.2"/>'), x: 0.48, y: 0.84, w: 0.12, aspect: 1.25 },
+        { id: 'ws_shorts', match: 'shorts', svg: laundryShortsSvg, x: 0.40, y: 0.16, w: 0.16, aspect: 0.8 },
+        { id: 'ws_scarf', match: 'scarf', svg: laundryScarfSvg, x: 0.86, y: 0.20, w: 0.12, aspect: 1.5 },
+        { id: 'ws_sweater', match: 'sweater', svg: laundrySweaterSvg, x: 0.40, y: 0.38, w: 0.18, aspect: 0.82 },
+        { id: 'ws_shirt', match: 'shirt', svg: laundryShirtSvg, x: 0.62, y: 0.58, w: 0.16, aspect: 0.9 },
+        { id: 'ws_tank', match: 'tank', svg: laundryTankSvg, x: 0.84, y: 0.84, w: 0.13, aspect: 1.25 },
+        { id: 'ws_washer', match: 'washer', svg: laundryWasherSvg, x: 0.18, y: 0.82, w: 0.18, aspect: 1.1 },
+      ],
+      targets: [],
+      mascot: { x: 0.30, y: 0.64, w: 0.16, aspect: 1.15 },
+    },
+
+    formenAufraeumen: {
+      title: 'Formen aufräumen',
+      hint: 'Welche Form gehört in welche Kiste? Verbinde!',
+      mode: 'one-to-one',
+      sources: [
+        { id: 'fa_circle', match: 'circle', svg: () => shapeCircle(COLORS.red, '#2D3436'), x: 0.14, y: 0.24, w: 0.16, aspect: 1 },
+        { id: 'fa_rect', match: 'rect', svg: () => shapeWideRect(COLORS.green), x: 0.38, y: 0.24, w: 0.22, aspect: 0.58 },
+        { id: 'fa_tri', match: 'triangle', svg: () => shapeTriangle(COLORS.blue, '#2D3436'), x: 0.64, y: 0.24, w: 0.16, aspect: 1 },
+        { id: 'fa_sq', match: 'square', svg: () => shapeSquare(COLORS.yellow, '#2D3436'), x: 0.88, y: 0.24, w: 0.16, aspect: 1 },
+      ],
+      targets: [
+        { id: 'fa_box_tri', match: 'triangle', svg: () => shapeCrateSvg('triangle'), x: 0.14, y: 0.78, w: 0.20, aspect: 0.9 },
+        { id: 'fa_box_sq', match: 'square', svg: () => shapeCrateSvg('square'), x: 0.38, y: 0.78, w: 0.20, aspect: 0.9 },
+        { id: 'fa_box_circle', match: 'circle', svg: () => shapeCrateSvg('circle'), x: 0.64, y: 0.78, w: 0.20, aspect: 0.9 },
+        { id: 'fa_box_rect', match: 'rect', svg: () => shapeCrateSvg('rect'), x: 0.88, y: 0.78, w: 0.20, aspect: 0.9 },
+      ],
+    },
+
   };
 
   /* —— DOM —— */
@@ -2736,6 +3164,11 @@
     'pizzatag',
     'murmelsuche',
     'erstesZaehlen',
+    'maulwurfgaenge',
+    'meerestiere',
+    'marienkaefer',
+    'waescheSocken',
+    'formenAufraeumen',
   ];
 
   /* Session-only completion (in-memory; clears when app fully reopened) */
@@ -2758,6 +3191,15 @@
   let circleDrawMode = false;
   let strikeMarks = new Map(); /* id -> { el, normSize } for strike-draw */
   let strikeDrawMode = false;
+  let pathTraceMode = false;
+  let dotTraceMode = false;
+  let traceActive = null;
+  let traceDoneIds = new Set();
+  let traceDoneSegs = [];
+  let dotPts = [];
+  let dotVisited = 0;
+  let dotSegs = [];
+  let dotGesture = null;
 
   function showScreen(which) {
     const home = which === 'home';
@@ -2890,6 +3332,7 @@
     redrawConnections();
     redrawCircleMarks();
     redrawStrikeMarks();
+    redrawTraceAndDots();
   }
 
   function tryLockPortrait() {
@@ -3098,6 +3541,45 @@
         mascot: null,
       };
       startStrikeDrawBoard(exercise);
+      showScreen('play');
+      requestAnimationFrame(() => {
+        sizeStage();
+        requestAnimationFrame(sizeStage);
+      });
+      return;
+    }
+
+    if (base.mode === 'path-trace') {
+      exercise = {
+        title: base.title,
+        hint: base.hint,
+        mode: 'path-trace',
+        tracePaths: base.tracePaths.map((p) => ({
+          id: p.id,
+          norm: p.norm.map((pt) => ({ x: pt.x, y: pt.y })),
+        })),
+        sources: [],
+        targets: [],
+      };
+      startPathTraceBoard(exercise);
+      showScreen('play');
+      requestAnimationFrame(() => {
+        sizeStage();
+        requestAnimationFrame(sizeStage);
+      });
+      return;
+    }
+
+    if (base.mode === 'dot-to-dot') {
+      exercise = {
+        title: base.title,
+        hint: base.hint,
+        mode: 'dot-to-dot',
+        dots: base.dots.map((p) => ({ x: p.x, y: p.y })),
+        sources: [],
+        targets: [],
+      };
+      startDotBoard(exercise);
       showScreen('play');
       requestAnimationFrame(() => {
         sizeStage();
@@ -3721,7 +4203,7 @@
   }
 
   function cancelDraw() {
-    if (!drawing) return;
+    if (!drawing && !traceActive) return;
     const fromEl = itemEls.get(drawFromId);
     if (fromEl) fromEl.classList.remove('drawing');
     drawing = false;
@@ -3729,6 +4211,8 @@
     livePath = null;
     points = [];
     activePointerId = null;
+    traceActive = null;
+    dotGesture = null;
     drawSvg.innerHTML = '';
   }
 
@@ -3820,12 +4304,292 @@
     });
   }
 
+
+  function mountDeco(svg) {
+    const deco = document.createElement('div');
+    deco.className = 'board-deco';
+    deco.innerHTML = svg;
+    board.appendChild(deco);
+    return deco;
+  }
+
+  function startPathTraceBoard(ex) {
+    board.className = 'maze-board';
+    pathTraceMode = true;
+    dotTraceMode = false;
+    traceActive = null;
+    traceDoneIds = new Set();
+    traceDoneSegs = [];
+    linesSvg.style.display = '';
+    drawSvg.style.display = '';
+    mountDeco(mazeSceneSvg());
+  }
+
+  function startDotBoard(ex) {
+    board.className = 'ladybug-board';
+    dotTraceMode = true;
+    pathTraceMode = false;
+    dotPts = ex.dots.map((p) => ({ x: p.x, y: p.y }));
+    dotVisited = 0;
+    dotSegs = [];
+    dotGesture = null;
+    linesSvg.style.display = '';
+    drawSvg.style.display = '';
+    mountDeco(ladybugSceneSvg(dotPts));
+    refreshDotNext();
+  }
+
+  function pathStagePts(norm) {
+    const { w, h } = stageSize();
+    return norm.map((p) => ({ x: p.x * w, y: p.y * h }));
+  }
+
+  function dotStagePts() {
+    const { w, h } = stageSize();
+    return dotPts.map((p) => ({ x: (p.x / 100) * w, y: (p.y / 140) * h }));
+  }
+
+  function dotTolPx() {
+    const { w, h } = stageSize();
+    return Math.max(16, Math.min(w, h) * 0.05);
+  }
+
+  function redrawTraceAndDots() {
+    const { w, h } = stageSize();
+    traceDoneSegs.forEach((seg) => {
+      if (!seg.pathEl) return;
+      const pts = seg.normPts.map((p) => ({ x: p.x * w, y: p.y * h }));
+      seg.pathEl.setAttribute('d', pathFromPoints(pts));
+    });
+    dotSegs.forEach((seg) => {
+      if (!seg.pathEl) return;
+      const pts = seg.normPts.map((p) => ({ x: p.x * w, y: p.y * h }));
+      seg.pathEl.setAttribute('d', pathFromPoints(pts));
+    });
+  }
+
+  function refreshDotNext() {
+    const n = dotPts.length;
+    const next = dotNextIndex(dotVisited, n);
+    board.querySelectorAll('.lb-dot').forEach((c) => {
+      const i = Number(c.getAttribute('data-i'));
+      const on = i === next;
+      c.classList.toggle('lb-next', on);
+      c.setAttribute('fill', on ? '#fff' : '#222');
+      c.setAttribute('stroke', on ? '#111' : 'none');
+      c.setAttribute('stroke-width', on ? '0.75' : '0');
+    });
+  }
+
+  function pushDotSeg(a, b) {
+    const { w, h } = stageSize();
+    const normPts = [
+      { x: a.x / (w || 1), y: a.y / (h || 1) },
+      { x: b.x / (w || 1), y: b.y / (h || 1) },
+    ];
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('class', 'conn-line');
+    path.setAttribute('d', pathFromPoints([a, b]));
+    linesSvg.appendChild(path);
+    dotSegs.push({ normPts: normPts, pathEl: path });
+  }
+
+  function finishLadybug() {
+    const shell = board.querySelector('#ladybug-shell');
+    if (shell) shell.setAttribute('fill', '#F40616');
+    board.querySelectorAll('.lb-dot').forEach((c) => {
+      c.classList.remove('lb-next');
+      c.setAttribute('fill', '#222');
+    });
+    markExerciseComplete(currentId);
+    setTimeout(() => {
+      if (exercise && exercise.mode === 'dot-to-dot' && dotVisited >= dotPts.length + 1) {
+        showCelebrate();
+      }
+    }, 420);
+  }
+
+  function beginPathTrace(pointerId, clientX, clientY) {
+    if (!pathTraceMode || !exercise || !exercise.tracePaths) return false;
+    const cur = stagePoint(clientX, clientY);
+    const { w, h } = stageSize();
+    const tol = traceTol(w, h);
+    let best = null;
+    exercise.tracePaths.forEach((p) => {
+      if (traceDoneIds.has(p.id)) return;
+      const pts = pathStagePts(p.norm);
+      const metric = polylineSegLens(pts);
+      const hit = closestOnPolyline(pts, metric.segLen, cur.x, cur.y);
+      if (!traceStartOk(hit, tol)) return;
+      if (!best || hit.dist < best.hit.dist) best = { p: p, pts: pts, metric: metric, hit: hit };
+    });
+    if (!best) return false;
+    drawing = true;
+    activePointerId = pointerId;
+    drawFromId = best.p.id;
+    ensureAudio();
+    traceActive = {
+      id: best.p.id,
+      pts: best.pts,
+      segLen: best.metric.segLen,
+      total: best.metric.total,
+      progress: best.hit.arc,
+      strayed: false,
+    };
+    const shown = polylineToArc(best.pts, best.metric.segLen, best.hit.arc);
+    points = shown;
+    drawSvg.innerHTML = '';
+    livePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    livePath.setAttribute('class', 'live-line maze-live');
+    livePath.setAttribute('d', pathFromPoints(shown));
+    drawSvg.appendChild(livePath);
+    return true;
+  }
+
+  function movePathTrace(clientX, clientY) {
+    if (!drawing || !traceActive || traceActive.strayed || !livePath) return;
+    const cur = stagePoint(clientX, clientY);
+    const { w, h } = stageSize();
+    const tol = traceTol(w, h);
+    const hit = closestOnPolyline(traceActive.pts, traceActive.segLen, cur.x, cur.y);
+    const adv = advanceTrace(traceActive.progress, traceActive.total, hit.arc, hit.dist, tol);
+    if (adv.status === 'stray') {
+      traceActive.strayed = true;
+      drawSvg.innerHTML = '';
+      livePath = null;
+      return;
+    }
+    traceActive.progress = adv.progress;
+    const shown = polylineToArc(traceActive.pts, traceActive.segLen, adv.progress);
+    livePath.setAttribute('d', pathFromPoints(shown));
+    if (adv.status === 'done') {
+      const id = traceActive.id;
+      completeTracePath(id);
+    }
+  }
+
+  function completeTracePath(id) {
+    if (!exercise || traceDoneIds.has(id)) return;
+    const def = exercise.tracePaths.find((p) => p.id === id);
+    if (!def) return;
+    traceDoneIds.add(id);
+    const pix = pathStagePts(def.norm);
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('class', 'conn-line trace-done');
+    path.setAttribute('d', pathFromPoints(pix));
+    linesSvg.appendChild(path);
+    traceDoneSegs.push({
+      normPts: def.norm.map((p) => ({ x: p.x, y: p.y })),
+      pathEl: path,
+    });
+    drawing = false;
+    drawFromId = null;
+    livePath = null;
+    points = [];
+    activePointerId = null;
+    traceActive = null;
+    drawSvg.innerHTML = '';
+    playCorrectBing();
+    if (traceDoneIds.size >= exercise.tracePaths.length) {
+      markExerciseComplete(currentId);
+      setTimeout(() => {
+        if (exercise && exercise.mode === 'path-trace' && traceDoneIds.size >= exercise.tracePaths.length) {
+          showCelebrate();
+        }
+      }, 420);
+    }
+  }
+
+  function endPathTrace() {
+    drawing = false;
+    drawFromId = null;
+    livePath = null;
+    points = [];
+    activePointerId = null;
+    traceActive = null;
+    dotGesture = null;
+    drawSvg.innerHTML = '';
+  }
+
+  function beginDotTrace(pointerId, clientX, clientY) {
+    if (!dotTraceMode || !dotPts.length) return false;
+    const n = dotPts.length;
+    if (dotVisited >= n + 1) return false;
+    const pts = dotStagePts();
+    const next = dotNextIndex(dotVisited, n);
+    const anchor = dotVisited === 0 ? 0 : (dotVisited - 1) % n;
+    const cur = stagePoint(clientX, clientY);
+    const tol = dotTolPx();
+    const dNext = Math.hypot(cur.x - pts[next].x, cur.y - pts[next].y);
+    const dAnc = Math.hypot(cur.x - pts[anchor].x, cur.y - pts[anchor].y);
+    if (dNext > tol && dAnc > tol) return false;
+    drawing = true;
+    activePointerId = pointerId;
+    drawFromId = 'dot';
+    ensureAudio();
+    dotGesture = { anchor: anchor, next: next, origin: pts[anchor] };
+    points = [pts[anchor], cur];
+    drawSvg.innerHTML = '';
+    livePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    livePath.setAttribute('class', 'live-line');
+    livePath.setAttribute('d', pathFromPoints(points));
+    drawSvg.appendChild(livePath);
+    return true;
+  }
+
+  function moveDotTrace(clientX, clientY) {
+    if (!drawing || !livePath || !dotGesture) return;
+    const cur = stagePoint(clientX, clientY);
+    points.push(cur);
+    points = simplify(points, 4);
+    points[0] = dotGesture.origin;
+    livePath.setAttribute('d', pathFromPoints(points));
+  }
+
+  function endDotTrace(clientX, clientY) {
+    const gesture = dotGesture;
+    const up = stagePoint(clientX, clientY);
+    drawing = false;
+    drawFromId = null;
+    livePath = null;
+    points = [];
+    activePointerId = null;
+    dotGesture = null;
+    drawSvg.innerHTML = '';
+    if (!gesture || !dotTraceMode) return;
+    const pts = dotStagePts();
+    const n = pts.length;
+    const tol = dotTolPx();
+    if (dotVisited === 0) {
+      const d0 = Math.hypot(up.x - pts[0].x, up.y - pts[0].y);
+      const d1 = Math.hypot(up.x - pts[1].x, up.y - pts[1].y);
+      if (d1 <= tol) {
+        pushDotSeg(pts[0], pts[1]);
+        dotVisited = 2;
+        playCorrectBing();
+      } else if (d0 <= tol) {
+        dotVisited = 1;
+        playCorrectBing();
+      }
+    } else if (Math.hypot(up.x - pts[gesture.next].x, up.y - pts[gesture.next].y) <= tol) {
+      pushDotSeg(pts[gesture.anchor], pts[gesture.next]);
+      dotVisited += 1;
+      playCorrectBing();
+    }
+    refreshDotNext();
+    if (dotVisited >= n + 1) finishLadybug();
+  }
+
   stage.addEventListener('pointerdown', (e) => {
     if (e.button != null && e.button !== 0) return;
     if (drawing) return;
     if (exercise && exercise.mode === 'count-fill') return;
     let started = false;
-    if (exercise && (exercise.mode === 'circle-draw' || exercise.mode === 'strike-draw')) {
+    if (exercise && exercise.mode === 'path-trace') {
+      started = beginPathTrace(e.pointerId, e.clientX, e.clientY);
+    } else if (exercise && exercise.mode === 'dot-to-dot') {
+      started = beginDotTrace(e.pointerId, e.clientX, e.clientY);
+    } else if (exercise && (exercise.mode === 'circle-draw' || exercise.mode === 'strike-draw')) {
       started = beginCircleDraw(e.pointerId, e.clientX, e.clientY);
     } else {
       started = beginDraw(e.pointerId, e.clientX, e.clientY);
@@ -3838,7 +4602,19 @@
 
   stage.addEventListener('pointermove', (e) => {
     if (!drawing || e.pointerId !== activePointerId) return;
-    if (exercise && (exercise.mode === 'circle-draw' || exercise.mode === 'strike-draw')) {
+    if (exercise && exercise.mode === 'path-trace') {
+      let list = [e];
+      if (typeof e.getCoalescedEvents === 'function') {
+        const samples = e.getCoalescedEvents();
+        if (samples && samples.length) list = samples;
+      }
+      for (let si = 0; si < list.length; si++) {
+        movePathTrace(list[si].clientX, list[si].clientY);
+        if (!drawing || (traceActive && traceActive.strayed)) break;
+      }
+    } else if (exercise && exercise.mode === 'dot-to-dot') {
+      moveDotTrace(e.clientX, e.clientY);
+    } else if (exercise && (exercise.mode === 'circle-draw' || exercise.mode === 'strike-draw')) {
       moveCircleDraw(e.clientX, e.clientY);
     } else {
       moveDraw(e.clientX, e.clientY);
@@ -3848,7 +4624,12 @@
 
   function onPointerUp(e) {
     if (!drawing || e.pointerId !== activePointerId) return;
-    if (exercise && exercise.mode === 'circle-draw') {
+    if (exercise && exercise.mode === 'path-trace') {
+      if (traceActive && !traceActive.strayed) movePathTrace(e.clientX, e.clientY);
+      if (drawing) endPathTrace();
+    } else if (exercise && exercise.mode === 'dot-to-dot') {
+      endDotTrace(e.clientX, e.clientY);
+    } else if (exercise && exercise.mode === 'circle-draw') {
       endCircleDraw(e.clientX, e.clientY);
     } else if (exercise && exercise.mode === 'strike-draw') {
       endStrikeDraw(e.clientX, e.clientY);
@@ -3949,7 +4730,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=31').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=34').catch(() => {});
     });
   }
 
